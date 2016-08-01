@@ -6,11 +6,11 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/30 08:48:36 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/07/30 13:11:40 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/01 13:30:01 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "corewar_vm.h"
+#include "../includes/corewar_vm.h"
 
 int		get_next_num(t_env *env, int p)
 {
@@ -26,7 +26,7 @@ int		get_next_num(t_env *env, int p)
 		i = 0;
 		while (i < p)
 		{
-			if (env->players[p].p_num == ret)
+			if (env->players[i].p_num == ret)
 				dup = 1;
 			i++;
 		}
@@ -49,6 +49,7 @@ void	get_input(int argc, char **argv, t_env *env)
 	p = 0;
 	env->players = (t_cor*)malloc(sizeof(t_cor) * env->p_count + 1);
 	while (++i < argc)
+	{
 		if (ft_strcmp("-dump", argv[i]) == 0 && i + 1 < argc)
 		{
 			env->dump_cycles = ft_atoi(argv[i + 1]);
@@ -57,13 +58,14 @@ void	get_input(int argc, char **argv, t_env *env)
 		}
 		else if (ft_strcmp("-n", argv[i]) == 0 && i + 2 < argc)
 		{
-			new_cor(argv[i + 2], ft_atoi(argv[i + 1]), &env->players[p]);
+			init_cor(argv[i + 2], ft_atoi(argv[i + 1]), &env->players[p]);
 			p++;
 			i += 2;
 		}
 		else
 		{
-			new_cor(argv[i], get_next_num(env, p), &env->players[p]);
+			init_cor(argv[i], get_next_num(env, p), &env->players[p]);
 			p++;
 		}
+	}
 }

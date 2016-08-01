@@ -6,11 +6,11 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/29 12:19:47 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/07/30 08:45:29 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/01 13:09:00 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "corewar_vm.h"
+#include "../includes/corewar_vm.h"
 
 static long int	ft_atoi_long(const char *str)
 {

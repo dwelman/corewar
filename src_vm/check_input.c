@@ -6,11 +6,11 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/29 09:38:13 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/07/30 09:17:41 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/01 13:03:07 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "corewar_vm.h"
+#include "../includes/corewar_vm.h"
 
 /*
 ** Prints out error message if input arguments are incorrectly formatted.

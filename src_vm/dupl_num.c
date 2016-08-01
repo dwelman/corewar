@@ -6,11 +6,11 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/29 10:58:30 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/07/30 06:28:15 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/01 14:14:37 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "corewar_vm.h"
+#include "../includes/corewar_vm.h"
 
 static int		is_n(char *arg)
 {
@@ -83,7 +83,7 @@ void			check_player_numbers(int argc, char **argv)
 				if (!(is_numeric(argv[i + 1]) && check_int(argv[i + 1])))
 					arg_err(ER_NOTNUM, argv[i + 1]);
 			p_buf[p] = check_dup(p_buf, &p, argv[i + 1]);
-			i++;
+			i += 2;
 		}
 		else if (!(ARG_DUMP(i) || (i == 2 && ARG_DUMP(i - 1))))
 		{

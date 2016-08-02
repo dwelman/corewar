@@ -6,7 +6,7 @@
 #    By: daviwel <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/01 13:21:50 by daviwel           #+#    #+#              #
-#    Updated: 2016/08/01 14:41:30 by ddu-toit         ###   ########.fr        #
+#    Updated: 2016/08/02 10:02:13 by ddu-toit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ SRC = main.c\
 	  check_int.c\
 	  get_input.c\
 	  set_structs.c\
-	  run_vm.c
+	  run_vm.c\
+	  print_memory.c
 
 OBJ = $(SRC:.c=.o)
 

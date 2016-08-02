@@ -6,7 +6,7 @@
 #    By: daviwel <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/29 09:15:12 by daviwel           #+#    #+#              #
-#    Updated: 2016/08/01 10:55:45 by daviwel          ###   ########.fr        #
+#    Updated: 2016/08/02 08:55:25 by daviwel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,9 @@ NAME = asm
 
 SRC = main.c \
 	  error_check.c \
-	  store_input.c
+	  store_input.c \
+	  validate_input.c \
+	  validate_n_c.c \
 
 OBJ = $(SRC:.c=.o)
 

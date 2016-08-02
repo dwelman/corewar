@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 10:45:42 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/01 12:43:31 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/01 14:09:36 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		count_lines(char *name)
 	close(fd);
 	if (count == 0)
 	{
-		ft_putstr("Error : Input file cannot be empty\n");
+		ft_putstr_fd("Error : Input file cannot be empty\n", 2);
 		exit(0);
 	}
 	return (count);

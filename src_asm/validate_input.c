@@ -1,34 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   validate_input.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/07/29 10:55:31 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/02 10:40:22 by daviwel          ###   ########.fr       */
+/*   Created: 2016/08/02 08:56:39 by daviwel           #+#    #+#             */
+/*   Updated: 2016/08/02 08:57:45 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "assembler.h"
 
-int	main(int argc, char **argv)
+void	validate_input(t_info *info)
 {
-	t_info	info;
-	int		i; //////////////
-
-	i = 0;
-	if (error_check(argc, argv) == -1)
-		return (0);
-	store_input(&info, argv[1]);
-	validate_input(&info);
-	ft_printf("name = %s, comment = %s\n", info.name, info.comment);
-	while (info.input[i])
-	{
-		//ft_putstr(info.input[i]);
-		free(info.input[i]);
-		//ft_putchar('\n');
-		i++;
-	}
-	free(info.input);
+	check_nc(info);
 }

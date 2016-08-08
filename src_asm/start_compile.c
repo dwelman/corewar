@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validate_input.c                                   :+:      :+:    :+:   */
+/*   start_compile.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/02 08:56:39 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/04 10:30:13 by daviwel          ###   ########.fr       */
+/*   Created: 2016/08/04 07:53:25 by daviwel           #+#    #+#             */
+/*   Updated: 2016/08/08 12:26:40 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "assembler.h"
+#include <assembler.h>
 
-void	validate_input(t_info *info)
+void	start_compile(t_info *info)
 {
-	check_nc(info);
-	init_header(&(info->header), info);
+	ft_printf("%s\n", info->input[0]);
 }

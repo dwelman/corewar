@@ -6,20 +6,25 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/29 09:35:30 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/02 09:59:59 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/08 08:23:25 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef COREWAR_VM_H
 # define COREWAR_VM_H
 
-#include "../libft/libft.h"
-#include "op.h"
+#include <libft.h>
+#include <op.h>
 
 # define ARG_DUMP(X) ft_strcmp("-dump", argv[X]) == 0
 # define BOOL char
-# define CPU env->cpu
-# define REG(X) CPU.registers[X]
+# define PLAYER(X) env->players[X]
+# define P_CPU(X) env->players[X].cpu
+# define P_REG(X, Y) env->players[X].cpu.registers[Y]
+# define OP_COUNT 16
+# define OP(X) env->op_tab[X]
+# define COUNT_BUF 64
+# define INST_SIZE(X) PLAYER(X).file_size - ( 4 + PROG_NAME_LENGTH + COMMENT_LENGTH) 
 
 /*
 ** Opcodes in hex
@@ -57,11 +62,21 @@ enum
 	ER_MALLOC
 };
 
-typedef struct	s_instr
+typedef struct		t_op    
 {
-	int		op_code;
-	int		cycl_left;
-}				t_instr;
+   char			*name;
+   char			nbr_args;
+   char			type[MAX_ARGS_NUMBER];
+   char			code;
+   int			nbr_cycles;
+}					t_op;
+
+typedef struct	s_cpu
+{
+	t_op	*pc;
+	void	**registers;
+	int		carry;
+}				t_cpu;
 
 /*
 ** t_cor stores information of a player (.cor)
@@ -71,16 +86,15 @@ typedef struct	s_instr
 typedef struct	s_cor
 {
 	char	*file;
+	int		file_size;
+	char	*name;
+	char	*comment;
+	char	*instructions;
 	int		p_num;
+	int		size;
 	int		lsc;
+	t_cpu	cpu;
 }				t_cor;
-
-typedef struct	s_cpu
-{
-	t_instr	*pc;
-	void	**registers;
-	int		carry;
-}				t_cpu;
 
 /*
 ** Environment
@@ -92,12 +106,11 @@ typedef struct	s_env
 	BOOL	dump;
 	int		dump_cycles;
 	t_cor	*players;
-	t_cpu	cpu;
 	void	*memory;
 	int		cycle_to_die;
 	int		checkups;
+	t_op	op_tab[OP_COUNT + 1];
 }				t_env;
-
 
 /*
 ** Input && error checks
@@ -115,6 +128,29 @@ int				is_numeric(char *arg);
 
 void			get_input(int argc, char **argv, t_env *env);
 
+void			fill_op_tab(t_env *env);
+
+void			fill_1(t_env *env);
+
+void			fill_2(t_env *env);
+
+void			fill_3(t_env *env);
+
+void			fill_4(t_env *env);
+
+void			fill_5(t_env *env);
+
+void			load_programs(t_env *env);
+
+void			reverse_bytes(void *mem, size_t size);
+
+/*
+** Output functions
+*/
+
+void			print_all_ops(t_op op[OP_COUNT + 1]);
+
+void			print_op(t_op op);
 
 /*
 **	Initialize structs
@@ -131,9 +167,13 @@ void			init_cor(char *cor_file, int player_num, t_cor *cor);
 ** DOWN TO BUSINESS
 */
 
+void			load_into_vm(t_env *env);
+
 void			run_vm(t_env *env);
 
 void			print_memory(const void *addr, size_t size);
+
+int				read_int(char *ptr);
 
 #endif
 

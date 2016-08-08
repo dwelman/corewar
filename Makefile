@@ -6,40 +6,25 @@
 #    By: daviwel <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/01 13:21:50 by daviwel           #+#    #+#              #
-#    Updated: 2016/08/08 08:24:00 by ddu-toit         ###   ########.fr        #
+#    Updated: 2016/07/29 09:28:25 by ddu-toit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = corewar
+NAME = RTv1
 
 PATH = src/
 
-SRC = main.c\
-	  check_input.c\
-	  dupl_num.c\
-	  check_int.c\
-	  get_input.c\
-	  set_structs.c\
-	  fill_optab.c\
-	  fill_subfunc.c\
-	  load_program.c\
-	  reverse_bytes.c\
-	  read_byte_val.c\
-	  run_vm.c\
-	  load_into_vm.c\
-	  print_memory.c\
-	  print_ops.c
+SRC = $(PATH)main.c\
 
 OBJ = $(SRC:.c=.o)
 
-INCLUDES = -I ../includes/ -I ../libft
-
-ATTACH = -L ./ -lft
+ATTACH = -L libft/ -lft -lmlx -framework OpenGL -framework AppKit
 
 all: $(NAME)
 
 $(NAME):
-	clang -Wall -Werror -Wextra -c $(SRC) $(INCLUDES)
+	clang -Wall -Werror -Wextra -c $(SRC)
+	/bin/mv *.o src
 	clang -Wall -Werror -Wextra -o $(NAME) $(OBJ) $(ATTACH)
 
 clean:

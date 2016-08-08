@@ -6,19 +6,24 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/30 08:56:42 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/02 11:45:31 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/06 07:27:52 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/corewar_vm.h"
+#include <corewar_vm.h>
 
 void	init_cor(char *cor_file, int player_num, t_cor *cor)
 {
+	int	*pnum;
+
 	if (cor == NULL)
 		return ;
 	cor->file = cor_file;
 	cor->p_num = player_num;
 	cor->lsc = 0;
+	init_cpu(&cor->cpu);
+	pnum = (int*)cor->cpu.registers[0];
+	*pnum = player_num;
 }
 
 void	init_env(t_env *env)
@@ -34,6 +39,7 @@ void	init_env(t_env *env)
 	env->checkups = 0;
 	if (env->memory == NULL)
 		arg_err(ER_MALLOC, "init_env");
+	fill_op_tab(env);
 }
 
 void	init_cpu(t_cpu *cpu)

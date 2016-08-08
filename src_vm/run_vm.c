@@ -6,11 +6,11 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 10:53:20 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/02 11:29:16 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/04 16:50:03 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/corewar_vm.h"
+#include <corewar_vm.h>
 
 int		done(t_env *env)
 {
@@ -40,12 +40,13 @@ int		done(t_env *env)
 void	run_vm(t_env *env)
 {
 	long int	cycle;
-	
+	int			p_active;
+
+	p_active = env->p_count;
 	cycle = 1;
 	while (!(done(env)))
 	{
-//		ft_printf("cycle = %d\n", cycle);
-
+		ft_printf("cycle_to_die = %d\n", env->cycle_to_die);
 		if (cycle == (long int)env->dump_cycles)
 		{
 			ft_printf("DUMP at cycle %ld\n", cycle);

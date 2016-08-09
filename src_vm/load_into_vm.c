@@ -6,15 +6,43 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/08 08:18:49 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/08 09:50:50 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/08 11:43:06 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <corewar_vm.h>
 
+int		total_program_size(t_env *env)
+{
+	int	ret;
+	int	p;
+
+	p = 0;
+	ret = 0;
+	while (p < env->p_count)
+	{
+		ret += PLAYER(p).size;
+		p++;
+	}
+	return (ret);
+}
+
 void	load_into_vm(t_env *env)
 {
-	int	spacing;
+	int		spacing;
+	int		p;
+	char	*ptr;
 
-	spacing = MEM_SIZE / env->p_count;
+	spacing = (MEM_SIZE - total_program_size(env)) / env->p_count;
+	ptr = (char*)env->memory;
+	p = 0;
+	ptr += spacing / 2;
+	while (p < env->p_count)
+	{
+		ft_memcpy(ptr, PLAYER(p).instructions, PLAYER(p).size);
+		P_CPU(p).pc = ptr;
+		print_memory(P_CPU(p).pc, PLAYER(p).size);
+		ptr += spacing + PLAYER(p).size;
+		p++;
+	}
 }

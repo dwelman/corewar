@@ -6,11 +6,19 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/30 08:56:42 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/06 07:27:52 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/09 12:26:43 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <corewar_vm.h>
+
+void	init_op_run(t_op_run *op)
+{
+	op->op = 0;
+	op->to_exec = 0;
+	op->player = 0;
+	op->reset = TRUE;
+}
 
 void	init_cor(char *cor_file, int player_num, t_cor *cor)
 {
@@ -24,17 +32,23 @@ void	init_cor(char *cor_file, int player_num, t_cor *cor)
 	init_cpu(&cor->cpu);
 	pnum = (int*)cor->cpu.registers[0];
 	*pnum = player_num;
+	init_op_run(&cor->cur_op);
 }
 
 void	init_env(t_env *env)
 {
+	int	i;
+
+	i = -1;
 	if (env == NULL)
 		return ;
 	env->p_count = 0;
 	env->dump_cycles = 0;
 	env->dump = FALSE;
 	env->players = NULL;
-	env->memory = malloc(MEM_SIZE);
+	env->memory = (char*)malloc(MEM_SIZE);
+	while (++i < MEM_SIZE)
+		env->memory[i] = 0;
 	env->cycle_to_die = CYCLE_TO_DIE;
 	env->checkups = 0;
 	if (env->memory == NULL)

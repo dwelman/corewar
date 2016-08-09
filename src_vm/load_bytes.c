@@ -1,40 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   load_bytes.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/07/29 09:29:46 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/09 12:56:32 by ddu-toit         ###   ########.fr       */
+/*   Created: 2016/08/09 09:27:15 by ddu-toit          #+#    #+#             */
+/*   Updated: 2016/08/09 12:25:09 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <corewar_vm.h>
 
-void	display_players(t_env *env)
-{
-	int i = 0;
+/*
+** Function that loads bytes (in malloc'd char array) from an array as if the array is circular.
+*/
 
-	while (i < env->p_count)
+char	*cload_bytes(char *ptr, size_t block_size, size_t bytes)
+{
+	char		*ret;
+	size_t		i;
+	size_t		b;
+
+	if (bytes)
+		ret = (char*)malloc(sizeof(char) * bytes);
+	else
+		return (NULL);
+	i = 0;
+	b = 0;
+	while (b < bytes)
 	{
-		printf("player %s , number %d\n", env->players[i].file, env->players[i].p_num);
-		i++;
+		if (i >= block_size)
+			i = 0;
+		ret[b++] = ptr[i++];
 	}
-}
-
-int		main(int argc, char **argv)
-{
-	t_env	env;
-
-	init_env(&env);
-	check_args(argc, argv, &env);
-	get_input(argc, argv, &env);
-	sort_players(&env);
-	display_players(&env);
-	load_programs(&env);
-	load_into_vm(&env);
-	run_vm(&env);
-	cleanup_env(&env);
-	return (0);
+	return (ret);
 }

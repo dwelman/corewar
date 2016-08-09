@@ -1,19 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validate_input.c                                   :+:      :+:    :+:   */
+/*   init_header.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/02 08:56:39 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/04 10:30:13 by daviwel          ###   ########.fr       */
+/*   Created: 2016/08/04 08:57:34 by daviwel           #+#    #+#             */
+/*   Updated: 2016/08/08 14:17:43 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "assembler.h"
 
-void	validate_input(t_info *info)
+void	init_header(t_header *header, t_info *info)
 {
-	check_nc(info);
-	init_header(&(info->header), info);
+	int	i;
+
+	i = 0;
+	while (i < COMMENT_LENGTH + 1)
+	{
+		info->header.comment[i] = 0;
+		i++;
+	}
+	header->magic = COREWAR_EXEC_MAGIC;
+	header->prog_size = 256;
+	ft_strcpy(info->header.prog_name, info->name);
+	ft_strcpy(info->header.comment, info->comment);
 }

@@ -6,7 +6,7 @@
 #    By: daviwel <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/29 09:15:12 by daviwel           #+#    #+#              #
-#    Updated: 2016/08/02 08:55:25 by daviwel          ###   ########.fr        #
+#    Updated: 2016/08/08 12:42:39 by daviwel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,12 +17,17 @@ SRC = main.c \
 	  store_input.c \
 	  validate_input.c \
 	  validate_n_c.c \
+	  start_compile.c \
+	  init_header.c \
+	  reverse_bytes.c \
+	  write_file.c \
+	  print_mem.c
 
 OBJ = $(SRC:.c=.o)
 
 CFLAG = -Wall -Werror -Wextra
 
-INCLUDES = -I ../includes/
+INCLUDES = -I ../includes/ -I ../libft/
 
 ATTACH = -L ../libft/ -lft
 

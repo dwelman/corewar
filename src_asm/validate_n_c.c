@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/02 08:57:41 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/02 08:57:43 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/08 13:44:02 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,8 @@ void	check_nc(t_info *info)
 		if (INPUT[i][0] == '.')
 		{
 			get_n_or_c(info, i);
+			name_found = 1;
+			comm_found = 1;
 		}
 		else if (INPUT[i][0] != '#' && INPUT[i][0] != '\0' && (name_found == 0
 					|| comm_found == 0))

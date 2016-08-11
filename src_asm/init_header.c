@@ -19,6 +19,8 @@ void	init_header(t_header *header, t_info *info)
 	i = 0;
 	while (i < COMMENT_LENGTH + 1)
 	{
+		if (i < PROG_NAME_LENGTH + 1)
+			info->header.prog_name[i] = 0;
 		info->header.comment[i] = 0;
 		i++;
 	}

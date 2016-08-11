@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libc.h>
+#include <assembler.h>
 
 void	ft_hex(int num, int count)
 {

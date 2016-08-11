@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/29 08:13:56 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/08 12:42:26 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/11 15:22:25 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,14 @@ typedef struct	s_info
 	char		**input;
 	char		name[PROG_NAME_LENGTH + 1];
 	char		comment[COMMENT_LENGTH + 1];
-	int			line_nbr;
 	t_header	header;
 }				t_info;
+
+int				check_label(char *line, int i);
+
+int				read_line(char *line);
+
+void			start_compile(t_info *info);
 
 void    		print_memory(const void *addr, size_t size);
 

@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/09 08:25:19 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/07/05 15:40:02 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/11 10:50:00 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@
 # include <stdio.h>
 # define BUFF_SIZE 10000
 
-typedef struct	s_list
+typedef struct		s_list
 {
 	void			*data;
 	int				op_pos;
 	struct s_list	*next;
-}				t_list;
+}					t_list;
 
 t_list	*ft_lstcpy(t_list *start);
 void	ft_lstappend(t_list **list, t_list *node);

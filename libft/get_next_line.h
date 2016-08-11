@@ -6,16 +6,23 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/16 07:44:23 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/05/27 15:15:53 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/11 11:08:22 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-# define BUFF_SIZE 10000
+# define B 10000
 
 # include "libft.h"
 
-int	get_next_line(const int fd, char **line);
+typedef struct	s_line
+{
+	char	*temp;
+	char	*bn;
+	int		ret;
+}				t_line;
+
+int				get_next_line(const int fd, char **line);
 
 #endif

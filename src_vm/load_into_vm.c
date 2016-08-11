@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/08 08:18:49 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/08 11:43:06 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/09 14:06:17 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	load_into_vm(t_env *env)
 	{
 		ft_memcpy(ptr, PLAYER(p).instructions, PLAYER(p).size);
 		P_CPU(p).pc = ptr;
-		print_memory(P_CPU(p).pc, PLAYER(p).size);
 		ptr += spacing + PLAYER(p).size;
 		p++;
 	}

@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/29 09:29:46 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/09 12:56:32 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/09 14:03:40 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int		main(int argc, char **argv)
 	check_args(argc, argv, &env);
 	get_input(argc, argv, &env);
 	sort_players(&env);
-	display_players(&env);
 	load_programs(&env);
 	load_into_vm(&env);
 	run_vm(&env);

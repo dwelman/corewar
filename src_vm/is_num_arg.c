@@ -43,7 +43,7 @@ int				check_int(char *arg)
 	return (ret);
 }
 
-static int		is_numeric(char *arg)
+int				is_numeric(char *arg)
 {
 	int	i;
 

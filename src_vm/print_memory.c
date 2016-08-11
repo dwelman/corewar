@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libc.h>
+#include <corewar_vm.h>
 
 void	ft_hex(int num, int count)
 {

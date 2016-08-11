@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/29 09:35:30 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/08 08:23:25 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/09 12:56:27 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@
 # define P_REG(X, Y) env->players[X].cpu.registers[Y]
 # define OP_COUNT 16
 # define OP(X) env->op_tab[X]
+# define CUR_OP(X) env->players[X].cur_op
 # define COUNT_BUF 64
 # define INST_SIZE(X) PLAYER(X).file_size - ( 4 + PROG_NAME_LENGTH + COMMENT_LENGTH) 
+# define NO_TYPE 0;
 
 /*
 ** Opcodes in hex
@@ -62,21 +64,39 @@ enum
 	ER_MALLOC
 };
 
+/*
+** Data structure for op_tab. n_byte and dir_as index indicates whether enoding
+** byte is present and if T_DIR should be treated as an index (IND_SIZE)
+*/
+
 typedef struct		t_op    
 {
-   char			*name;
-   char			nbr_args;
-   char			type[MAX_ARGS_NUMBER];
-   char			code;
-   int			nbr_cycles;
+	char			*name;
+	char			nbr_args;
+	char			type[MAX_ARGS_NUMBER];
+	char			code;
+	int				nbr_cycles;
+	BOOL			n_byte;
+	BOOL			dir_as_index;
 }					t_op;
 
-typedef struct	s_cpu
+typedef struct		s_cpu
 {
-	t_op	*pc;
+	char	*pc;
 	void	**registers;
 	int		carry;
-}				t_cpu;
+}					t_cpu;
+
+typedef struct		s_op_run
+{
+	int		op;
+	int		to_exec;
+	int		player;
+	BOOL	reset;
+	int		*arg_types;
+	int		*arg_sizes;
+	char	**arg;
+}					t_op_run;
 
 /*
 ** t_cor stores information of a player (.cor)
@@ -84,16 +104,17 @@ typedef struct	s_cpu
 */
 
 typedef struct	s_cor
-{
-	char	*file;
-	int		file_size;
-	char	*name;
-	char	*comment;
-	char	*instructions;
-	int		p_num;
-	int		size;
-	int		lsc;
-	t_cpu	cpu;
+{	
+	char		*file;
+	int			file_size;
+	char		*name;
+	char		*comment;
+	char		*instructions;
+	int			p_num;
+	int			size;
+	int			lsc;
+	t_cpu		cpu;
+	t_op_run	cur_op;
 }				t_cor;
 
 /*
@@ -106,7 +127,7 @@ typedef struct	s_env
 	BOOL	dump;
 	int		dump_cycles;
 	t_cor	*players;
-	void	*memory;
+	char	*memory;
 	int		cycle_to_die;
 	int		checkups;
 	t_op	op_tab[OP_COUNT + 1];
@@ -127,6 +148,8 @@ int				check_int(char *arg);
 int				is_numeric(char *arg);
 
 void			get_input(int argc, char **argv, t_env *env);
+
+void			sort_players(t_env *env);
 
 void			fill_op_tab(t_env *env);
 
@@ -153,7 +176,7 @@ void			print_all_ops(t_op op[OP_COUNT + 1]);
 void			print_op(t_op op);
 
 /*
-**	Initialize structs
+**	initialize structs
 */
 
 void			init_env(t_env *env);
@@ -171,9 +194,29 @@ void			load_into_vm(t_env *env);
 
 void			run_vm(t_env *env);
 
+t_op_run		load_op(t_cor player, t_env *env);
+
+int				*get_arg_types(char *e_byte);
+
+int				*get_arg_sizes(t_op_run *new, t_env *env);
+
+int				arg_size(int arg_type);
+
+int				*no_n_byte(void);
+
+void			clear_op(t_op_run *op, t_env *env);
+
+char			*cload_bytes(char *ptr, size_t block_size, size_t bytes);
+
 void			print_memory(const void *addr, size_t size);
 
 int				read_int(char *ptr);
+
+/*
+** Memory cleanup
+*/
+
+void			cleanup_env(t_env *env);
 
 #endif
 

@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/06 06:55:54 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/08 08:18:37 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/09 14:05:50 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,12 +105,10 @@ void	load_programs(t_env *env)
 		PLAYER(i).comment[COMMENT_LENGTH] = '\0';
 		//debug
 		ft_printf("name  :\n %s\n", PLAYER(i).name);
-//		print_memory(PLAYER(i).name, PROG_NAME_LENGTH);
 		ft_printf("size  :\n %d\n", PLAYER(i).size);
-//		print_memory(&PLAYER(i).size, 4);
 		ft_printf("comment : \n %s\n", PLAYER(i).comment);
-//		print_memory(PLAYER(i).comment, COMMENT_LENGTH);
 		ft_printf("instructions :\n");
 		print_memory(PLAYER(i).instructions, PLAYER(i).size);
+		ft_putchar('\n');
 	}
 }

@@ -6,7 +6,7 @@
 #    By: daviwel <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/01 13:21:50 by daviwel           #+#    #+#              #
-#    Updated: 2016/08/09 12:56:51 by ddu-toit         ###   ########.fr        #
+#    Updated: 2016/08/11 07:43:01 by ddu-toit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,8 @@ SRC = main.c\
 	  read_byte_val.c\
 	  run_vm.c\
 	  load_op.c\
+	  arg_info.c\
+	  no_n_byte.c\
 	  load_into_vm.c\
 	  load_bytes.c\
 	  sort_players.c\
@@ -38,7 +40,7 @@ OBJ = $(SRC:.c=.o)
 
 INCLUDES = -I ../includes/ -I ../libft
 
-ATTACH = -L ./ -lft
+ATTACH = -L  ../libft -lft
 
 all: $(NAME)
 

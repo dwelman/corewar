@@ -33,6 +33,7 @@ void	init_cor(char *cor_file, int player_num, t_cor *cor)
 	pnum = (int*)cor->cpu.registers[0];
 	*pnum = player_num;
 	init_op_run(&cor->cur_op);
+	cor->alive = TRUE;
 }
 
 void	init_env(t_env *env)

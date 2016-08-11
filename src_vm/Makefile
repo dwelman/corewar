@@ -6,7 +6,7 @@
 #    By: daviwel <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/01 13:21:50 by daviwel           #+#    #+#              #
-#    Updated: 2016/08/11 07:43:01 by ddu-toit         ###   ########.fr        #
+#    Updated: 2016/08/11 14:40:57 by ddu-toit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ SRC = main.c\
 	  load_op.c\
 	  arg_info.c\
 	  no_n_byte.c\
+	  move_pc.c\
 	  load_into_vm.c\
 	  load_bytes.c\
 	  sort_players.c\

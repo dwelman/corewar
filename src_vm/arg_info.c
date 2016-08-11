@@ -49,6 +49,21 @@ int			arg_size(int arg_type)
 	return (0);
 }
 
+int			total_arg_size(int *arg_sizes)
+{
+	int	total;
+	int	i;
+
+	total = 0;
+	i = 0;
+	while (i < 4)
+	{
+		total += arg_sizes[i];
+		i++;
+	}
+	return (total);
+}
+
 int			*get_arg_sizes(t_op_run *new, t_env *env)
 {
 	int	i;

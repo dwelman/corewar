@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/29 09:35:30 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/09 12:56:27 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/11 15:41:05 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define COUNT_BUF 64
 # define INST_SIZE(X) PLAYER(X).file_size - ( 4 + PROG_NAME_LENGTH + COMMENT_LENGTH) 
 # define NO_TYPE 0;
+# define ALIVE(X) PLAYER(X).alive == 1
 
 /*
 ** Opcodes in hex
@@ -82,6 +83,7 @@ typedef struct		t_op
 
 typedef struct		s_cpu
 {
+	char	*prog_start;
 	char	*pc;
 	void	**registers;
 	int		carry;
@@ -104,7 +106,7 @@ typedef struct		s_op_run
 */
 
 typedef struct	s_cor
-{	
+{
 	char		*file;
 	int			file_size;
 	char		*name;
@@ -115,6 +117,7 @@ typedef struct	s_cor
 	int			lsc;
 	t_cpu		cpu;
 	t_op_run	cur_op;
+	BOOL		alive;
 }				t_cor;
 
 /*
@@ -194,19 +197,27 @@ void			load_into_vm(t_env *env);
 
 void			run_vm(t_env *env);
 
-t_op_run		load_op(t_cor player, t_env *env);
+t_op_run		load_op(t_cor *player, t_env *env);
 
 int				*get_arg_types(char *e_byte);
 
 int				*get_arg_sizes(t_op_run *new, t_env *env);
 
+int				total_arg_size(int *arg_sizes);
+
 int				arg_size(int arg_type);
+
+void			print_oprun(t_op_run op, t_env *env);
+
+void			get_args(t_op_run *new, t_env *env, char *pc);
 
 int				*no_n_byte(void);
 
 void			clear_op(t_op_run *op, t_env *env);
 
 char			*cload_bytes(char *ptr, size_t block_size, size_t bytes);
+
+void			move_pc(t_cpu *p, int offset, t_env *env);
 
 void			print_memory(const void *addr, size_t size);
 
@@ -219,4 +230,3 @@ int				read_int(char *ptr);
 void			cleanup_env(t_env *env);
 
 #endif
-

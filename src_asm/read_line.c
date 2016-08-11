@@ -1,19 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validate_input.c                                   :+:      :+:    :+:   */
+/*   read_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/02 08:56:39 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/11 11:14:31 by daviwel          ###   ########.fr       */
+/*   Created: 2016/08/11 13:11:53 by daviwel           #+#    #+#             */
+/*   Updated: 2016/08/11 15:22:23 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "assembler.h"
+#include <assembler.h>
 
-void	validate_input(t_info *info)
+int	read_line(char *line)
 {
-	check_nc(info);
-	init_header(&(info->header), info);
+	int	i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] == LABEL_CHAR)
+		{
+			if (check_label(line, i) == -1)
+				return (-1);
+		}
+		i++;
+	}
+	return (0);
 }

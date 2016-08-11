@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validate_input.c                                   :+:      :+:    :+:   */
+/*   find_label.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/02 08:56:39 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/11 11:14:31 by daviwel          ###   ########.fr       */
+/*   Created: 2016/08/11 10:11:38 by daviwel           #+#    #+#             */
+/*   Updated: 2016/08/11 10:30:54 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "assembler.h"
+#include <assembler.h>
 
-void	validate_input(t_info *info)
+int	find_label(t_info *info)
 {
-	check_nc(info);
-	init_header(&(info->header), info);
+	
 }

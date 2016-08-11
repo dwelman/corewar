@@ -6,7 +6,7 @@
 #    By: daviwel <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/29 09:15:12 by daviwel           #+#    #+#              #
-#    Updated: 2016/08/08 12:42:39 by daviwel          ###   ########.fr        #
+#    Updated: 2016/08/11 15:22:27 by daviwel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,9 @@ SRC = main.c \
 	  init_header.c \
 	  reverse_bytes.c \
 	  write_file.c \
-	  print_mem.c
+	  print_mem.c \
+	  read_line.c \
+	  check_label.c
 
 OBJ = $(SRC:.c=.o)
 

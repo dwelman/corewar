@@ -2,3 +2,9 @@
 
 .name "braindead"
 .comment "Brraaaainnnz"
+
+brain:
+
+:brain
+
+q§try:

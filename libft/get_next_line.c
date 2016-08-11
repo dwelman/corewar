@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/05 08:32:45 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/06/05 09:03:25 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/11 11:07:46 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,29 +34,29 @@ static	int		read_line(int const fd, char **stock)
 
 int				get_next_line(int const fd, char **line)
 {
-	static char			*str = NULL;
-	char				*bn;
-	int					ret;
+	static char		*s = NULL;
+	t_line			l;
 
-	if ((!str && (str = ft_strnew(sizeof(*str))) == NULL) || !line
-		|| fd < 0 || BUFF_SIZE < 0)
+	if ((!s && (s = ft_strnew(sizeof(*s))) == NULL) || !line || fd < 0 || B < 0)
 		return (-1);
-	bn = ft_strchr(str, '\n');
-	while (bn == NULL)
+	l.bn = ft_strchr(s, '\n');
+	while (l.bn == NULL)
 	{
-		ret = read_line(fd, &str);
-		if (ret == 0)
+		l.ret = read_line(fd, &s);
+		if (l.ret == 0)
 		{
-			if (ft_strlen(str) == 0)
+			if (ft_strlen(s) == 0)
 				return (0);
-			str = ft_strjoin(str, "\n");
+			s = ft_strjoin(s, "\n");
 		}
-		if (ret < 0)
+		if (l.ret < 0)
 			return (-1);
 		else
-			bn = ft_strchr(str, '\n');
+			l.bn = ft_strchr(s, '\n');
 	}
-	*line = ft_strsub(str, 0, ft_strlen(str) - ft_strlen(bn));
-	str = ft_strdup(bn + 1);
+	*line = ft_strsub(s, 0, ft_strlen(s) - ft_strlen(l.bn));
+	l.temp = s;
+	s = ft_strdup(l.bn + 1);
+	free(l.temp);
 	return (1);
 }

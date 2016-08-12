@@ -6,7 +6,7 @@
 /*   By: zaz <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2016/08/08 08:31:20 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/09 14:55:43 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 #define REG_NUMBER				16
 
 #define CYCLE_TO_DIE			1536
-#define CYCLE_DELTA				4
+#define CYCLE_DELTA				50
 #define NBR_LIVE				2048
 #define MAX_CHECKS				10
 

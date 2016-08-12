@@ -6,11 +6,11 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/12 09:21:04 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/12 09:25:47 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/12 10:45:10 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <corewar_vm>
+#include <corewar_vm.h>
 
 /*
 ** Runs the correct function depending on given t_op_run struct.

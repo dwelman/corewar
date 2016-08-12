@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 10:53:20 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/12 09:33:09 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/12 15:48:21 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ void	exec_ops(t_env *env)
 			if (CUR_OP(p).to_exec == 1 && CUR_OP(p).op >= 1 && CUR_OP(p).op <= 16)
 			{
 				ft_printf("\nplayer %d exec %s\n",PLAYER(p).p_num, OP(CUR_OP(p).op).name);
-				run_instr(&CUR_OP(p), env);
 				get_args(&CUR_OP(p), env, P_CPU(p).pc);
+				run_instr(&CUR_OP(p), env);
 				move_pc(&P_CPU(p), total_arg_size(CUR_OP(p).arg_sizes), env);
 				if (P_CPU(p).pc > P_CPU(p).prog_start + PLAYER(p).size)
 					PLAYER(p).alive = FALSE;

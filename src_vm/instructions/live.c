@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/12 08:18:18 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/12 09:35:57 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/12 10:46:19 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	is_player(int player, t_env *env)
 	i = 0;
 	while (i < env->p_count)
 	{
+		ft_printf("i = %d\n", i);
 		if (PLAYER(i).p_num == player)
 			return (i);
 		i++;
@@ -40,10 +41,13 @@ void	live(t_op_run *run, t_env *env)
 	int	player;
 	int	index;
 
+	ft_printf("arg size %d \n", run->arg_sizes[0]);
+	print_memory(run->arg[0], 4);
 	reverse_bytes((void*)run->arg[0], 4);
-	player = *(int*)run->arg;
+	ft_printf("derpa\n");
+	player = *(int*)run->arg[0];
 	index = is_player(player, env);
-	ft_printf("live with player %d", player);
+	ft_printf("live with player %d\n", player);
 	if (index != -1 && PLAYER(index).alive == TRUE)
 		env->last_live = player;
 }

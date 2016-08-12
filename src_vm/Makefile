@@ -6,13 +6,18 @@
 #    By: daviwel <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/01 13:21:50 by daviwel           #+#    #+#              #
-#    Updated: 2016/08/11 14:40:57 by ddu-toit         ###   ########.fr        #
+#    Updated: 2016/08/12 09:40:42 by ddu-toit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = corewar
 
 PATH = src/
+
+IN_PATH = instructions/
+
+SRC_P =  $(IN_PATH)live.c\
+
 
 SRC = main.c\
 	  check_input.c\
@@ -35,9 +40,11 @@ SRC = main.c\
 	  sort_players.c\
 	  print_memory.c\
 	  print_ops.c\
-	  cleanup.c
-
+	  cleanup.c\
+	 
 OBJ = $(SRC:.c=.o)
+
+IN_OBJ = $(SRC_P:.c=.o)
 
 INCLUDES = -I ../includes/ -I ../libft
 
@@ -46,6 +53,7 @@ ATTACH = -L  ../libft -lft
 all: $(NAME)
 
 $(NAME):
+	/bin/mv $(IN_OBJ) $(IN_PATH)
 	clang -Wall -Werror -Wextra -c $(SRC) $(INCLUDES)
 	clang -Wall -Werror -Wextra -o $(NAME) $(OBJ) $(ATTACH)
 

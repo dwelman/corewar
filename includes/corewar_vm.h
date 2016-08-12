@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/29 09:35:30 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/11 15:41:05 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/12 09:26:32 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,17 @@ enum
 ** byte is present and if T_DIR should be treated as an index (IND_SIZE)
 */
 
+typedef struct		s_op_run
+{
+	int		op;
+	int		to_exec;
+	int		player;
+	BOOL	reset;
+	int		*arg_types;
+	int		*arg_sizes;
+	char	**arg;
+}					t_op_run;
+
 typedef struct		t_op    
 {
 	char			*name;
@@ -89,16 +100,7 @@ typedef struct		s_cpu
 	int		carry;
 }					t_cpu;
 
-typedef struct		s_op_run
-{
-	int		op;
-	int		to_exec;
-	int		player;
-	BOOL	reset;
-	int		*arg_types;
-	int		*arg_sizes;
-	char	**arg;
-}					t_op_run;
+
 
 /*
 ** t_cor stores information of a player (.cor)
@@ -134,6 +136,7 @@ typedef struct	s_env
 	int		cycle_to_die;
 	int		checkups;
 	t_op	op_tab[OP_COUNT + 1];
+	int		last_live;
 }				t_env;
 
 /*
@@ -222,6 +225,14 @@ void			move_pc(t_cpu *p, int offset, t_env *env);
 void			print_memory(const void *addr, size_t size);
 
 int				read_int(char *ptr);
+
+void			run_instr(t_op_run *run, t_env *env);
+
+/*
+** Instructions
+*/
+
+void			live(t_op_run *run, t_env *env);
 
 /*
 ** Memory cleanup

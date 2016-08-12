@@ -1,0 +1,5 @@
+- Write functions for every operation , takes t_op_run struct that stores all neccisary info
+	> to store and read data we need functions that takes n byt as a parameter and reads values into values understadable by
+	 C (little endian) and the vm (big endian)
+- Cycle countdown system should work based on executions of live.
+- additional error checks, safety coding 

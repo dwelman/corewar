@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reverse_bits.c                                     :+:      :+:    :+:   */
+/*   run_instr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/06 11:35:08 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/06 11:45:21 by ddu-toit         ###   ########.fr       */
+/*   Created: 2016/08/12 09:21:04 by ddu-toit          #+#    #+#             */
+/*   Updated: 2016/08/12 09:25:47 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include <corewar_vm>
 
-void	reverse_bytes(void *mem, size_t size)
+/*
+** Runs the correct function depending on given t_op_run struct.
+*/
+
+void	run_instr(t_op_run *run, t_env *env)
 {
-	int		i;
-	int		j;
-	void	*temp;
-	char	*ptr;
+	int	code;
 
-	i = size - 1;
-	j = 0;
-	ptr = (char*)mem;
-	temp = malloc(size);
-	while (i)
-	{
-		temp[j] = *ptr[i];
-		j++;
-		i--;
-	}
-	free(temp);
+	code = run->op;
+	ft_printf("Looking for op %d\n", code);
+	if (code == LIVE)
+		live(run, env);
+	else
+		ft_printf("%d not found!!\n", code);
 }

@@ -6,7 +6,7 @@
 #    By: daviwel <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/01 13:21:50 by daviwel           #+#    #+#              #
-#    Updated: 2016/08/12 10:45:41 by ddu-toit         ###   ########.fr        #
+#    Updated: 2016/08/13 06:39:46 by ddu-toit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,8 @@ SRC = main.c\
 	  print_memory.c\
 	  print_ops.c\
 	  cleanup.c\
-	  run_instr.c
+	  run_instr.c\
+	  live_check.c
 	 
 OBJ = $(SRC:.c=.o)
 

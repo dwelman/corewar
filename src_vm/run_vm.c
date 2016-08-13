@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 10:53:20 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/12 15:48:21 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/13 08:02:18 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,25 @@
 
 int		done(t_env *env)
 {
-	static int	last_live_check = 0;
-	static int	checks;
-	static int	last_change = 0;
-
+	static int	checkups = 0;
 	if (env->cycle_to_die <= 0)
 		return (1);
-	last_live_check++;
+	check_live_calls(env);
+	if (env->live_calls == NBR_LIVE)
+	{
+		if (still_alive(env))
+			env->cycle_to_die -= CYCLE_DELTA;
+		else if (checkups == MAX_CHECKS)
+		{
+			env->cycle_to_die -= CYCLE_DELTA;
+			checkups = -1;
+		}
+		env->live_calls = 0;
+		checkups++;
+	}
+	if (count_alive(env) == 0)
+		return (1);
+/*	last_live_check++;
 	if (last_live_check == env->cycle_to_die)
 	{
 		puts("Totaly checking if live and stuff");
@@ -34,7 +46,7 @@ int		done(t_env *env)
 			ft_printf("decreased! %d\n", env->cycle_to_die);
 		}
 	}
-	return (0);
+*/	return (0);
 }
 
 void	fetch_ops(t_env *env)
@@ -44,8 +56,11 @@ void	fetch_ops(t_env *env)
 	p = 0;
 	while (p < env->p_count)
 	{
-		if (CUR_OP(p).reset == TRUE && *P_CPU(p).pc >= 1 && *P_CPU(p).pc <= 16)
-			PLAYER(p).cur_op = load_op(&PLAYER(p), env);
+		if (PLAYER(p).alive == TRUE)
+		{
+			if (CUR_OP(p).reset == TRUE && *P_CPU(p).pc >= 1 && *P_CPU(p).pc <= 16)
+				PLAYER(p).cur_op = load_op(&PLAYER(p), env);
+		}
 		p++;
 	}
 }
@@ -85,6 +100,10 @@ void	run_vm(t_env *env)
 	p_active = env->p_count;
 	cycle = 1;
 	puts("=================START==================");
+	env->alive_at_check = (int*)malloc(sizeof(int) * env->p_count);
+	set_alive_at_check(env);
+	ft_printf("AAC : \n");
+	print_memory(env->alive_at_check, sizeof(int) * env->p_count);
 	while (!(done(env)))
 	{
 		fetch_ops(env);
@@ -95,6 +114,8 @@ void	run_vm(t_env *env)
 			print_memory(env->memory, MEM_SIZE);
 			break ;	
 		}
+		inc_last_live(env);
 		cycle++;
 	}
+	ft_memdel((void**)&env->alive_at_check);
 }

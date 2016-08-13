@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/30 08:56:42 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/12 09:20:52 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/13 07:12:55 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	init_env(t_env *env)
 		arg_err(ER_MALLOC, "init_env");
 	fill_op_tab(env);
 	env->last_live = -1;
+	env->live_calls = 0;
 }
 
 void	init_cpu(t_cpu *cpu)

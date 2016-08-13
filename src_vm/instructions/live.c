@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/12 08:18:18 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/12 10:46:19 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/13 07:12:32 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,9 @@ void	live(t_op_run *run, t_env *env)
 	index = is_player(player, env);
 	ft_printf("live with player %d\n", player);
 	if (index != -1 && PLAYER(index).alive == TRUE)
+	{
 		env->last_live = player;
+		PLAYER(index).last_live = -1;
+		env->live_calls++;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/29 09:35:30 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/12 15:48:18 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/13 07:46:50 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ typedef struct		s_cpu
 /*
 ** t_cor stores information of a player (.cor)
 ** lsc - amout of 'live' executions since last check
+** last_live indicates how many cycles passed since last live
 */
 
 typedef struct	s_cor
@@ -120,6 +121,7 @@ typedef struct	s_cor
 	t_cpu		cpu;
 	t_op_run	cur_op;
 	BOOL		alive;
+	int			last_live;
 }				t_cor;
 
 /*
@@ -137,6 +139,8 @@ typedef struct	s_env
 	int		checkups;
 	t_op	op_tab[OP_COUNT + 1];
 	int		last_live;
+	int		live_calls;
+	int		*alive_at_check;
 }				t_env;
 
 /*
@@ -227,6 +231,16 @@ void			print_memory(const void *addr, size_t size);
 int				read_int(char *ptr);
 
 void			run_instr(t_op_run *run, t_env *env);
+
+void			inc_last_live(t_env *env);
+
+void			check_live_calls(t_env *env);
+
+void			set_alive_at_check(t_env *env);
+
+BOOL			still_alive(t_env *env);
+
+int				count_alive(t_env *env);
 
 /*
 ** Instructions

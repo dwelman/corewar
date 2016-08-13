@@ -11,8 +11,9 @@
 /* ************************************************************************** */
 
 /*
-** Toutes les tailles sont en octets.
-** On part du principe qu'un int fait 32 bits. Est-ce vrai chez vous ?
+** translated the French comments to English
+** All sizes are in bytes.
+** It is assumed that an int is 32 bits. Is this true home?
 */
 
 #define IND_SIZE				2

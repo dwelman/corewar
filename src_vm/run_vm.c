@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 10:53:20 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/13 08:02:18 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/13 14:43:00 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,12 @@
 int		done(t_env *env)
 {
 	static int	checkups = 0;
-	if (env->cycle_to_die <= 0)
-		return (1);
+
 	check_live_calls(env);
-	if (env->live_calls == NBR_LIVE)
+	if (env->live_calls >= NBR_LIVE)
 	{
+	//	ft_printf("live_calls = %d\n", env->live_calls);
+	//	ft_printf("to die = %d\n", env->cycle_to_die);
 		if (still_alive(env))
 			env->cycle_to_die -= CYCLE_DELTA;
 		else if (checkups == MAX_CHECKS)
@@ -32,21 +33,8 @@ int		done(t_env *env)
 	}
 	if (count_alive(env) == 0)
 		return (1);
-/*	last_live_check++;
-	if (last_live_check == env->cycle_to_die)
-	{
-		puts("Totaly checking if live and stuff");
-		last_change++;
-		last_live_check = 0;
-		checks++;
-		if (last_change == MAX_CHECKS)
-		{
-			env->cycle_to_die -= CYCLE_DELTA;
-			last_change = 0;
-			ft_printf("decreased! %d\n", env->cycle_to_die);
-		}
-	}
-*/	return (0);
+	else
+		return (0);
 }
 
 void	fetch_ops(t_env *env)
@@ -76,10 +64,11 @@ void	exec_ops(t_env *env)
 		{
 			if (CUR_OP(p).to_exec == 1 && CUR_OP(p).op >= 1 && CUR_OP(p).op <= 16)
 			{
-				ft_printf("\nplayer %d exec %s\n",PLAYER(p).p_num, OP(CUR_OP(p).op).name);
+				ft_printf("\nplayer %s exec %s\n",PLAYER(p).name, OP(CUR_OP(p).op).name);
 				get_args(&CUR_OP(p), env, P_CPU(p).pc);
 				run_instr(&CUR_OP(p), env);
-				move_pc(&P_CPU(p), total_arg_size(CUR_OP(p).arg_sizes), env);
+				if (CUR_OP(p).op != ZJMP)
+					move_pc(&P_CPU(p), total_arg_size(CUR_OP(p).arg_sizes), env);
 				if (P_CPU(p).pc > P_CPU(p).prog_start + PLAYER(p).size)
 					PLAYER(p).alive = FALSE;
 				print_oprun(CUR_OP(p), env);
@@ -91,6 +80,10 @@ void	exec_ops(t_env *env)
 		p++;
 	}
 }
+
+/*
+** Runs loop to fetch and exectute instructions.
+*/
 
 void	run_vm(t_env *env)
 {
@@ -108,13 +101,13 @@ void	run_vm(t_env *env)
 	{
 		fetch_ops(env);
 		exec_ops(env);
+		inc_last_live(env);
 		if (cycle == (long int)env->dump_cycles)
 		{
 			ft_printf("DUMP at cycle %ld\n", cycle);
 			print_memory(env->memory, MEM_SIZE);
 			break ;	
 		}
-		inc_last_live(env);
 		cycle++;
 	}
 	ft_memdel((void**)&env->alive_at_check);

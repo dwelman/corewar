@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/13 06:30:08 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/13 08:05:33 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/13 12:39:59 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ void	inc_last_live(t_env *env)
 	while (p < env->p_count)
 	{
 		if (PLAYER(p).alive == TRUE)
+		{
 			PLAYER(p).last_live++;
-		ft_printf("%s last live %d\n", PLAYER(p).name , PLAYER(p).last_live);
+			ft_printf("%s last live %d\n", PLAYER(p).name , PLAYER(p).last_live);
+		}
 		p++;
 	}
 }

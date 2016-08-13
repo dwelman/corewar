@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/29 09:35:30 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/13 07:46:50 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/13 14:43:07 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -246,7 +246,11 @@ int				count_alive(t_env *env);
 ** Instructions
 */
 
+int				is_player(int player, t_env *env);
+
 void			live(t_op_run *run, t_env *env);
+
+void			zjmp(t_op_run *run, t_env *env);
 
 /*
 ** Memory cleanup

@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/30 08:56:42 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/13 07:12:55 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/13 11:18:25 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	init_cpu(t_cpu *cpu)
 		return ;
 	r = 0;
 	cpu->pc = NULL;
-	cpu->carry = 0;
+	cpu->carry = 1;
 	cpu->registers = (void**)malloc(sizeof(void*) * REG_NUMBER);
 	if (cpu->registers == NULL)
 		arg_err(ER_MALLOC, "init_cpu");

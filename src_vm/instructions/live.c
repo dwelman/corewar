@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/12 08:18:18 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/13 07:12:32 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/13 12:44:12 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,12 @@ void	live(t_op_run *run, t_env *env)
 	int	player;
 	int	index;
 
-	ft_printf("arg size %d \n", run->arg_sizes[0]);
-	print_memory(run->arg[0], 4);
 	reverse_bytes((void*)run->arg[0], 4);
-	ft_printf("derpa\n");
 	player = *(int*)run->arg[0];
 	index = is_player(player, env);
-	ft_printf("live with player %d\n", player);
 	if (index != -1 && PLAYER(index).alive == TRUE)
 	{
+		ft_printf("A process shows that player %s is alive\n", PLAYER(index).name);
 		env->last_live = player;
 		PLAYER(index).last_live = -1;
 		env->live_calls++;

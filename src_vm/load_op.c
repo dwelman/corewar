@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/08 12:37:45 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/11 15:45:16 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/13 14:43:03 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,8 @@ void		get_args(t_op_run *new, t_env *env, char *pc)
 	new->arg = (char**)malloc(sizeof(char*) * 4);
 	while (i < 4)
 	{
-		ft_printf("nbr_args = %d\n", OP(new->op).nbr_args);
 		if (i < OP(new->op).nbr_args)
 		{
-			ft_printf("arg_size = %d\n", new->arg_sizes[i]);
 			new->arg[i] = cload_bytes(pc, MEM_SIZE, new->arg_sizes[i]);
 			pc += new->arg_sizes[i];
 		}
@@ -100,7 +98,6 @@ t_op_run	load_op(t_cor *player, t_env *env)
 	int			op;
 
 	op = (int)*player->cpu.pc;
-	ft_printf("\nop = %d\n", op);
 	new.to_exec = OP(op).nbr_cycles;
 	new.op = (int)*player->cpu.pc;
 	move_pc(&player->cpu, 1, env);
@@ -114,6 +111,5 @@ t_op_run	load_op(t_cor *player, t_env *env)
 	new.reset = FALSE;
 	new.player = player->p_num;
 	new.arg_sizes = get_arg_sizes(&new, env);
-//	get_args(&new, env, player.cpu.pc);
 	return (new);
 }

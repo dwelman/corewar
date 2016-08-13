@@ -6,7 +6,7 @@
 #    By: daviwel <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/01 13:21:50 by daviwel           #+#    #+#              #
-#    Updated: 2016/08/13 06:39:46 by ddu-toit         ###   ########.fr        #
+#    Updated: 2016/08/13 10:32:37 by ddu-toit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ PATH = src/
 IN_PATH = instructions/
 
 IN_FILES = live.c\
+		   zjmp.c
 
 SRC = main.c\
 	  check_input.c\

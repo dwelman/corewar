@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/08 12:59:40 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/08 13:24:15 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/13 08:35:07 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	sort_players(t_env *env)
 		while (i < env->p_count)
 		{
 			if (i + 1 < env->p_count)
-				if (PLAYER(i).p_num > PLAYER(i + 1).p_num)
+				if (PLAYER(i).p_num < PLAYER(i + 1).p_num)
 				{
 					swap_cor(&PLAYER(i), &PLAYER(i + 1));
 					swapped = TRUE;

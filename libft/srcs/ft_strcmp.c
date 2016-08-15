@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstappend.c                                     :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/22 13:41:39 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/06/22 15:27:17 by daviwel          ###   ########.fr       */
+/*   Created: 2016/05/10 14:50:28 by ddu-toit          #+#    #+#             */
+/*   Updated: 2016/08/15 17:01:04 by ggroener         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
+#include "libft.h"
 
-void	ft_lstappend(t_list **list, t_list *node)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	t_list	*trav;
+	size_t			i;
+	unsigned char	c1;
+	unsigned char	c2;
 
-	if (*list == NULL)
+	i = 0;
+	c1 = (unsigned char)*s1;
+	c2 = (unsigned char)*s2;
+	while (c1 == c2 && c1 != '\0' && c1 != '\0')
 	{
-		*list = node;
-		return ;
+		i++;
+		c1 = (unsigned char)s1[i];
+		c2 = (unsigned char)s2[i];
 	}
-	trav = *list;
-	while (trav->next != NULL)
-		trav = trav->next;
-	trav->next = node;
+	if (c1 != c2)
+		return (c1 - c2);
+	return (0);
 }

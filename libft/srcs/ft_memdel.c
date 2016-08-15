@@ -1,33 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdel.c                                        :+:      :+:    :+:   */
+/*   ft_memdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/23 07:41:18 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/06/23 07:57:34 by ddu-toit         ###   ########.fr       */
+/*   Created: 2016/05/11 08:37:36 by ddu-toit          #+#    #+#             */
+/*   Updated: 2016/05/11 08:57:40 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
+#include "libft.h"
 
-void	ft_lstdel(t_list *start)
+void	ft_memdel(void **ap)
 {
-	t_list	*trav;
-	t_list	*prev;
-
-	trav = start;
-	while (trav)
-	{
-		if (trav->data)
-		{
-			free(trav->data);
-			trav->data = NULL;
-		}
-		prev = trav;
-		trav = trav->next;
-		free(prev);
-		prev = NULL;
-	}
+	free(*ap);
+	*ap = NULL;
 }

@@ -5,6 +5,4 @@
 
 brain:
 
-:brain
-
-q§try:
+21e	§da:

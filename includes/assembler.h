@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/29 08:13:56 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/11 15:22:25 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/15 12:55:50 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,28 @@ typedef struct	s_info
 	char		name[PROG_NAME_LENGTH + 1];
 	char		comment[COMMENT_LENGTH + 1];
 	t_header	header;
+	t_op		op_tab[OP_COUNT + 1];
+	char		*com; ////////////////
 }				t_info;
+
+int				check_n_c(char *str);
+
+void			get_command(t_info *info, char *str, int *i,
+		int *found_command);
+
+int				interpret_line(char *str, t_info *info);
+
+void			a_fill_op_tab(t_info *env);
+
+void			a_fill_1(t_info *env);
+
+void			a_fill_2(t_info *env);
+
+void			a_fill_3(t_info *env);
+
+void			a_fill_4(t_info *env);
+
+void			a_fill_5(t_info *env);
 
 int				check_label(char *line, int i);
 

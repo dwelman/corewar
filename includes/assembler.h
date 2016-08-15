@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/29 08:13:56 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/15 12:55:50 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/15 15:30:05 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,17 @@ typedef struct	s_header
 	char			comment[COMMENT_LENGTH + 1];
 }				t_header;
 
+typedef struct	s_command
+{
+	char		opcode;
+	int			op_tab_index;
+	char		**params;
+	int			num_params;
+	char		encoding_byte;
+	char		*param_bytes;
+	int			command_bytes;
+}				t_command;
+
 typedef struct	s_info
 {
 	char		**input;
@@ -50,12 +61,19 @@ typedef struct	s_info
 	char		comment[COMMENT_LENGTH + 1];
 	t_header	header;
 	t_op		op_tab[OP_COUNT + 1];
+	t_command	*commands;
 	char		*com; ////////////////
 }				t_info;
 
+char			*str_trim(char *str);
+
+char			*store_params(char *str, int *i);
+
+int				check_command(char *com, t_info *info);
+
 int				check_n_c(char *str);
 
-void			get_command(t_info *info, char *str, int *i,
+int				get_command(t_info *info, char *str, int *i,
 		int *found_command);
 
 int				interpret_line(char *str, t_info *info);

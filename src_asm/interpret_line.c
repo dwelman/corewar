@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/15 09:09:52 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/15 12:51:06 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/15 15:29:57 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ int	interpret_line(char *str, t_info *info)
 	{
 		if (found_command == 0 && str[i] != ' ' && str[i] != '\t')
 		{
-			get_command(info, str, &i, &found_command);
+			if (get_command(info, str, &i, &found_command) == -1)
+				return (-1);
 		}
 		i++;
 	}

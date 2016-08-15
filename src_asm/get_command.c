@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/15 12:37:49 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/15 12:59:22 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/15 15:30:01 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,25 @@ char	*read_command(char *str, int *i, int *found_command)
 		j++;
 		*i = *i + 1;
 	}
+	com[j] = '\0';
 	*found_command = 1;
 	return (com);
 }
 
-void	get_command(t_info *info, char *str, int *i, int *found_command)
+int		get_command(t_info *info, char *str, int *i, int *found_command)
 {
+	char	*command;
+	char	*params;
+
 	if (check_n_c(str) == 0)
 	{
-		ft_printf("Command = %s\n", read_command(str, i, found_command));
+		command = read_command(str, i, found_command);
+		ft_printf("Command = %s\n", command);
+		if (check_command(command, info) == -1)
+			return (-1);
+		params = store_params(str, i);
+		ft_printf("Params = %s\n", str_trim(params));
 	}
 	info->com = NULL;
+	return (0);
 }

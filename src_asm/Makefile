@@ -6,7 +6,7 @@
 #    By: daviwel <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/29 09:15:12 by daviwel           #+#    #+#              #
-#    Updated: 2016/08/15 12:56:08 by daviwel          ###   ########.fr        #
+#    Updated: 2016/08/15 15:09:36 by daviwel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,10 @@ SRC = main.c \
 	  fill_subfunc.c \
 	  interpret_line.c \
 	  get_command.c \
-	  check_n_c.c
+	  check_n_c.c \
+	  check_command.c \
+	  store_params.c \
+	  str_trim.c
 
 OBJ = $(SRC:.c=.o)
 

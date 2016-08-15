@@ -1,48 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   start_compile.c                                    :+:      :+:    :+:   */
+/*   str_trim.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/04 07:53:25 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/15 15:29:59 by daviwel          ###   ########.fr       */
+/*   Created: 2016/08/15 15:01:11 by daviwel           #+#    #+#             */
+/*   Updated: 2016/08/15 15:09:52 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <assembler.h>
 
-void	start_compile(t_info *info)
+int		get_len(char *str)
 {
 	int	i;
-	int	will_exit;
+	int	len;
 
 	i = 0;
-	will_exit = 0;
-	a_fill_op_tab(info);
-	while (INPUT[i])
+	len = 0;
+	while (str[i] != '\0')
 	{
-		if (read_line(INPUT[i]) == -1)
-		{
-			ft_putstr_fd("Syntax error line : ", 2);
-			ft_putnbr_fd(i + 1, 2);
-			ft_putchar_fd('\n', 2);
-			will_exit = 1;
-		}
+		if (str[i] != ' ' && str[i] != '\t')
+			len++;
 		i++;
 	}
+	return (len);
+}
+
+char	*str_trim(char *str)
+{
+	int		i;
+	int		j;
+	char	*ret;
+	
+	ret = (char *)malloc(sizeof(char) * get_len(str) + 1);
 	i = 0;
-	while (INPUT[i])
+	j = 0;
+	while (str[i] != '\0')
 	{
-		if (interpret_line(INPUT[i], info) == -1)
+		if (str[i] != ' ' && str[i] != '\t')
 		{
-			ft_putstr_fd("Syntax error line : ", 2);
-			ft_putnbr_fd(i + 1, 2);
-			ft_putchar_fd('\n', 2);
-			will_exit = 1;
+			ret[j] = str[i];
+			j++;
 		}
 		i++;
 	}
-	if (will_exit == 1)
-		exit(-1);
+	ret[j] = '\0';
+	return (ret);
 }

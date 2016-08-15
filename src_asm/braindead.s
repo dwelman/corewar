@@ -3,6 +3,4 @@
 .name "braindead"
 .comment "Brraaaainnnz"
 
-brain:
-
-21e	§da:
+brain: brain r1, lol

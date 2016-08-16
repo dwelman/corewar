@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/29 08:13:56 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/16 08:26:56 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/16 09:40:59 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #ifndef ASSEMBLER_H
 # define ASSEMBLER_H
 
-# include <libft.h>
+# include "../libft/includes/libft.h"
 # include <corewar_vm.h>
 
 # define COMMENT_CHAR '#'

@@ -37,6 +37,8 @@ void	cleanup_env(t_env *env)
 		ft_memdel((void**)&P_CPU(p).registers);
 		ft_memdel((void**)&PLAYER(p).name);
 		ft_memdel((void**)&PLAYER(p).comment);
+		ft_memdel((void**)&PLAYER(p).cur_op.arg_sizes);
+		ft_memdel((void**)&PLAYER(p).cur_op.arg_types);
 		ft_memdel((void**)&PLAYER(p).instructions);
 		p++;
 	}

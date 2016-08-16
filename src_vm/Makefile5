@@ -6,7 +6,7 @@
 #    By: ggroener <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/19 06:43:27 by ggroener          #+#    #+#              #
-#    Updated: 2016/08/16 08:18:11 by ggroener         ###   ########.fr        #
+#    Updated: 2016/08/16 09:12:06 by vivan-de         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,7 +73,7 @@ OBJS2 = $(addprefix $(OBJS_PATH), $(IN_OBJ))
 
 #LIB_NAME = $(addprefix $(LIB_PATH), $(SRCS_NAME1))
 
-LIBRARY = -L ../libft/ -lft
+LIBRARY = -L ../libft/incudes -lft
 
 HEADER = 	$(INCLUDES_PATH)assembler.h \
 			$(INCLUDES_PATH)corewar.h \

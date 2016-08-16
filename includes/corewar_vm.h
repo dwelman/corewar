@@ -6,14 +6,14 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/29 09:35:30 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/15 15:30:03 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/16 09:25:05 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef COREWAR_VM_H
 # define COREWAR_VM_H
 
-#include <libft.h>
+#include "../libft/includes/libft.h"
 #include <op.h>
 
 # define ARG_DUMP(X) ft_strcmp("-dump", argv[X]) == 0

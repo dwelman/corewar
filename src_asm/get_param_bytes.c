@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/16 12:06:29 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/16 14:42:03 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/16 15:02:06 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int		count_param_bytes(char **params, int num, BOOL dir_as_index)
 
 	i = 0;
 	count = 0;
-	ft_printf("Num = %d\n", num);
 	while (i < num)
 	{ 
 		param_type = check_param(params[i]);
@@ -49,9 +48,8 @@ char	*get_param_bytes(char **params, int num, t_command *nc, t_info *info)
 	char	*ret;
 
 	i = 0;
-	ret = (char *)malloc(count_param_bytes(params, num, nc->dir_as_index));
-	ft_printf("NUM BYTES = %d\n",
-			count_param_bytes(params, num, nc->dir_as_index));
+	nc->command_bytes = count_param_bytes(params, num, nc->dir_as_index);
+	ret = (char *)malloc(nc->command_bytes + 1);
 	while (i < num)
 	{
 		param_type = check_param(params[i]);

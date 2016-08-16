@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/16 07:35:03 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/16 14:24:32 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/16 15:04:00 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ t_list	*create_command(char *params, int *index, t_info *info)
 			*index = -1;
 	}
 	get_param_bytes(nc->params, nc->num_params, nc, info);
+	if (nc->has_encoding == TRUE)
+		nc->command_bytes += 2;
+	else
+		nc->command_bytes += 1;
+	ft_printf("NUM BYTES = %d\n", nc->command_bytes);
 	link = ft_lstnew((void *)nc);
 	return (link);
 }

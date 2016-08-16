@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/29 08:13:56 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/16 11:34:41 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/16 14:24:53 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ typedef struct	s_command
 	int			op_tab_index;
 	char		**params;
 	int			num_params;
+	BOOL		dir_as_index;
+	BOOL		has_encoding;
 	char		encoding_byte;
 	char		*param_bytes;
 	int			command_bytes;
@@ -64,6 +66,9 @@ typedef struct	s_info
 	t_list		*commands;
 	char		*com; ////////////////
 }				t_info;
+
+char			*get_param_bytes(char **params, int num, t_command *nc,
+		t_info *info);
 
 int				check_param(char *param);
 

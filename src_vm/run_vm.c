@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 10:53:20 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/13 14:43:00 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/16 15:26:49 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	run_vm(t_env *env)
 
 	p_active = env->p_count;
 	cycle = 1;
-	puts("=================START==================");
+	ft_printf("=================START==================");
 	env->alive_at_check = (int*)malloc(sizeof(int) * env->p_count);
 	set_alive_at_check(env);
 	ft_printf("AAC : \n");

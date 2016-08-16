@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 14:41:25 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/16 14:58:54 by vivan-de         ###   ########.fr       */
+/*   Updated: 2016/08/16 15:24:36 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*ft_check(const char *str, t_mods md, va_list *args)
 	if (*str == 's' || *str == 'S')
 		return (va_arg(*args, char*));
 	if ((*str == 'i' || *str == 'd') && md.has_mod == 0)
-		return (ft_itoa(va_arg(*args, int)));
+		return (convert(va_arg(*args, int), 10, 0));
 	if (*str == 'u')
 		return (convert_uns(va_arg(*args, int), 10, 0));
 	if (*str == 'o')

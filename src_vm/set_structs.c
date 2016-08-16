@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/30 08:56:42 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/13 11:18:25 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/16 15:47:36 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	init_cor(char *cor_file, int player_num, t_cor *cor)
 	*pnum = player_num;
 	init_op_run(&cor->cur_op);
 	cor->alive = TRUE;
+	cor->last_live = -1;
 }
 
 void	init_env(t_env *env)

@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/29 09:29:46 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/13 10:36:01 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/16 16:24:51 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 
 void	display_players(t_env *env)
 {
-	int i = 0;
+	int i;
 
+	i = 0;
 	while (i < env->p_count)
 	{
-		printf("player %s , number %d\n", env->players[i].file, env->players[i].p_num);
+		printf("player %s , number %d\n", env->players[i].file,
+				env->players[i].p_num);
 		i++;
 	}
 }
@@ -32,12 +34,14 @@ void	winner_output(t_env *env)
 	{
 		if (PLAYER(p).p_num == env->last_live)
 		{
-			ft_printf("Player %d, %s has won!\n", PLAYER(p).p_num, PLAYER(p).name);
+			ft_printf("Player %d, %s has won!\n", PLAYER(p).p_num,
+					PLAYER(p).name);
 			return ;
 		}
 		p++;
 	}
-	ft_printf("Nobody won, no live instructions were executed properly... dissapointing.\n");
+	ft_printf("Nobody won, no live instructions were executed properly... \
+			dissapointing.\n");
 }
 
 int		main(int argc, char **argv)

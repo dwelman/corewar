@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/08 12:37:45 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/13 14:43:03 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/16 16:24:27 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void		clear_op(t_op_run *op, t_env *env)
 		{
 			if (op->arg[i])
 				free(op->arg[i]);
-		i++;
+			i++;
 		}
 		ft_memdel((void**)&op->arg);
 	}
@@ -40,21 +40,22 @@ void		clear_op(t_op_run *op, t_env *env)
 
 void		print_oprun(t_op_run op, t_env *env)//debug
 {
-	
-	ft_printf("op : %s\n to_exec %d\n player = %d\n" , OP(op.op).name, op.to_exec, op.player);
-	int	i = 0;
+	ft_printf("op : %s\n to_exec %d\n player = %d\n", OP(op.op).name,
+			op.to_exec, op.player);
+	int	i;
 	ft_printf("types : \n");
+	i = 0;
 	while (i < OP(op.op).nbr_args)
 	{
 		ft_printf("%d ", op.arg_types[i]);
-		i++;	
+		i++;
 	}
 	i = 0;
 	ft_printf("\nsizes : \n");
 	while (i < OP(op.op).nbr_args)
 	{
 		ft_printf("%d ", op.arg_sizes[i]);
-		i++;	
+		i++;
 	}
 	i = 0;
 	ft_printf("\nargs : \n");

@@ -6,11 +6,12 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/13 06:30:08 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/13 12:39:59 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/16 16:35:40 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <corewar_vm.h>
+
 /*
 ** Inc last_live for each living player.
 */
@@ -25,7 +26,8 @@ void	inc_last_live(t_env *env)
 		if (PLAYER(p).alive == TRUE)
 		{
 			PLAYER(p).last_live++;
-			ft_printf("%s last live %d\n", PLAYER(p).name , PLAYER(p).last_live);
+			ft_printf("%s last live %d\n", PLAYER(p).name,
+					PLAYER(p).last_live);
 		}
 		p++;
 	}
@@ -72,7 +74,7 @@ void	set_alive_at_check(t_env *env)
 BOOL	still_alive(t_env *env)
 {
 	int	p;
-	
+
 	p = 0;
 	while (p < env->p_count)
 	{
@@ -100,5 +102,5 @@ int		count_alive(t_env *env)
 			ret++;
 		p++;
 	}
-	return (ret);	
+	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/08 12:59:40 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/13 08:35:07 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/16 16:32:18 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	sort_players(t_env *env)
 	while (swapped == TRUE)
 	{
 		swapped = FALSE;
-		i  = 0;
+		i = 0;
 		while (i < env->p_count)
 		{
 			if (i + 1 < env->p_count)
@@ -48,5 +48,4 @@ void	sort_players(t_env *env)
 			i++;
 		}
 	}
-	
 }

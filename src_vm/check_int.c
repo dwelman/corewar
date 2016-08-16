@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/29 12:19:47 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/01 13:09:00 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/16 15:55:40 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int				check_int(char *arg)
 		return (0);
 }
 
-int		is_numeric(char *arg)
+int				is_numeric(char *arg)
 {
 	int	i;
 

@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/11 14:22:54 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/13 14:42:57 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/16 16:13:28 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	move_pc(t_cpu *p, int offset, t_env *env)
 		offset -= MEM_SIZE;
 	if (p->pc + offset > env->memory + MEM_SIZE)
 	{
-			offset -= p->pc + offset - (env->memory + MEM_SIZE);
+		offset -= p->pc + offset - (env->memory + MEM_SIZE);
 		p->pc = &env->memory[offset];
 	}
 	else

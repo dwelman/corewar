@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/06 06:55:54 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/09 14:05:50 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/16 16:31:36 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	read_target(int fd, t_cor player, char *buf, size_t n_byte)
 		ft_putstr_fd(" is not a valid corewar executable\n", 2);
 		exit(-1);
 	}
-}	
+}
 
 void	do_magic(int fd, t_cor player)
 {
@@ -60,7 +60,7 @@ int		file_size(char *file_name)
 	int		fd;
 	int		bytes_read;
 	char	buf[COUNT_BUF];
-	
+
 	i = 0;
 	bytes_read = 1;
 	fd = open(file_name, O_RDONLY);
@@ -71,7 +71,7 @@ int		file_size(char *file_name)
 	}
 	while (bytes_read)
 	{
-		bytes_read = read(fd, buf ,COUNT_BUF);
+		bytes_read = read(fd, buf, COUNT_BUF);
 		i += bytes_read;
 	}
 	close(fd);
@@ -93,11 +93,11 @@ void	load_programs(t_env *env)
 		PLAYER(i).name = (char*)malloc(sizeof(char) * PROG_NAME_LENGTH + 1);
 		PLAYER(i).comment = (char*)malloc(sizeof(char) * COMMENT_LENGTH + 1);
 		read_target(fd, PLAYER(i), PLAYER(i).name, PROG_NAME_LENGTH + 1);
-		lseek(fd, 4 -((PROG_NAME_LENGTH + 1) % 4), SEEK_CUR);
+		lseek(fd, 4 - ((PROG_NAME_LENGTH + 1) % 4), SEEK_CUR);
 		read_target(fd, PLAYER(i), temp_int, sizeof(int));
 		PLAYER(i).size = read_int(temp_int);
 		read_target(fd, PLAYER(i), PLAYER(i).comment, COMMENT_LENGTH + 1);
-		lseek(fd, 4 -((COMMENT_LENGTH + 1) % 4), SEEK_CUR);
+		lseek(fd, 4 - ((COMMENT_LENGTH + 1) % 4), SEEK_CUR);
 		PLAYER(i).instructions = (char*)malloc(sizeof(char) * PLAYER(i).size);
 		read_target(fd, PLAYER(i), PLAYER(i).instructions, PLAYER(i).size);
 		size_err(PLAYER(i));

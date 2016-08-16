@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 10:53:20 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/16 15:26:49 by vivan-de         ###   ########.fr       */
+/*   Updated: 2016/08/16 16:44:53 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ void	fetch_ops(t_env *env)
 	{
 		if (PLAYER(p).alive == TRUE)
 		{
-			if (CUR_OP(p).reset == TRUE && *P_CPU(p).pc >= 1 && *P_CPU(p).pc <= 16)
+			if (CUR_OP(p).reset == TRUE && *P_CPU(p).pc >= 1 &&
+					*P_CPU(p).pc <= 16)
 				PLAYER(p).cur_op = load_op(&PLAYER(p), env);
 		}
 		p++;
@@ -57,14 +58,16 @@ void	exec_ops(t_env *env)
 {
 	int	p;
 
-	p = 0;
-	while (p < env->p_count)
+	p = -1;
+	while (++p < env->p_count)
 	{
 		if (PLAYER(p).alive == TRUE)
 		{
-			if (CUR_OP(p).to_exec == 1 && CUR_OP(p).op >= 1 && CUR_OP(p).op <= 16)
+			if (CUR_OP(p).to_exec == 1 && CUR_OP(p).op >= 1 &&
+					CUR_OP(p).op <= 16)
 			{
-				ft_printf("\nplayer %s exec %s\n",PLAYER(p).name, OP(CUR_OP(p).op).name);
+				ft_printf("\nplayer %s exec %s\n", PLAYER(p).name,
+						OP(CUR_OP(p).op).name);
 				get_args(&CUR_OP(p), env, P_CPU(p).pc);
 				run_instr(&CUR_OP(p), env);
 				if (CUR_OP(p).op != ZJMP)
@@ -77,7 +80,6 @@ void	exec_ops(t_env *env)
 			else
 				CUR_OP(p).to_exec--;
 		}
-		p++;
 	}
 }
 
@@ -106,7 +108,7 @@ void	run_vm(t_env *env)
 		{
 			ft_printf("DUMP at cycle %ld\n", cycle);
 			print_memory(env->memory, MEM_SIZE);
-			break ;	
+			break ;
 		}
 		cycle++;
 	}

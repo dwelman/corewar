@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/30 08:48:36 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/01 13:30:01 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/16 15:58:59 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,7 @@ void	get_input(int argc, char **argv, t_env *env)
 		}
 		else if (ft_strcmp("-n", argv[i]) == 0 && i + 2 < argc)
 		{
-			init_cor(argv[i + 2], ft_atoi(argv[i + 1]), &env->players[p]);
-			p++;
+			init_cor(argv[i + 2], ft_atoi(argv[i + 1]), &env->players[p++]);
 			i += 2;
 		}
 		else

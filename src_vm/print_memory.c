@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/20 07:46:27 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/02 11:45:00 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/16 16:26:11 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	print_memory(const void *addr, size_t size)
 {
 	size_t			i;
 	size_t			j;
-	unsigned char *mem;
+	unsigned char	*mem;
 
 	mem = (unsigned char*)addr;
 	i = 0;
@@ -49,7 +49,7 @@ void	print_memory(const void *addr, size_t size)
 		{
 			if (j < 32 && i + j < size)
 				ft_hex((int)mem[i + j], 2);
-				write(1, " ", 1);
+			write(1, " ", 1);
 			if (i + j >= size)
 				write(1, "  ", 2);
 			j++;

@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/29 08:13:56 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/16 09:40:59 by vivan-de         ###   ########.fr       */
+/*   Updated: 2016/08/16 15:02:09 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #ifndef ASSEMBLER_H
 # define ASSEMBLER_H
 
-# include "../libft/includes/libft.h"
+# include <libft.h>
 # include <corewar_vm.h>
 
 # define COMMENT_CHAR '#'
@@ -49,6 +49,8 @@ typedef struct	s_command
 	int			op_tab_index;
 	char		**params;
 	int			num_params;
+	BOOL		dir_as_index;
+	BOOL		has_encoding;
 	char		encoding_byte;
 	char		*param_bytes;
 	int			command_bytes;
@@ -64,6 +66,14 @@ typedef struct	s_info
 	t_list		*commands;
 	char		*com; ////////////////
 }				t_info;
+
+char			*get_param_bytes(char **params, int num, t_command *nc,
+		t_info *info);
+
+int				check_param(char *param);
+
+char			get_encoding_byte(char **params, int num, int op_index,
+		t_info *info);
 
 int				count_arr(char **arr);
 

@@ -6,7 +6,7 @@
 #    By: daviwel <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/29 09:15:12 by daviwel           #+#    #+#              #
-#    Updated: 2016/08/16 08:27:04 by daviwel          ###   ########.fr        #
+#    Updated: 2016/08/16 12:08:30 by daviwel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,10 @@ SRC = main.c \
 	  store_params.c \
 	  str_trim.c \
 	  create_command.c \
-	  count_arr.c
+	  count_arr.c \
+	  get_encoding_byte.c \
+	  check_param.c \
+	  get_param_bytes.c
 
 OBJ = $(SRC:.c=.o)
 

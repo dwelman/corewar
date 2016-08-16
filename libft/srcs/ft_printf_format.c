@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 14:41:25 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/06/05 08:01:54 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/16 14:58:54 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ char	*ft_check(const char *str, t_mods md, va_list *args)
 		*out = (char)va_arg(*args, int);
 		return (out);
 	}
+	ft_memdel((void**)&out);
 	if (*str == 's' || *str == 'S')
 		return (va_arg(*args, char*));
 	if ((*str == 'i' || *str == 'd') && md.has_mod == 0)

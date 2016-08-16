@@ -6,7 +6,7 @@
 #    By: daviwel <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/29 09:15:12 by daviwel           #+#    #+#              #
-#    Updated: 2016/08/15 15:09:36 by daviwel          ###   ########.fr        #
+#    Updated: 2016/08/16 08:27:04 by daviwel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,15 +31,17 @@ SRC = main.c \
 	  check_n_c.c \
 	  check_command.c \
 	  store_params.c \
-	  str_trim.c
+	  str_trim.c \
+	  create_command.c \
+	  count_arr.c
 
 OBJ = $(SRC:.c=.o)
 
 CFLAG = -Wall -Werror -Wextra
 
-INCLUDES = -I ../includes/ -I ../libft/
+INCLUDES = -I ../includes -I ../libft/includes
 
-ATTACH = -L ../libft/ -lft
+ATTACH = -L ../libft -lft
 
 all: $(NAME)
 

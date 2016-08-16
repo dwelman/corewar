@@ -1,36 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   create_command.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/07/29 10:55:31 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/16 07:33:14 by daviwel          ###   ########.fr       */
+/*   Created: 2016/08/16 07:35:03 by daviwel           #+#    #+#             */
+/*   Updated: 2016/08/16 08:31:12 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "assembler.h"
+#include <assembler.h>
 
-int	main(int argc, char **argv)
+t_list	*create_command(char *params, int *index, t_info *info)
 {
-	t_info	info;
-	int		i; //////////////
+	t_list		*link;
+	t_command	*nc;
 
-	i = 0;
-	if (error_check(argc, argv) == -1)
-		return (0);
-	store_input(&info, argv[1]);
-	validate_input(&info);
-	start_compile(&info);
-	info.commands = NULL;
-	//write_file(&info);
-	while (info.input[i])
-	{
-		//ft_putstr(info.input[i]);
-		free(info.input[i]);
-		//ft_putchar('\n');
-		i++;
-	}
-	free(info.input);
+	nc = (t_command *)malloc(sizeof(t_command));
+	nc->opcode = info->op_tab[*index].code;
+	nc->op_tab_index = *index;
+	nc->params = ft_strsplit(params, SEPERATOR_CHAR);
+	nc->num_params = count_arr(nc->params);
+	link = ft_lstnew((void *)nc);
+	return (link);
 }

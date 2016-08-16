@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/29 08:13:56 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/15 15:30:05 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/16 08:26:56 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,13 @@ typedef struct	s_info
 	char		comment[COMMENT_LENGTH + 1];
 	t_header	header;
 	t_op		op_tab[OP_COUNT + 1];
-	t_command	*commands;
+	t_list		*commands;
 	char		*com; ////////////////
 }				t_info;
+
+int				count_arr(char **arr);
+
+t_list			*create_command(char *params, int *index, t_info *info);
 
 char			*str_trim(char *str);
 

@@ -1,36 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   count_arr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/07/29 10:55:31 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/16 07:33:14 by daviwel          ###   ########.fr       */
+/*   Created: 2016/08/16 08:25:50 by daviwel           #+#    #+#             */
+/*   Updated: 2016/08/16 08:31:50 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "assembler.h"
+#include <assembler.h>
 
-int	main(int argc, char **argv)
+int	count_arr(char **arr)
 {
-	t_info	info;
-	int		i; //////////////
+	int	i;
 
 	i = 0;
-	if (error_check(argc, argv) == -1)
-		return (0);
-	store_input(&info, argv[1]);
-	validate_input(&info);
-	start_compile(&info);
-	info.commands = NULL;
-	//write_file(&info);
-	while (info.input[i])
-	{
-		//ft_putstr(info.input[i]);
-		free(info.input[i]);
-		//ft_putchar('\n');
+	while (arr[i] != NULL)
 		i++;
-	}
-	free(info.input);
+	return (i + 1);
 }

@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/29 08:13:56 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/16 15:02:09 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/18 13:11:22 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ int				read_line(char *line);
 
 void			start_compile(t_info *info);
 
-void    		print_memory(const void *addr, size_t size);
+void			print_memory(const void *addr, size_t size);
 
 void			write_file(t_info *info);
 

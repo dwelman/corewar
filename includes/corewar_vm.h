@@ -6,15 +6,15 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/29 09:35:30 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/18 09:04:21 by vivan-de         ###   ########.fr       */
+/*   Updated: 2016/08/18 13:22:46 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef COREWAR_VM_H
 # define COREWAR_VM_H
 
-#include "../libft/includes/libft.h"
-#include <op.h>
+# include "../libft/includes/libft.h"
+# include <op.h>
 
 # define ARG_DUMP(X) ft_strcmp("-dump", argv[X]) == 0
 # define BOOL char
@@ -25,7 +25,7 @@
 # define OP(X) env->op_tab[X]
 # define CUR_OP(X) env->players[X].cur_op
 # define COUNT_BUF 64
-# define INST_SIZE(X) PLAYER(X).file_size - ( 4 + PROG_NAME_LENGTH + COMMENT_LENGTH) 
+# define INST_SIZE(X) PLAYER(X).file_size - ( 4 + PROG_NAME_LENGTH + COMMENT_LENGTH)
 # define NO_TYPE 0;
 # define ALIVE(X) PLAYER(X).alive == 1
 
@@ -81,7 +81,7 @@ typedef struct		s_op_run
 	char	**arg;
 }					t_op_run;
 
-typedef struct		t_op    
+typedef struct		s_op
 {
 	char			*name;
 	char			nbr_args;
@@ -100,15 +100,12 @@ typedef struct		s_cpu
 	int		carry;
 }					t_cpu;
 
-
-
 /*
 ** t_cor stores information of a player (.cor)
 ** lsc - amout of 'live' executions since last check
 ** last_live indicates how many cycles passed since last live
 */
-
-typedef struct	s_cor
+typedef struct		s_cor
 {
 	char		*file;
 	int			file_size;
@@ -122,13 +119,13 @@ typedef struct	s_cor
 	t_op_run	cur_op;
 	BOOL		alive;
 	int			last_live;
-}				t_cor;
+}					t_cor;
 
 /*
 ** Environment
 */
 
-typedef struct	s_env
+typedef struct		s_env
 {
 	int		p_count;
 	BOOL	dump;
@@ -141,121 +138,120 @@ typedef struct	s_env
 	int		last_live;
 	int		live_calls;
 	int		*alive_at_check;
-}				t_env;
+}					t_env;
 
 /*
 ** Input && error checks
 */
 
-void			check_args(int argc, char **argv, t_env *env);
+void				check_args(int argc, char **argv, t_env *env);
 
-void			arg_err(int err, char *arg);
+void				arg_err(int err, char *arg);
 
-void			check_player_numbers(int argc, char **argv);
+void				check_player_numbers(int argc, char **argv);
 
-int				check_int(char *arg);
+int					check_int(char *arg);
 
-int				is_numeric(char *arg);
+int					is_numeric(char *arg);
 
-void			get_input(int argc, char **argv, t_env *env);
+void				get_input(int argc, char **argv, t_env *env);
 
-void			sort_players(t_env *env);
+void				sort_players(t_env *env);
 
-void			fill_op_tab(t_env *env);
+void				fill_op_tab(t_env *env);
 
-void			fill_1(t_env *env);
+void				fill_1(t_env *env);
 
-void			fill_2(t_env *env);
+void				fill_2(t_env *env);
 
-void			fill_3(t_env *env);
+void				fill_3(t_env *env);
 
-void			fill_4(t_env *env);
+void				fill_4(t_env *env);
 
-void			fill_5(t_env *env);
+void				fill_5(t_env *env);
 
-void			load_programs(t_env *env);
+void				load_programs(t_env *env);
 
-void			reverse_bytes(void *mem, size_t size);
+void				reverse_bytes(void *mem, size_t size);
 
 /*
 ** Output functions
 */
 
-void			print_all_ops(t_op op[OP_COUNT + 1]);
+void				print_all_ops(t_op op[OP_COUNT + 1]);
 
-void			print_op(t_op op);
+void				print_op(t_op op);
 
 /*
 **	initialize structs
 */
 
-void			init_env(t_env *env);
+void				init_env(t_env *env);
 
-void			init_cpu(t_cpu *cpu);
+void				init_cpu(t_cpu *cpu);
 
-void			init_cor(char *cor_file, int player_num, t_cor *cor);
-
+void				init_cor(char *cor_file, int player_num, t_cor *cor);
 
 /*
 ** DOWN TO BUSINESS
 */
 
-void			load_into_vm(t_env *env);
+void				load_into_vm(t_env *env);
 
-void			run_vm(t_env *env);
+void				run_vm(t_env *env);
 
-t_op_run		load_op(t_cor *player, t_env *env);
+t_op_run			load_op(t_cor *player, t_env *env);
 
-int				*get_arg_types(char *e_byte);
+int					*get_arg_types(char *e_byte);
 
-int				*get_arg_sizes(t_op_run *new, t_env *env);
+int					*get_arg_sizes(t_op_run *new, t_env *env);
 
-int				total_arg_n(int *arg_sizes);
+int					total_arg_n(int *arg_sizes);
 
-int				arg_size(int arg_type);
+int					arg_size(int arg_type);
 
-void			print_oprun(t_op_run op, t_env *env);
+void				print_oprun(t_op_run op, t_env *env);
 
-void			get_args(t_op_run *new, t_env *env, char *pc);
+void				get_args(t_op_run *new, t_env *env, char *pc);
 
-int				*no_n_byte(void);
+int					*no_n_byte(void);
 
-void			clear_op(t_op_run *op, t_env *env);
+void				clear_op(t_op_run *op, t_env *env);
 
-char			*cload_bytes(char *ptr, size_t block_size, size_t bytes);
+char				*cload_bytes(char *ptr, size_t block_size, size_t bytes);
 
-void			move_pc(t_cpu *p, int offset, t_env *env);
+void				move_pc(t_cpu *p, int offset, t_env *env);
 
-void			print_memory(const void *addr, size_t size);
+void				print_memory(const void *addr, size_t size);
 
-int				read_int(char *ptr);
+int					read_int(char *ptr);
 
-void			run_instr(t_op_run *run, t_env *env);
+void				run_instr(t_op_run *run, t_env *env);
 
-void			inc_last_live(t_env *env);
+void				inc_last_live(t_env *env);
 
-void			check_live_calls(t_env *env);
+void				check_live_calls(t_env *env);
 
-void			set_alive_at_check(t_env *env);
+void				set_alive_at_check(t_env *env);
 
-BOOL			still_alive(t_env *env);
+BOOL				still_alive(t_env *env);
 
-int				count_alive(t_env *env);
+int					count_alive(t_env *env);
 
 /*
 ** Instructions
 */
 
-int				is_player(int player, t_env *env);
+int					is_player(int player, t_env *env);
 
-void			live(t_op_run *run, t_env *env);
+void				live(t_op_run *run, t_env *env);
 
-void			zjmp(t_op_run *run, t_env *env);
+void				zjmp(t_op_run *run, t_env *env);
 
 /*
 ** Memory cleanup
 */
 
-void			cleanup_env(t_env *env);
+void				cleanup_env(t_env *env);
 
 #endif

@@ -6,14 +6,14 @@
 /*   By: vivan-de <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/16 15:56:37 by vivan-de          #+#    #+#             */
-/*   Updated: 2016/08/16 16:20:55 by vivan-de         ###   ########.fr       */
+/*   Updated: 2016/08/18 09:13:22 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <corewar_vm.h>
 
 /*
-** Set values for op_tab, LDI. STI, FORK
+**Set values for op_tab, LDI. STI, FORK
 */
 
 void	fill_4(t_env *env)
@@ -43,8 +43,18 @@ void	fill_4(t_env *env)
 }
 
 /*
-** Set values for op_tab, LLD, LLDI, AFF
+**Set values for op_tab, LLD, LLDI, AFF
 */
+
+void	fill_5_1(t_env *env)
+{
+	env->op_tab[AFF].name = "aff";
+	env->op_tab[AFF].nbr_args = 1;
+	env->op_tab[AFF].type[0] = T_REG;
+	env->op_tab[AFF].code = AFF;
+	env->op_tab[AFF].nbr_cycles = 2;
+	env->op_tab[AFF].n_byte = TRUE;
+}
 
 void	fill_5(t_env *env)
 {
@@ -69,10 +79,5 @@ void	fill_5(t_env *env)
 	env->op_tab[LFORK].code = LFORK;
 	env->op_tab[LFORK].nbr_cycles = 1000;
 	env->op_tab[LFORK].n_byte = FALSE;
-	env->op_tab[AFF].name = "aff";
-	env->op_tab[AFF].nbr_args = 1;
-	env->op_tab[AFF].type[0] = T_REG;
-	env->op_tab[AFF].code = AFF;
-	env->op_tab[AFF].nbr_cycles = 2;
-	env->op_tab[AFF].n_byte = TRUE;
+	fill_5_1(env);
 }

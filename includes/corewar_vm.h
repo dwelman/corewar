@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/29 09:35:30 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/16 09:25:05 by vivan-de         ###   ########.fr       */
+/*   Updated: 2016/08/18 09:04:21 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,7 +210,7 @@ int				*get_arg_types(char *e_byte);
 
 int				*get_arg_sizes(t_op_run *new, t_env *env);
 
-int				total_arg_size(int *arg_sizes);
+int				total_arg_n(int *arg_sizes);
 
 int				arg_size(int arg_type);
 

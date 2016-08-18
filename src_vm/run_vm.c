@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 10:53:20 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/16 16:44:53 by vivan-de         ###   ########.fr       */
+/*   Updated: 2016/08/18 09:04:41 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	exec_ops(t_env *env)
 				get_args(&CUR_OP(p), env, P_CPU(p).pc);
 				run_instr(&CUR_OP(p), env);
 				if (CUR_OP(p).op != ZJMP)
-					move_pc(&P_CPU(p), total_arg_size(CUR_OP(p).arg_sizes), env);
+					move_pc(&P_CPU(p), total_arg_n(CUR_OP(p).arg_sizes), env);
 				if (P_CPU(p).pc > P_CPU(p).prog_start + PLAYER(p).size)
 					PLAYER(p).alive = FALSE;
 				print_oprun(CUR_OP(p), env);

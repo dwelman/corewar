@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/08 12:37:45 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/16 16:24:27 by vivan-de         ###   ########.fr       */
+/*   Updated: 2016/08/18 09:06:56 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,10 @@ void		clear_op(t_op_run *op, t_env *env)
 
 void		print_oprun(t_op_run op, t_env *env)//debug
 {
+	int		i;
+
 	ft_printf("op : %s\n to_exec %d\n player = %d\n", OP(op.op).name,
 			op.to_exec, op.player);
-	int	i;
 	ft_printf("types : \n");
 	i = 0;
 	while (i < OP(op.op).nbr_args)

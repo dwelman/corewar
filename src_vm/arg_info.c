@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/08 12:37:45 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/09 14:55:45 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/18 09:03:50 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int			arg_size(int arg_type)
 	return (0);
 }
 
-int			total_arg_size(int *arg_sizes)
+int			total_arg_n(int *arg_sizes)
 {
 	int	total;
 	int	i;

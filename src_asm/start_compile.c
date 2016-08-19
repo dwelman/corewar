@@ -6,11 +6,16 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/04 07:53:25 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/18 15:46:51 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/19 11:36:00 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <assembler.h>
+
+/*
+** This function loops through the file to see if there are no syntax errors
+** while also storing all commands and labels
+*/
 
 void	start_compile(t_info *info)
 {
@@ -34,7 +39,9 @@ void	start_compile(t_info *info)
 		}
 		i++;
 	}
-	ft_printf("NUM LABELS = %d\n", info->num_labels);
+	//Call correct free functions
+	if (will_exit == 1)
+		exit(-1);
 	i = 0;
 	while (INPUT[i])
 	{

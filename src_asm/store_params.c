@@ -6,11 +6,16 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/15 14:40:18 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/18 08:54:05 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/19 11:37:35 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <assembler.h>
+
+/*
+** Seperates the commands from the rest of the string and stores them in a new
+** one
+*/
 
 char	*store_params(char *str, int *i)
 {

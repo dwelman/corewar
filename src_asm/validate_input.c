@@ -6,11 +6,15 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/02 08:56:39 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/11 11:14:31 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/19 11:38:51 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "assembler.h"
+
+/*
+** calls functions for file validation
+*/
 
 void	validate_input(t_info *info)
 {

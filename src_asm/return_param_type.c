@@ -6,11 +6,15 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/18 13:48:06 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/18 13:50:59 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/19 11:33:34 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <assembler.h>
+
+/*
+** Returns the correct param code for the given parameter
+*/
 
 t_arg_type	return_param_type(char *param)
 {

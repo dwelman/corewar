@@ -6,11 +6,15 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/15 12:53:47 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/15 13:04:51 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/19 11:13:57 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <assembler.h>
+
+/*
+** This function checks that the name and comment lines are correct
+*/
 
 int	check_n_c(char *str)
 {

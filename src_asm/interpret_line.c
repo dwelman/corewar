@@ -6,11 +6,15 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/15 09:09:52 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/18 14:26:50 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/19 11:31:31 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <assembler.h>
+
+/*
+** Finds whether a line has a label or not
+*/
 
 int	check_for_label(char *str)
 {
@@ -28,6 +32,11 @@ int	check_for_label(char *str)
 	}
 	return (0);
 }
+
+/*
+** Reads the current line to see if it has a command on it, and if it does it
+** stores that command
+*/
 
 int	interpret_line(char *str, t_info *info, int i)
 {

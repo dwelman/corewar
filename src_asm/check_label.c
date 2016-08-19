@@ -6,11 +6,15 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/11 13:29:42 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/18 13:25:05 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/19 11:12:50 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <assembler.h>
+
+/*
+** This function compares a character to all characters in the LABEL_CHARS macro
+*/
 
 int	check_label_char(char c)
 {
@@ -30,6 +34,11 @@ int	check_label_char(char c)
 	else
 		return (-1);
 }
+
+/*
+** This function checks if a label has been constructed in a valid way, and then
+** creates a new t_label which is added to a linked list
+*/
 
 t_label	*check_label(char *line, int i, int *valid_label, int line_nbr)
 {

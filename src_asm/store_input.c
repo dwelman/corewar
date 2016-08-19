@@ -6,11 +6,15 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 10:45:42 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/11 10:31:33 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/19 11:36:54 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "assembler.h"
+
+/*
+** Counts the lines of file input for malloc
+*/
 
 int		count_lines(char *name)
 {
@@ -33,6 +37,10 @@ int		count_lines(char *name)
 	}
 	return (count);
 }
+
+/*
+** Stores file input into an array
+*/
 
 void	store_input(t_info *info, char *name)
 {

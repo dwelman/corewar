@@ -6,11 +6,15 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/15 11:57:54 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/18 08:27:58 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/19 11:21:35 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <assembler.h>
+
+/*
+** Fills the optab for later use, norme friendly as opposed to the old op_tab
+*/
 
 void	a_fill_1(t_info *env)
 {

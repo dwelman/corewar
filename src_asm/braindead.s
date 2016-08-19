@@ -3,4 +3,6 @@
 .name "braindead"
 .comment "Brraaaainnnz"
 
-brain: brain r1, lol
+braainz:
+	live %1
+	zjmp %:braainz

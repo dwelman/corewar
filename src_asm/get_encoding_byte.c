@@ -6,31 +6,35 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/16 08:42:40 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/18 08:57:26 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/19 11:27:36 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <assembler.h>
 
+/*
+** Adds 01, 10 or 11 to the current byte based on what is appropriate
+*/
+
 void	encode_byte(char *byte, char *param)
 {
 	int	par_type;
 
-	if ((par_type = check_param(param)) == T_DIR)
+	if ((par_type = check_param(param)) == DIR_CODE)
 	{
 		*byte = *byte << 1;
 		*byte += 1;
 		*byte = *byte << 1;
 		*byte += 0;
 	}
-	else if (par_type == T_REG)
+	else if (par_type == REG_CODE)
 	{
 		*byte = *byte << 1;
 		*byte += 0;
 		*byte = *byte << 1;
 		*byte += 1;
 	}
-	else if (par_type == T_IND)
+	else if (par_type == IND_CODE)
 	{
 		*byte = *byte << 1;
 		*byte += 1;
@@ -38,6 +42,10 @@ void	encode_byte(char *byte, char *param)
 		*byte += 1;
 	}
 }
+
+/*
+** Reads the parameters to form the encoding byte
+*/
 
 char	get_encoding_byte(char **params, int num, int op_index, t_info *info)
 {
@@ -59,6 +67,5 @@ char	get_encoding_byte(char **params, int num, int op_index, t_info *info)
 			byte = byte << 2;
 		i++;
 	}
-	print_memory(&byte, 1);
 	return (byte);
 }

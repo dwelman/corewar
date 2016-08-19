@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/08 12:21:19 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/18 15:46:54 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/19 11:40:10 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@ void	add_null(int fd, int padding)
 	}
 }
 
+/*
+** Writes the header to the .cor file and creates a new file
+*/
+
 void	write_file(t_info *info)
 {
 	int		fd;
@@ -29,9 +33,9 @@ void	write_file(t_info *info)
 	char	file_name[PROG_NAME_LENGTH + 5];
 
 	i = 0;
-	while (info->header.prog_name[i] != '\0')
+	while (info->file_name[i] != '.')
 	{
-		file_name[i] = info->header.prog_name[i];
+		file_name[i] = info->file_name[i];
 		i++;
 	}
 	file_name[i++] = '.';

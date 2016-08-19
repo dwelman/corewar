@@ -6,11 +6,15 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/15 12:37:49 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/18 14:21:56 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/19 11:26:07 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <assembler.h>
+
+/*
+** Returns the name of the command
+*/
 
 char	*read_command(char *str, int *i, int *found_command)
 {
@@ -38,6 +42,11 @@ char	*read_command(char *str, int *i, int *found_command)
 	*found_command = 1;
 	return (com);
 }
+
+/*
+** Creates a t_command based on the current line and adds it to the linked list
+** of commands
+*/
 
 int		get_command(t_info *info, char *str, int *i, int *found_command)
 {

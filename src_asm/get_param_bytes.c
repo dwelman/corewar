@@ -6,11 +6,15 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/16 12:06:29 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/18 13:50:56 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/19 11:29:18 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <assembler.h>
+
+/*
+** Counts the bytes if the parameters
+*/
 
 int		count_param_bytes(char **params, int num, BOOL dir_as_index)
 {
@@ -38,6 +42,11 @@ int		count_param_bytes(char **params, int num, BOOL dir_as_index)
 	}
 	return (count);
 }
+
+/*
+** Counts the size of the parameters for the program size and makes sure that
+** the parameters are the right type
+*/
 
 int		get_param_bytes(char **params, int num, t_command *nc, t_info *info)
 {

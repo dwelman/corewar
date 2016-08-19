@@ -6,11 +6,15 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/29 11:40:29 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/01 15:39:21 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/19 11:20:03 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "assembler.h"
+
+/*
+** Checks that the file has the correct extension
+*/
 
 int	check_str(char *str)
 {
@@ -31,6 +35,10 @@ int	check_str(char *str)
 	}
 	return (0);
 }
+
+/*
+** Ensures that the input is correct
+*/
 
 int	error_check(int argc, char **argv)
 {

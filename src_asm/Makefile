@@ -6,7 +6,7 @@
 #    By: daviwel <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/29 09:15:12 by daviwel           #+#    #+#              #
-#    Updated: 2016/08/18 15:46:59 by daviwel          ###   ########.fr        #
+#    Updated: 2016/08/19 11:05:09 by daviwel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,9 @@ SRC = main.c \
 	  check_param.c \
 	  get_param_bytes.c \
 	  return_param_type.c \
-	  write_commands.c
+	  write_commands.c \
+	  find_label_line.c \
+	  count_bytes_between.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -56,6 +58,7 @@ $(NAME):
 
 clean:
 	/bin/rm -f $(OBJ)
+	/bin/rm -f *.cor
 
 fclean: clean
 	/bin/rm -f $(NAME)

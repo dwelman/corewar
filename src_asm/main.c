@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/29 10:55:31 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/18 14:34:46 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/19 11:32:13 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,12 @@ int	main(int argc, char **argv)
 	info.commands = NULL;
 	if (error_check(argc, argv) == -1)
 		return (0);
+	info.file_name = argv[1];
 	store_input(&info, argv[1]);
 	validate_input(&info);
 	start_compile(&info);
 	write_file(&info);
+	//SHould do all freeing in a seperate function
 	while (info.input[i])
 	{
 		//ft_putstr(info.input[i]);

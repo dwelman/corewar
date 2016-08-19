@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/29 08:13:56 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/18 15:46:57 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/19 09:54:26 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct	s_info
 	char		**input;
 	char		name[PROG_NAME_LENGTH + 1];
 	char		comment[COMMENT_LENGTH + 1];
+	char		*file_name;
 	t_header	header;
 	t_op		op_tab[OP_COUNT + 1];
 	t_list		*commands;
@@ -76,6 +77,10 @@ typedef struct	s_info
 	int			line_nbr;
 	char		*com; ////////////////
 }				t_info;
+
+int				count_bytes_between(t_info *info, int com_line, int label_line);
+
+int				find_label_line(t_info *info, char *name);
 
 void			write_commands(t_info *info, int fd);
 

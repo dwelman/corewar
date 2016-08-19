@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/15 15:01:11 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/15 15:09:52 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/19 11:38:06 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@ int		get_len(char *str)
 	}
 	return (len);
 }
+
+/*
+** Removes spaces and tabs from a string
+*/
 
 char	*str_trim(char *str)
 {

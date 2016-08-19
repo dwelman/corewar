@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/18 14:50:01 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/18 15:46:53 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/19 11:39:28 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,13 @@
 
 void	handle_params(t_info *info, t_command *com, int fd)
 {
-	int	i;
-	int	k;//
+	int		i;
+	int		k;
 	char	temp_char;
-	short	temp_short;
 	int		temp_int;
+	int		offset;
 
 	i = 0;
-	k = info->num_labels;//
-	temp_short = 0;
 	while (i < com->num_params)
 	{
 		if (com->params[i][0] == 'r')
@@ -36,32 +34,50 @@ void	handle_params(t_info *info, t_command *com, int fd)
 			{
 				if (com->dir_as_index == TRUE)
 				{
-					ft_memcpy(&temp_short, &com->params[i], IND_SIZE);
-					write(fd, &temp_short, IND_SIZE);
+					temp_int = ft_atoi(++com->params[i]);
+					reverse_bytes(&temp_int, IND_SIZE);
+					write(fd, &temp_int, IND_SIZE);
 				}
 				else
 				{
-					ft_memcpy(&temp_int, &com->params[i], DIR_SIZE);
+					temp_int = ft_atoi(++com->params[i]);
+					reverse_bytes(&temp_int, DIR_SIZE);
 					write(fd, &temp_int, DIR_SIZE);
+				}
+			}
+			else
+			{
+				if ((k = find_label_line(info, ft_strchr(com->params[i],
+									LABEL_CHAR))) != -1)
+				{
+					//ft_printf("label = %s, lien = %d\n", com->params[i], k);
+					offset = count_bytes_between(info, com->line_nbr, k);
+					reverse_bytes(&offset, 2);
+					write(fd, &offset, 2);
+				}
+				else
+				{
+					exit(-1);
 				}
 			}
 		}
 		else
 		{
-			ft_memcpy(&temp_short, &com->params[i], IND_SIZE);
-			write(fd, &temp_short, IND_SIZE);
+			temp_int = ft_atoi(com->params[i]);
+			write(fd, &temp_int, IND_SIZE);
 		}
 		i++;
 	}
 }
 
+/*
+** Writes all the commands to the .cor file
+*/
+
 void	write_commands(t_info *info, int fd)
 {
 	t_list		*crawl;
 	t_command	*com;
-	//int			int_temp;
-	//short		short_temp;
-	//char		char_temp;
 
 	crawl = info->commands;
 	while (crawl != NULL)

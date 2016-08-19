@@ -6,11 +6,15 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/16 07:35:03 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/18 14:37:12 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/19 11:18:50 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <assembler.h>
+
+/*
+** Creates a new command using the current line
+*/
 
 t_list	*create_command(char *params, int *index, t_info *info)
 {

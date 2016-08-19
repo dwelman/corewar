@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/16 12:06:29 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/16 15:02:06 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/18 13:50:56 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,30 +39,24 @@ int		count_param_bytes(char **params, int num, BOOL dir_as_index)
 	return (count);
 }
 
-char	*get_param_bytes(char **params, int num, t_command *nc, t_info *info)
+int		get_param_bytes(char **params, int num, t_command *nc, t_info *info)
 {
 	int		i;
-	int		param_type;
-	//int		temp;
-	//short	s_temp;
-	char	*ret;
+	int		k;
 
 	i = 0;
 	nc->command_bytes = count_param_bytes(params, num, nc->dir_as_index);
-	ret = (char *)malloc(nc->command_bytes + 1);
-	while (i < num)
+	while (i < nc->num_params)
 	{
-		param_type = check_param(params[i]);
-		if (param_type == REG_CODE)
+		k = 0;
+		while (k < info->op_tab[nc->op_tab_index].nbr_args)
 		{
-			if (nc->dir_as_index == TRUE)
-			{
-
-			}
+			if (!(return_param_type(nc->params[i]) &
+						info->op_tab[nc->op_tab_index].type[i]))
+				return (-1);
+			k++;
 		}
-		
 		i++;
 	}
-	info->com = NULL;
-	return (NULL);
+	return (0);
 }

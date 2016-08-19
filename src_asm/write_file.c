@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/08 12:21:19 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/11 11:16:56 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/18 15:46:54 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,12 @@ void	write_file(t_info *info)
 	write(fd, &info->header.prog_name, sizeof(info->header.prog_name));
 	add_null(fd, padding);
 	padding = sizeof(info->header.prog_size);
+	reverse_bytes((void *)&info->header.prog_size, sizeof(int));
 	write(fd, &info->header.prog_size, sizeof(info->header.prog_size));
 	add_null(fd, padding);
 	padding = sizeof(info->header.comment);
 	write(fd, &info->header.comment, sizeof(info->header.comment));
 	add_null(fd, padding);
-	//print_memory(&info->header.prog_name, sizeof(info->header.prog_name));
+	write_commands(info, fd);
 	close(fd);
 }

@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/29 08:13:56 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/18 13:11:22 by vivan-de         ###   ########.fr       */
+/*   Updated: 2016/08/18 15:46:57 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,14 @@ typedef struct	s_command
 	char		encoding_byte;
 	char		*param_bytes;
 	int			command_bytes;
+	int			line_nbr;
 }				t_command;
+
+typedef struct	s_label
+{
+	char		*name;
+	int			line;
+}				t_label;
 
 typedef struct	s_info
 {
@@ -64,10 +71,17 @@ typedef struct	s_info
 	t_header	header;
 	t_op		op_tab[OP_COUNT + 1];
 	t_list		*commands;
+	t_list		*labels;
+	int			num_labels;
+	int			line_nbr;
 	char		*com; ////////////////
 }				t_info;
 
-char			*get_param_bytes(char **params, int num, t_command *nc,
+void			write_commands(t_info *info, int fd);
+
+t_arg_type		return_param_type(char *param);
+
+int				get_param_bytes(char **params, int num, t_command *nc,
 		t_info *info);
 
 int				check_param(char *param);
@@ -90,7 +104,7 @@ int				check_n_c(char *str);
 int				get_command(t_info *info, char *str, int *i,
 		int *found_command);
 
-int				interpret_line(char *str, t_info *info);
+int				interpret_line(char *str, t_info *info, int i);
 
 void			a_fill_op_tab(t_info *env);
 
@@ -104,13 +118,13 @@ void			a_fill_4(t_info *env);
 
 void			a_fill_5(t_info *env);
 
-int				check_label(char *line, int i);
+t_label			*check_label(char *line, int i, int *valid_label, int line_nbr);
 
-int				read_line(char *line);
+int				read_line(t_info *info, char *line, int line_nbr);
 
 void			start_compile(t_info *info);
 
-void			print_memory(const void *addr, size_t size);
+void    		print_memory(const void *addr, size_t size);
 
 void			write_file(t_info *info);
 

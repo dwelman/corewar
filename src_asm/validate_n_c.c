@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/02 08:57:41 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/11 09:10:15 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/18 14:34:28 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	set_comment(t_info *info, int i)
 		k++;
 		j++;
 	}
+	info->comment[k] = '\0';
 }
 
 void	set_name(t_info *info, int i)
@@ -68,6 +69,7 @@ void	set_name(t_info *info, int i)
 		k++;
 		j++;
 	}
+	info->name[k] = '\0';
 }
 
 /*

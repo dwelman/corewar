@@ -1,38 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   store_params.c                                     :+:      :+:    :+:   */
+/*   return_param_type.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/15 14:40:18 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/18 08:54:05 by daviwel          ###   ########.fr       */
+/*   Created: 2016/08/18 13:48:06 by daviwel           #+#    #+#             */
+/*   Updated: 2016/08/18 13:50:59 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <assembler.h>
 
-char	*store_params(char *str, int *i)
+t_arg_type	return_param_type(char *param)
 {
-	int		len;
-	int		j;
-	char	*ret;
-	
-	j = *i;
-	len = 0;
-	while (str[j] != '\0' && str[j] != COMMENT_CHAR)
-	{
-		len++;
-		j++;
-	}
-	j = 0;
-	ret = (char *)malloc(sizeof(char) * len + 1);
-	while (str[*i] != '\0' && str[*i] != COMMENT_CHAR)
-	{
-		ret[j] = str[*i];
-		j++;
-		*i = *i + 1;
-	}
-	ret[j] = '\0';
-	return (ret);
+	if (param[0] == DIRECT_CHAR)
+		return (T_DIR);
+	else if (param[0] == 'r')
+		return (T_REG);
+	else
+		return (T_IND);
 }

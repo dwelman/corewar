@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/11 13:29:42 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/11 15:22:20 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/18 13:25:05 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,33 +31,46 @@ int	check_label_char(char c)
 		return (-1);
 }
 
-int	check_label(char *line, int i)
+t_label	*check_label(char *line, int i, int *valid_label, int line_nbr)
 {
 	int		j;
-	char	*label;
+	char	*name;
+	t_label	*label;
 
 	j = i - 1;
+	label = NULL;
 	if (i == 0)
-		return (-1);
+	{
+		*valid_label = -1;
+		return (label);
+	}
 	if (line[i - 1] == DIRECT_CHAR)
 	{
-		ft_printf("Direct : %s\n", line);
+		*valid_label = 0;
+		return (label);
 	}
 	else
 	{
 		while (j >= 0)
 		{
 			if (check_label_char(line[j]) == -1)
-				return (-1);
+			{
+				*valid_label = -1;
+				return (label);
+			}
 			j--;
 		}
-		label = (char *)malloc(sizeof(char *) * i + 2);
+		name = (char *)malloc(sizeof(char *) * i + 2);
 		while (j < i)
 		{
-			label[j] = line[j];
+			name[j] = line[j];
 			j++;
 		}
-		ft_printf("label : %s\n", label);
+		name[j] = '\0';
+		label = (t_label *)malloc(sizeof(t_label));
+		label->name = name;
+		label->line = line_nbr;
 	}
-	return (0);
+	*valid_label = 1;
+	return (label);
 }

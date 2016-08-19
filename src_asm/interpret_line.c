@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/15 09:09:52 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/16 12:06:04 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/18 14:26:50 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,23 +29,24 @@ int	check_for_label(char *str)
 	return (0);
 }
 
-int	interpret_line(char *str, t_info *info)
+int	interpret_line(char *str, t_info *info, int i)
 {
-	int	i;
+	int	j;
 	int	start_reading;
 	int	found_command;
 
 	start_reading = check_for_label(str);
 	found_command = 0;
-	i = start_reading;
-	while (str[i] != '\0' && str[i] != COMMENT_CHAR)
+	j = start_reading;
+	while (str[j] != '\0' && str[j] != COMMENT_CHAR)
 	{
-		if (found_command == 0 && str[i] != ' ' && str[i] != '\t')
+		if (found_command == 0 && str[j] != ' ' && str[j] != '\t')
 		{
-			if (get_command(info, str, &i, &found_command) == -1)
+			info->line_nbr = i + 1;
+			if (get_command(info, str, &j, &found_command) == -1)
 				return (-1);
 		}
-		i++;
+		j++;
 	}
 	info->com = NULL;
 	return (0);

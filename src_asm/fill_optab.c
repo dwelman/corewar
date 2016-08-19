@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/15 11:57:54 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/15 12:09:39 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/18 08:27:58 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	a_fill_1(t_info *env)
 	env->op_tab[LIVE].code = LIVE;
 	env->op_tab[LIVE].nbr_cycles = 10;
 	env->op_tab[LIVE].n_byte = FALSE;
-	env->op_tab[LD].name = "LD";
+	env->op_tab[LD].name = "ld";
 	env->op_tab[LD].nbr_args = 2;
 	env->op_tab[LD].type[0] = T_DIR | T_IND;
 	env->op_tab[LD].type[1] = T_REG;

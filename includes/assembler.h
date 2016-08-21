@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/29 08:13:56 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/19 09:54:26 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/21 16:24:45 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,8 @@ int				error_check(int argc, char **argv);
 void			store_input(t_info *info, char *name);
 
 void			validate_input(t_info *info);
+
+void			free_info_label(t_info *info);
 
 void			check_nc(t_info *info);
 

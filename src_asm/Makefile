@@ -6,7 +6,7 @@
 #    By: daviwel <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/29 09:15:12 by daviwel           #+#    #+#              #
-#    Updated: 2016/08/19 11:05:09 by daviwel          ###   ########.fr        #
+#    Updated: 2016/08/21 16:26:13 by vivan-de         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,11 +40,12 @@ SRC = main.c \
 	  return_param_type.c \
 	  write_commands.c \
 	  find_label_line.c \
-	  count_bytes_between.c
+	  count_bytes_between.c \
+	  free_info_label.c
 
 OBJ = $(SRC:.c=.o)
 
-CFLAG = -Wall -Werror -Wextra
+CFLAG = -Wall -Werror -Wextra -g3
 
 INCLUDES = -I ../includes -I ../libft/includes
 
@@ -53,8 +54,8 @@ ATTACH = -L ../libft -lft
 all: $(NAME)
 
 $(NAME):
-	clang $(CFLAG) $(INCLUDES) -c $(SRC)
-	clang $(CFLAG) -o $(NAME) $(OBJ) $(ATTACH)
+	gcc $(CFLAG) $(INCLUDES) -c $(SRC)
+	gcc $(CFLAG) -o $(NAME) $(OBJ) $(ATTACH)
 
 clean:
 	/bin/rm -f $(OBJ)

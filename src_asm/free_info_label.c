@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   free_info_lable.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: vivan-de <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/20 10:28:19 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/21 16:33:14 by vivan-de         ###   ########.fr       */
+/*   Created: 2016/08/21 16:07:20 by vivan-de          #+#    #+#             */
+/*   Updated: 2016/08/21 16:45:13 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "assembler.h"
 
-t_list	*ft_lstnew(void *data)
+void		free_info_label(t_info *info)
 {
-	t_list	*ret;
+	t_list	*tmp1;
+	t_list	*tmp2;
 
-	if (!(ret = (t_list *)malloc(sizeof(t_list))))
-		return (NULL);
-	if (data == NULL)
-		ret->data = NULL;
-	else
-		ret->data = data;
-	ret->next = NULL;
-	return (ret);
+	tmp1 = info->labels;
+	while (tmp1->next != NULL)
+	{
+		tmp2 = tmp1->next;
+		free(tmp1->data);
+		free(tmp1);
+		tmp1 = tmp2;
+	}
+	free(tmp1);
 }

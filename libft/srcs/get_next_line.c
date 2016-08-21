@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/05 08:32:45 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/06/05 09:03:25 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/21 14:50:35 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,18 @@ static	int		read_line(int const fd, char **stock)
 	return (ret);
 }
 
+int				str_checker(char **str)
+{
+	char	*temp;
+
+	if (ft_strlen(*str) == 0)
+		return (1);
+	temp = *str;
+	*str = ft_strjoin(*str, "\n");
+	free(temp);
+	return (0);
+}
+
 int				get_next_line(int const fd, char **line)
 {
 	static char			*str = NULL;
@@ -46,15 +58,13 @@ int				get_next_line(int const fd, char **line)
 	{
 		ret = read_line(fd, &str);
 		if (ret == 0)
-		{
-			if (ft_strlen(str) == 0)
+			if (str_checker(&str))
 				return (0);
-			str = ft_strjoin(str, "\n");
-		}
 		if (ret < 0)
 			return (-1);
 		else
 			bn = ft_strchr(str, '\n');
+		free(str);
 	}
 	*line = ft_strsub(str, 0, ft_strlen(str) - ft_strlen(bn));
 	str = ft_strdup(bn + 1);

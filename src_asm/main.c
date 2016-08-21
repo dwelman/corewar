@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/29 10:55:31 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/19 11:32:13 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/21 16:25:44 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,5 @@ int	main(int argc, char **argv)
 		i++;
 	}
 	free(info.input);
+	free_info_label(&info);
 }

@@ -6,31 +6,42 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/16 07:35:03 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/19 11:18:50 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/21 10:47:17 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <assembler.h>
 
 /*
-** Creates a new command using the current line
-*/
+ ** Creates a new command using the current line
+ */
+
+t_command	*set_nc(char *params, int *index, t_info *info)
+{
+	t_command	*nc;
+	char		*trim;
+
+	nc = (t_command *)malloc(sizeof(t_command));
+	nc->opcode = info->op_tab[*index].code;
+	nc->op_tab_index = *index;
+	trim = str_trim(params);
+	nc->params = ft_strsplit(trim, SEPERATOR_CHAR);
+	nc->num_params = count_arr(nc->params);
+	nc->dir_as_index = info->op_tab[*index].dir_as_index;
+	free(trim);
+	return (nc);
+}
 
 t_list	*create_command(char *params, int *index, t_info *info)
 {
 	t_list		*link;
 	t_command	*nc;
 
-	nc = (t_command *)malloc(sizeof(t_command));
-	nc->opcode = info->op_tab[*index].code;
-	nc->op_tab_index = *index;
-	nc->params = ft_strsplit(str_trim(params), SEPERATOR_CHAR);
-	nc->num_params = count_arr(nc->params);
-	nc->dir_as_index = info->op_tab[*index].dir_as_index;
+	nc = set_nc(params, index, info);
 	if ((nc->has_encoding = info->op_tab[nc->op_tab_index].n_byte) == TRUE)
 	{
 		if ((nc->encoding_byte = get_encoding_byte(nc->params, nc->num_params,
-			nc->op_tab_index, info)) == '\0')
+						nc->op_tab_index, info)) == '\0')
 			*index = -1;
 	}
 	if (get_param_bytes(nc->params, nc->num_params, nc, info) == -1)

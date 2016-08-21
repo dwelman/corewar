@@ -6,7 +6,7 @@
 #    By: ggroener <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/05/15 07:50:12 by ggroener          #+#    #+#              #
-#    Updated: 2016/07/24 14:55:43 by ggroener         ###   ########.fr        #
+#    Updated: 2016/08/21 09:45:25 by vivan-de         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = libft.a
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -Ofast -g3 -pedantic
+CFLAGS = -Wall -Wextra -Werror -g3
 
 INCLUDES_PATH = includes/
 

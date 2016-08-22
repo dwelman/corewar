@@ -6,7 +6,7 @@
 #    By: daviwel <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/29 09:15:12 by daviwel           #+#    #+#              #
-#    Updated: 2016/08/21 16:26:13 by vivan-de         ###   ########.fr        #
+#    Updated: 2016/08/22 09:37:50 by daviwel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,9 @@ SRC = main.c \
 	  write_commands.c \
 	  find_label_line.c \
 	  count_bytes_between.c \
-	  free_info_label.c
+	  free_info_label.c \
+	  free_input.c \
+	  free_commands.c
 
 OBJ = $(SRC:.c=.o)
 

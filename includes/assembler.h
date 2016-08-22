@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/29 08:13:56 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/21 16:24:45 by vivan-de         ###   ########.fr       */
+/*   Updated: 2016/08/22 09:37:46 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ typedef struct	s_command
 	BOOL		dir_as_index;
 	BOOL		has_encoding;
 	char		encoding_byte;
-	char		*param_bytes;
 	int			command_bytes;
 	int			line_nbr;
 }				t_command;
@@ -75,8 +74,11 @@ typedef struct	s_info
 	t_list		*labels;
 	int			num_labels;
 	int			line_nbr;
-	char		*com; ////////////////
 }				t_info;
+
+void			free_commands(t_info *info);
+
+void			free_input(t_info *info);
 
 int				count_bytes_between(t_info *info, int com_line, int label_line);
 

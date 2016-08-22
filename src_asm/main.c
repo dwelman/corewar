@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/29 10:55:31 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/21 16:25:44 by vivan-de         ###   ########.fr       */
+/*   Updated: 2016/08/22 09:37:38 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 int	main(int argc, char **argv)
 {
 	t_info	info;
-	int		i; //////////////
 
-	i = 0;
 	info.commands = NULL;
 	if (error_check(argc, argv) == -1)
 		return (0);
@@ -26,14 +24,9 @@ int	main(int argc, char **argv)
 	validate_input(&info);
 	start_compile(&info);
 	write_file(&info);
-	//SHould do all freeing in a seperate function
-	while (info.input[i])
-	{
-		//ft_putstr(info.input[i]);
-		free(info.input[i]);
-		//ft_putchar('\n');
-		i++;
-	}
-	free(info.input);
+	ft_printf("Assembling champion!\n\t%s\n\t%s\n", info.header.prog_name,
+			info.header.comment);
+	free_input(&info);
+	free_commands(&info);
 	free_info_label(&info);
 }

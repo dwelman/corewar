@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/15 09:09:52 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/19 11:31:31 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/22 09:03:03 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,5 @@ int	interpret_line(char *str, t_info *info, int i)
 		}
 		j++;
 	}
-	info->com = NULL;
 	return (0);
 }

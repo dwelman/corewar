@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/15 12:37:49 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/19 11:26:07 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/22 09:03:17 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,5 @@ int		get_command(t_info *info, char *str, int *i, int *found_command)
 			return (-1);
 		free(params);
 	}
-	info->com = NULL;
 	return (0);
 }

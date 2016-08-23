@@ -1,72 +1,79 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vivan-de <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/05 08:32:45 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/21 14:50:35 by vivan-de         ###   ########.fr       */
+/*   Created: 2016/07/17 11:32:54 by vivan-de          #+#    #+#             */
+/*   Updated: 2016/08/23 09:03:41 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 
-static	int		read_line(int const fd, char **stock)
+char	*ft_realloc(char *p, size_t size)
 {
-	char	*buff;
-	int		ret;
 	char	*temp;
+	int		i;
 
-	if (!(buff = ft_strnew(sizeof(*buff) * (BUFF_SIZE + 1))))
-		return (-1);
-	ret = read(fd, buff, BUFF_SIZE);
-	if (ret > 0)
+	temp = p;
+	if (!(p = (char *)malloc(sizeof(char) * size)))
+		return (NULL);
+	i = 0;
+	while (temp[i])
 	{
-		buff[ret] = '\0';
-		temp = ft_strjoin(*stock, buff);
-		free(*stock);
-		*stock = temp;
+		p[i] = temp[i];
+		i++;
 	}
-	free(buff);
-	return (ret);
-}
-
-int				str_checker(char **str)
-{
-	char	*temp;
-
-	if (ft_strlen(*str) == 0)
-		return (1);
-	temp = *str;
-	*str = ft_strjoin(*str, "\n");
 	free(temp);
-	return (0);
+	return (p);
 }
 
-int				get_next_line(int const fd, char **line)
+char	get_char(const int fd)
 {
-	static char			*str = NULL;
-	char				*bn;
-	int					ret;
+	static char	buff[BUFF_SIZE];
+	static char	*p;
+	static int	len = 0;
+	char		c;
 
-	if ((!str && (str = ft_strnew(sizeof(*str))) == NULL) || !line
-		|| fd < 0 || BUFF_SIZE < 0)
-		return (-1);
-	bn = ft_strchr(str, '\n');
-	while (bn == NULL)
+	if (len == 0)
 	{
-		ret = read_line(fd, &str);
-		if (ret == 0)
-			if (str_checker(&str))
-				return (0);
-		if (ret < 0)
-			return (-1);
-		else
-			bn = ft_strchr(str, '\n');
-		free(str);
+		len = read(fd, buff, BUFF_SIZE);
+		p = (char *)&buff;
+		if (len == 0)
+			return ('\0');
 	}
-	*line = ft_strsub(str, 0, ft_strlen(str) - ft_strlen(bn));
-	str = ft_strdup(bn + 1);
+	c = *p;
+	p++;
+	len--;
+	return (c);
+}
+
+int		get_next_line(int fd, char **line)
+{
+	int		i;
+	char	c;
+	char	*temp;
+
+	i = 0;
+	if (!(temp = (char *)malloc(sizeof(char) * BUFF_SIZE)))
+		return (0);
+	c = get_char(fd);
+	while (c != '\n' && c != '\0' && temp != NULL)
+	{
+		temp[i++] = c;
+		c = get_char(fd);
+		if (i % (BUFF_SIZE + 1) == 0)
+			temp = ft_realloc(temp, i + BUFF_SIZE + 1);
+	}
+	if (temp != NULL)
+		temp[i] = '\0';
+	if (temp == NULL || (c == '\0' && temp[0] == '\0'))
+	{
+		free(temp);
+		return (0);
+	}
+	*line = temp;
 	return (1);
 }

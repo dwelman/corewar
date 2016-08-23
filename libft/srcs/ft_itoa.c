@@ -6,13 +6,13 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/10 15:11:17 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/16 15:03:42 by vivan-de         ###   ########.fr       */
+/*   Updated: 2016/08/23 09:02:28 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char *rev(char *buf, int i)
+char		*rev(char *buf, int i)
 {
 	char	*fresh;
 	int		j;

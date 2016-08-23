@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/22 09:00:27 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/22 09:13:50 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/22 14:57:29 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,4 @@ void	free_input(t_info *info)
 		i++;
 	}
 	free(info->input);
-	free(info->file_name);
 }

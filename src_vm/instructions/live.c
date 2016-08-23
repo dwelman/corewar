@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/12 08:18:18 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/13 12:44:12 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/22 11:53:42 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	live(t_op_run *run, t_env *env)
 	index = is_player(player, env);
 	if (index != -1 && PLAYER(index).alive == TRUE)
 	{
-		ft_printf("A process shows that player %s is alive\n", PLAYER(index).name);
+		ft_printf("A process shows that player %s is alive\n", PLAYER(index).name);//
 		env->last_live = player;
 		PLAYER(index).last_live = -1;
 		env->live_calls++;

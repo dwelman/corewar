@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/08 12:37:45 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/18 09:06:56 by vivan-de         ###   ########.fr       */
+/*   Updated: 2016/08/23 07:46:45 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,8 @@ void		get_args(t_op_run *new, t_env *env, char *pc)
 	{
 		if (i < OP(new->op).nbr_args)
 		{
-			new->arg[i] = cload_bytes(pc, MEM_SIZE, new->arg_sizes[i]);
+			new->arg[i] = cload_bytes(env->memory, pc - env->memory,
+					MEM_SIZE, new->arg_sizes[i]);
 			pc += new->arg_sizes[i];
 		}
 		else

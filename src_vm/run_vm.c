@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 10:53:20 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/18 09:04:41 by vivan-de         ###   ########.fr       */
+/*   Updated: 2016/08/22 12:30:54 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	exec_ops(t_env *env)
 					CUR_OP(p).op <= 16)
 			{
 				ft_printf("\nplayer %s exec %s\n", PLAYER(p).name,
-						OP(CUR_OP(p).op).name);
+						OP(CUR_OP(p).op).name); //
 				get_args(&CUR_OP(p), env, P_CPU(p).pc);
 				run_instr(&CUR_OP(p), env);
 				if (CUR_OP(p).op != ZJMP)
@@ -94,11 +94,11 @@ void	run_vm(t_env *env)
 
 	p_active = env->p_count;
 	cycle = 1;
-	ft_printf("=================START==================");
+	ft_printf("=================START==================");//
 	env->alive_at_check = (int*)malloc(sizeof(int) * env->p_count);
 	set_alive_at_check(env);
-	ft_printf("AAC : \n");
-	print_memory(env->alive_at_check, sizeof(int) * env->p_count);
+	ft_printf("AAC : \n");//
+	print_memory(env->alive_at_check, sizeof(int) * env->p_count);//
 	while (!(done(env)))
 	{
 		fetch_ops(env);

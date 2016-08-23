@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/29 09:29:46 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/16 16:24:51 by vivan-de         ###   ########.fr       */
+/*   Updated: 2016/08/22 13:51:56 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int		main(int argc, char **argv)
 	run_vm(&env);
 	if (env.dump == FALSE)
 		winner_output(&env);
-	cleanup_env(&env);
+	ft_printf("HELLO\n");
+	//cleanup_env(&env);
 	return (0);
 }

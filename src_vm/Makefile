@@ -6,7 +6,7 @@
 #    By: daviwel <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/01 13:21:50 by daviwel           #+#    #+#              #
-#    Updated: 2016/08/16 09:34:36 by vivan-de         ###   ########.fr        #
+#    Updated: 2016/08/23 12:10:07 by daviwel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,13 @@ PATH = src/
 IN_PATH = instructions/
 
 IN_FILES = live.c\
+		   ld.c \
+		   st.c \
+		   add.c \
+		   sub.c \
+		   and.c \
+		   or.c \
+		   xor.c \
 		   zjmp.c
 
 SRC = main.c\

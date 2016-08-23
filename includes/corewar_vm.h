@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/29 09:35:30 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/18 13:22:46 by vivan-de         ###   ########.fr       */
+/*   Updated: 2016/08/23 12:10:25 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,7 +218,8 @@ int					*no_n_byte(void);
 
 void				clear_op(t_op_run *op, t_env *env);
 
-char				*cload_bytes(char *ptr, size_t block_size, size_t bytes);
+char				*cload_bytes(char *ptr, int start, size_t block_size,
+		size_t bytes);
 
 void				move_pc(t_cpu *p, int offset, t_env *env);
 
@@ -245,6 +246,20 @@ int					count_alive(t_env *env);
 int					is_player(int player, t_env *env);
 
 void				live(t_op_run *run, t_env *env);
+
+void				ld(t_op_run *run, t_env *env);
+
+void				st(t_op_run *run, t_env *env);
+
+void				add(t_op_run *run, t_env *env);
+
+void				sub(t_op_run *run, t_env *env);
+
+void				and(t_op_run *run, t_env *env);
+
+void				or(t_op_run *run, t_env *env);
+
+void				xor(t_op_run *run, t_env *env);
 
 void				zjmp(t_op_run *run, t_env *env);
 

@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/09 09:27:15 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/16 16:22:01 by vivan-de         ###   ########.fr       */
+/*   Updated: 2016/08/23 07:54:17 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** array is circular.
 */
 
-char	*cload_bytes(char *ptr, size_t block_size, size_t bytes)
+char	*cload_bytes(char *ptr, int start, size_t block_size, size_t bytes)
 {
 	char		*ret;
 	size_t		i;
@@ -27,7 +27,7 @@ char	*cload_bytes(char *ptr, size_t block_size, size_t bytes)
 		ret = (char*)malloc(sizeof(char) * bytes);
 	else
 		return (NULL);
-	i = 0;
+	i = start;
 	b = 0;
 	while (b < bytes)
 	{

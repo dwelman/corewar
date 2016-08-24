@@ -6,7 +6,7 @@
 #    By: daviwel <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/01 13:21:50 by daviwel           #+#    #+#              #
-#    Updated: 2016/08/23 12:10:07 by daviwel          ###   ########.fr        #
+#    Updated: 2016/08/24 14:55:15 by daviwel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,12 +26,12 @@ IN_FILES = live.c\
 		   xor.c \
 		   zjmp.c \
 		   ldi.c \
-		   sti.c \
-		   fork.c \
-		   lld.c \
-		   lldi.c \
-		   lfork.c \
-		   aff.c
+		   #sti.c \
+		   #fork.c \
+		   #lld.c \
+		   #lldi.c \
+		   #lfork.c \
+		   #aff.c
 
 SRC = main.c\
 	  check_input.c\

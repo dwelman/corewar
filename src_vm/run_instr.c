@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/12 09:21:04 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/23 12:10:53 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/24 15:00:03 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	cont_run(t_op_run *run, t_env *env, int code)
 		zjmp(run, env);
 	else if (code == LDI)
 		ldi(run, env);
-	else if (code == STI)
+	/*else if (code == STI)
 		sti(run, env);
 	else if (code == FORK)
 		vm_fork(run, env);
@@ -29,7 +29,7 @@ void	cont_run(t_op_run *run, t_env *env, int code)
 	else if (code == LFORK)
 		lfork(run, env);
 	else if (code == AFF)
-		aff(run, env);
+		aff(run, env);*/
 }
 
 /*

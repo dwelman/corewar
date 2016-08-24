@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/29 09:35:30 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/23 12:10:25 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/24 13:35:37 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -262,6 +262,20 @@ void				or(t_op_run *run, t_env *env);
 void				xor(t_op_run *run, t_env *env);
 
 void				zjmp(t_op_run *run, t_env *env);
+
+void				ldi(t_op_run *run, t_env *env);
+
+void				sti(t_op_run *run, t_env *env);
+
+void				vm_fork(t_op_run *run, t_env *env);
+
+void				lld(t_op_run *run, t_env *env);
+
+void				lldi(t_op_run *run, t_env *env);
+
+void				lfork(t_op_run *run, t_env *env);
+
+void				aff(t_op_run *run, t_env *env);
 
 /*
 ** Memory cleanup

@@ -12,6 +12,26 @@
 
 #include <corewar_vm.h>
 
+void	cont_run(t_op_run *run, t_env *env, int code)
+{
+	if (code == ZJMP)
+		zjmp(run, env);
+	else if (code == LDI)
+		ldi(run, env);
+	else if (code == STI)
+		sti(run, env);
+	else if (code == FORK)
+		vm_fork(run, env);
+	else if (code == LLD)
+		lld(run, env);
+	else if (code == LLDI)
+		lldi(run, env);
+	else if (code == LFORK)
+		lfork(run, env);
+	else if (code == AFF)
+		aff(run, env);
+}
+
 /*
 ** Runs the correct function depending on given t_op_run struct.(opcode)
 */
@@ -37,10 +57,6 @@ void	run_instr(t_op_run *run, t_env *env)
 		or(run, env);
 	else if (code == XOR)
 		xor(run, env);
-	else if (code == ZJMP)
-		zjmp(run, env);
 	else
-	{
-		ft_printf("%d not found!! Fix the code\n", code);//
-	}
+		cont_run(run, env, code);
 }

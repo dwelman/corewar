@@ -24,7 +24,14 @@ IN_FILES = live.c\
 		   and.c \
 		   or.c \
 		   xor.c \
-		   zjmp.c
+		   zjmp.c \
+		   ldi.c \
+		   sti.c \
+		   fork.c \
+		   lld.c \
+		   lldi.c \
+		   lfork.c \
+		   aff.c
 
 SRC = main.c\
 	  check_input.c\
@@ -64,8 +71,8 @@ ATTACH = -L  ../libft -lft
 all: $(NAME)
 
 $(NAME):
-	clang -Wall -Werror -Wextra -c -g3 $(SRC) $(IN_SRC) $(INCLUDES) 
-	clang -Wall -Werror -Wextra -o  $(NAME) $(OBJ) $(IN_OBJ) $(ATTACH)
+	gcc -Wall -Werror -Wextra -c -g3 $(SRC) $(IN_SRC) $(INCLUDES) 
+	gcc -Wall -Werror -Wextra -o  $(NAME) $(OBJ) $(IN_OBJ) $(ATTACH)
 
 clean:
 	/bin/rm -f $(OBJ) $(IN_OBJ)

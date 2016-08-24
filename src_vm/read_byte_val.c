@@ -18,5 +18,5 @@ int	read_int(char *ptr)
 
 	ft_memcpy(temp, ptr, 4);
 	reverse_bytes(temp, 4);
-	return (*(int*)temp);
+	return (*(int *)temp);
 }

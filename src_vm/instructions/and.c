@@ -17,16 +17,26 @@ static int	ret_val(t_op_run *run, t_env *env, int player, int param)
 	char	*mem;
 	int		temp_val;
 
+	mem = NULL;
 	if (run->arg_types[param] == REG_CODE)
-		return (read_int(P_CPU(player).registers[*(int *)(run->arg[param]) - 1]));
+	{
+		ft_printf("HERE\n");
+		ft_printf("reg = %d\n", ft_atoi(run->arg[param]));
+		ft_printf("reg val = %s\n", (P_CPU(player).registers[*(int *)
+		(run->arg[param]) - 1]));
+		exit(0);
+		return (temp_val);
+	}
 	else if (run->arg_types[param] == DIR_CODE)
 	{
+		ft_printf("DIR HERE\n");
 		temp_val = read_int(run->arg[param]);
 		return(read_int(cload_bytes(env->memory, (P_CPU(player).pc - env->memory)
 					+ (temp_val % IDX_MOD), MEM_SIZE, REG_SIZE)));
 	}
 	else if (run->arg_types[param] == IND_CODE)
 	{
+		ft_printf("IND HERE\n");
 		temp_val = read_int(run->arg[param]);
 		mem = cload_bytes(env->memory, (P_CPU(player).pc - env->memory)
 					+ (temp_val % IDX_MOD), MEM_SIZE, REG_SIZE);
@@ -53,7 +63,9 @@ void		and(t_op_run *run, t_env *env)
 
 	player = run->player - 1;
 	temp1 = ret_val(run, env, player, 0);
+	ft_printf("TEMP 1 complete\n");
 	temp2 = ret_val(run, env, player, 1);
+	ft_printf("Temp 1 = %d, temp 2 = %d\n", temp1, temp2);
 	temp = temp1 & temp2;
 	reverse_bytes(&temp, REG_SIZE);
 	ft_memcpy(P_CPU(player).registers[*(int *)(run->arg[2]) - 1], &temp, REG_SIZE);

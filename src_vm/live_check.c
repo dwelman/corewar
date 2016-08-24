@@ -26,8 +26,8 @@ void	inc_last_live(t_env *env)
 		if (PLAYER(p).alive == TRUE)
 		{
 			PLAYER(p).last_live++;
-			ft_printf("%s last live %d\n", PLAYER(p).name,
-					PLAYER(p).last_live);
+			//ft_printf("%s last live %d\n", PLAYER(p).name,
+			//		PLAYER(p).last_live);
 		}
 		p++;
 	}

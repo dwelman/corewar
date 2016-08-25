@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/29 09:35:30 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/24 13:35:37 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/25 13:05:54 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 # define INST_SIZE(X) PLAYER(X).file_size - ( 4 + PROG_NAME_LENGTH + COMMENT_LENGTH)
 # define NO_TYPE 0;
 # define ALIVE(X) PLAYER(X).alive == 1
+# define SHORT_MAX 32767
+# define SHORT_MIN -32768
 
 /*
 ** Opcodes in hex
@@ -238,6 +240,10 @@ void				set_alive_at_check(t_env *env);
 BOOL				still_alive(t_env *env);
 
 int					count_alive(t_env *env);
+
+int					make_int(char *arg, int bytes);
+
+int					get_num(char *arg, int size);
 
 /*
 ** Instructions

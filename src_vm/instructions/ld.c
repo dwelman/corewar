@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/22 11:51:51 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/23 11:45:15 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/25 09:34:41 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,4 @@ void	ld(t_op_run *run, t_env *env)
 	}
 	else if (run->arg_types[0] == IND_CODE)
 		ld_ind(run, env, player);
-	else
-		P_CPU(player).carry = 0;
 }

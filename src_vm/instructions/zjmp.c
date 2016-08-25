@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/13 10:24:03 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/13 14:42:58 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/25 12:23:20 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		make_int(char *arg, int bytes)
 	i = bytes;
 	while (i < sizeof(int))
 	{
-		buf[i] =  0xff;
+		buf[i] = 0xff;
 		i++;
 	}
 	ret = *(int*)buf;

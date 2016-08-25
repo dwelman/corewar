@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/22 09:16:50 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/25 11:52:27 by vivan-de         ###   ########.fr       */
+/*   Updated: 2016/08/25 14:23:16 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ void	free_commands(t_command *com)
 
 		i = -1;
 		temp = com;
-		while (temp->params[++i])
+		while (temp->params && temp->params[++i])
 			free(temp->params[i]);
-		free(temp->params);
+		if (temp->params)
+			free(temp->params);
 		free(temp);
 }

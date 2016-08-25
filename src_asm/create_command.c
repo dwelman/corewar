@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/16 07:35:03 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/22 17:08:24 by vivan-de         ###   ########.fr       */
+/*   Updated: 2016/08/25 12:02:48 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_command	*set_nc(char *params, int *index, t_info *info)
 
 	nc = (t_command *)malloc(sizeof(t_command));
 	nc->opcode = info->op_tab[*index].code;
+	nc->encoding_byte = '\0';
 	nc->op_tab_index = *index;
 	trim = str_trim(params);
 	nc->params = ft_strsplit(trim, SEPERATOR_CHAR);
@@ -47,8 +48,6 @@ t_list	*create_command(char *params, int *index, t_info *info)
 	}
 	if (get_param_bytes(nc->params, nc->num_params, nc, info) == -1)
 	{
-		//free(nc->params);
-		//free(nc);
 		*index = -1;
 		return (NULL);
 	}
@@ -58,11 +57,6 @@ t_list	*create_command(char *params, int *index, t_info *info)
 		nc->command_bytes += 1;
 	nc->line_nbr = info->line_nbr;
 	info->header.prog_size += nc->command_bytes;
-	/*i = -1;
-	while (nc->params[++i])
-		free(nc->params[i]);
-	free(nc->params);
-	free(nc);*/
 	link = ft_lstnew((void *)nc);
 	return (link);
 }

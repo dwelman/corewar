@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/29 08:13:56 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/22 09:37:46 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/25 09:40:36 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ typedef struct	s_info
 	int			line_nbr;
 }				t_info;
 
-void			free_commands(t_info *info);
+void			free_commands(t_command *com);
 
 void			free_input(t_info *info);
 

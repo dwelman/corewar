@@ -3,58 +3,71 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vivan-de <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/11 16:14:44 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/23 10:07:15 by vivan-de         ###   ########.fr       */
+/*   Created: 2016/07/22 08:50:18 by vivan-de          #+#    #+#             */
+/*   Updated: 2016/07/23 09:16:32 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	word_count(const char *s, char c)
+char	*sub(char const *s, int i, char c)
 {
-	int	i;
-	int	parts;
+	int		j;
+	int		index;
+	int		start;
+	char	*str;
 
-	i = 0;
-	parts = 0;
-	while (s[i] != '\0')
+	j = 0;
+	index = 0;
+	while (j <= i)
 	{
-		if (s[i] != c)
-		{
-			parts++;
-			while (s[i] != c && s[i] != '\0')
-				i++;
-		}
-		else
-			i++;
+		start = index;
+		while (s[index] && s[index] != c)
+			index++;
+		index++;
+		j++;
 	}
-	return (parts);
+	if (!(str = (char *)malloc(sizeof(char) * (index - start) + 1)))
+		return (NULL);
+	j = 0;
+	index = index - start;
+	while (j + 1 < index)
+		str[j++] = s[start++];
+	str[j] = '\0';
+	return (str);
 }
 
-char		**ft_strsplit(char const *s, char c)
+int		count(char const *s, char c)
 {
 	int		i;
-	char	**fresh;
-	int		len;
+	int		counter;
 
 	i = 0;
-	while (*s && *s == c)
-		s++;
-	fresh = (char**)malloc(sizeof(char*) * word_count(s, c) + 1);
-	while (*s)
+	counter = 1;
+	while (s[i])
+		if (s[i++] == c)
+			counter++;
+	return (counter);
+}
+
+char	**ft_strsplit(char const *s, char c)
+{
+	char	**sa;
+	int		size;
+	int		i;
+
+	size = count(s, c);
+	if (!(sa = (char **)malloc(sizeof(char *) * (size + 1))))
+		return (NULL);
+	sa[size] = NULL;
+	i = 0;
+	while (i < size)
 	{
-		len = 0;
-		while (*s == c && *s)
-			s++;
-		while (s[len] != c && s[len] != '\0')
-			len++;
-		fresh[i] = ft_strnew(len);
-		ft_strncpy(fresh[i], s, len);
-		s = s + len;
+		if (!(sa[i] = sub(s, i, c)))
+			return (NULL);
 		i++;
 	}
-	fresh[i] = NULL;
-	return (fresh);
+	return (sa);
 }

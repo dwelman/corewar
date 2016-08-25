@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/11 13:29:42 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/19 11:12:50 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/25 12:20:53 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ t_label	*check_label(char *line, int i, int *valid_label, int line_nbr)
 			}
 			j--;
 		}
-		name = (char *)malloc(sizeof(char *) * i + 2);
+		name = (char *)malloc(sizeof(char *) * (i + 1));
 		while (j < i)
 		{
 			name[j] = line[j];

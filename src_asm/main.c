@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/29 10:55:31 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/22 15:39:51 by vivan-de         ###   ########.fr       */
+/*   Updated: 2016/08/25 09:36:46 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,5 @@ int	main(int argc, char **argv)
 	ft_printf("Assembling champion!\n\t%s\n\t%s\n", info.header.prog_name,
 			info.header.comment);
 	free_input(&info);
-	free_commands(&info);
 	free_info_label(&info);
 }

@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/19 07:32:29 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/19 11:18:12 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/26 11:29:01 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	count_down(t_info *info, int com_line, int label_line)
 		ret += com->command_bytes;
 		crawl = crawl->next;
 		if (crawl != NULL)
-			com = (t_command *)crawl->data;	
+			com = (t_command *)crawl->data;
 	}
 	return (ret);
 }
@@ -54,7 +54,7 @@ int	count_up(t_info *info, int com_line, int label_line)
 	{
 		ret -= com->command_bytes;
 		crawl = crawl->next;
-		com = (t_command *)crawl->data;	
+		com = (t_command *)crawl->data;
 	}
 	return (ret);
 }

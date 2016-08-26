@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/08 12:21:19 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/19 11:40:10 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/26 11:52:17 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,15 @@ void	add_null(int fd, int padding)
 ** Writes the header to the .cor file and creates a new file
 */
 
+void	add_cor(char *file_name, int *i)
+{
+	file_name[*i += 1] = '.';
+	file_name[*i += 1] = 'c';
+	file_name[*i += 1] = 'o';
+	file_name[*i += 1] = 'r';
+	file_name[*i += 1] = '\0';
+}
+
 void	write_file(t_info *info)
 {
 	int		fd;
@@ -32,17 +41,10 @@ void	write_file(t_info *info)
 	int		padding;
 	char	file_name[PROG_NAME_LENGTH + 5];
 
-	i = 0;
-	while (info->file_name[i] != '.')
-	{
+	i = -1;
+	while (info->file_name[++i] != '.')
 		file_name[i] = info->file_name[i];
-		i++;
-	}
-	file_name[i++] = '.';
-	file_name[i++] = 'c';
-	file_name[i++] = 'o';
-	file_name[i++] = 'r';
-	file_name[i++] = '\0';
+	add_cor(&(*file_name), &i);
 	reverse_bytes((void *)&info->header.magic, sizeof(info->header.magic));
 	fd = open(file_name, O_CREAT | O_WRONLY | O_TRUNC | O_APPEND, 0666);
 	padding = sizeof(info->header.magic);

@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/15 15:01:11 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/19 11:38:06 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/26 11:40:54 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*str_trim(char *str)
 	int		i;
 	int		j;
 	char	*ret;
-	
+
 	ret = (char *)malloc(sizeof(char) * get_len(str) + 1);
 	i = 0;
 	j = 0;

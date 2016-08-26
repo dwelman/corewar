@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/29 09:35:30 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/25 13:05:54 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/26 12:56:58 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct		s_op_run
 	int		op;
 	int		to_exec;
 	int		player;
+	int		p_in;
 	BOOL	reset;
 	int		*arg_types;
 	int		*arg_sizes;
@@ -202,7 +203,7 @@ void				load_into_vm(t_env *env);
 
 void				run_vm(t_env *env);
 
-t_op_run			load_op(t_cor *player, t_env *env);
+t_op_run			load_op(t_cor *player, t_env *env, int p);
 
 int					*get_arg_types(char *e_byte);
 

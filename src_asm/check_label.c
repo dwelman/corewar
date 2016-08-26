@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/11 13:29:42 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/25 12:20:53 by vivan-de         ###   ########.fr       */
+/*   Updated: 2016/08/26 11:07:57 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** This function compares a character to all characters in the LABEL_CHARS macro
 */
 
-int	check_label_char(char c)
+int		check_label_char(char c)
 {
 	int	i;
 	int	in;
@@ -48,33 +48,18 @@ t_label	*check_label(char *line, int i, int *valid_label, int line_nbr)
 
 	j = i - 1;
 	label = NULL;
-	if (i == 0)
-	{
-		*valid_label = -1;
+	if (i == 0 && (*valid_label = -1) == -1)
 		return (label);
-	}
-	if (line[i - 1] == DIRECT_CHAR)
-	{
-		*valid_label = 0;
+	if (line[i - 1] == DIRECT_CHAR && !(*valid_label = 0))
 		return (label);
-	}
 	else
 	{
 		while (j >= 0)
-		{
-			if (check_label_char(line[j]) == -1)
-			{
-				*valid_label = -1;
+			if (check_label_char(line[j--]) == -1 && (*valid_label = -1) == -1)
 				return (label);
-			}
-			j--;
-		}
 		name = (char *)malloc(sizeof(char *) * (i + 1));
-		while (j < i)
-		{
-			name[j] = line[j];
-			j++;
-		}
+		while (j++ < i)
+			name[j - 1] = line[j - 1];
 		name[j] = '\0';
 		label = (t_label *)malloc(sizeof(t_label));
 		label->name = name;

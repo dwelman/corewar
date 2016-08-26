@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/16 12:06:29 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/19 11:29:18 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/26 11:31:48 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		count_param_bytes(char **params, int num, BOOL dir_as_index)
 	i = 0;
 	count = 0;
 	while (i < num)
-	{ 
+	{
 		param_type = check_param(params[i]);
 		if (param_type == REG_CODE)
 			count += 1;

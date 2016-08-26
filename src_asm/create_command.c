@@ -6,15 +6,15 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/16 07:35:03 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/25 12:02:48 by vivan-de         ###   ########.fr       */
+/*   Updated: 2016/08/26 11:18:08 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <assembler.h>
 
 /*
- ** Creates a new command using the current line
- */
+** Creates a new command using the current line
+*/
 
 t_command	*set_nc(char *params, int *index, t_info *info)
 {
@@ -33,11 +33,10 @@ t_command	*set_nc(char *params, int *index, t_info *info)
 	return (nc);
 }
 
-t_list	*create_command(char *params, int *index, t_info *info)
+t_list		*create_command(char *params, int *index, t_info *info)
 {
 	t_list		*link;
 	t_command	*nc;
-	//int			i;
 
 	nc = set_nc(params, index, info);
 	if ((nc->has_encoding = info->op_tab[nc->op_tab_index].n_byte) == TRUE)

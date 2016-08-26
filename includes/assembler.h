@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/29 08:13:56 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/25 09:40:36 by vivan-de         ###   ########.fr       */
+/*   Updated: 2016/08/26 11:26:37 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,8 @@ void			a_fill_3(t_info *env);
 void			a_fill_4(t_info *env);
 
 void			a_fill_5(t_info *env);
+
+void			a_fill_5_1(t_info *env);
 
 t_label			*check_label(char *line, int i, int *valid_label, int line_nbr);
 

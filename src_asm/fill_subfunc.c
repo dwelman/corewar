@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/15 12:05:45 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/15 12:08:58 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/26 11:27:58 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 */
 
 void	a_fill_4(t_info *env)
-{	
+{
 	env->op_tab[LDI].name = "ldi";
 	env->op_tab[LDI].nbr_args = 3;
 	env->op_tab[LDI].type[0] = T_REG | T_DIR | T_IND;
@@ -69,6 +69,11 @@ void	a_fill_5(t_info *env)
 	env->op_tab[LFORK].code = LFORK;
 	env->op_tab[LFORK].nbr_cycles = 1000;
 	env->op_tab[LFORK].n_byte = FALSE;
+	a_fill_5_1(env);
+}
+
+void	a_fill_5_1(t_info *env)
+{
 	env->op_tab[AFF].name = "aff";
 	env->op_tab[AFF].nbr_args = 1;
 	env->op_tab[AFF].type[0] = T_REG;

@@ -6,7 +6,7 @@
 #    By: daviwel <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/01 13:21:50 by daviwel           #+#    #+#              #
-#    Updated: 2016/08/24 14:55:15 by daviwel          ###   ########.fr        #
+#    Updated: 2016/08/26 09:00:15 by daviwel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ IN_FILES = live.c\
 		   xor.c \
 		   zjmp.c \
 		   ldi.c \
-		   #sti.c \
+		   sti.c \
 		   #fork.c \
 		   #lld.c \
 		   #lldi.c \
@@ -56,7 +56,8 @@ SRC = main.c\
 	  print_ops.c\
 	  cleanup.c\
 	  run_instr.c\
-	  live_check.c
+	  live_check.c \
+	  cwrite_bytes.c
 	 
 OBJ = $(SRC:.c=.o)
 

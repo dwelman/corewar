@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/02 08:57:41 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/18 14:34:28 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/26 11:43:37 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ void	set_comment(t_info *info, int i)
 			exit(0);
 		}
 	}
-	j++;
-	while (INPUT[i][j] != '"')
+	while (INPUT[i][++j] != '"')
 	{
 		if (INPUT[i][j] == '\0' || j > COMMENT_LENGTH)
 		{
@@ -37,7 +36,6 @@ void	set_comment(t_info *info, int i)
 		}
 		info->comment[k] = INPUT[i][j];
 		k++;
-		j++;
 	}
 	info->comment[k] = '\0';
 }
@@ -57,8 +55,7 @@ void	set_name(t_info *info, int i)
 			exit(0);
 		}
 	}
-	j++;
-	while (INPUT[i][j] != '"')
+	while (INPUT[i][++j] != '"')
 	{
 		if (INPUT[i][j] == '\0' || j > PROG_NAME_LENGTH)
 		{
@@ -67,7 +64,6 @@ void	set_name(t_info *info, int i)
 		}
 		info->name[k] = INPUT[i][j];
 		k++;
-		j++;
 	}
 	info->name[k] = '\0';
 }

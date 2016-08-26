@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/29 09:35:30 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/26 12:56:58 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/26 15:37:30 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,6 +245,9 @@ int					count_alive(t_env *env);
 int					make_int(char *arg, int bytes);
 
 int					get_num(char *arg, int size);
+
+void				cwrite_bytes(t_env *env, int start, char *to_write,
+		size_t write_size);
 
 /*
 ** Instructions

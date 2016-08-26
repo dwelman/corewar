@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/15 11:57:54 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/19 11:21:35 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/26 11:20:53 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	a_fill_1(t_info *env)
 }
 
 void	a_fill_2(t_info *env)
-{	
+{
 	env->op_tab[ADD].name = "add";
 	env->op_tab[ADD].nbr_args = 3;
 	env->op_tab[ADD].type[0] = T_REG;
@@ -78,7 +78,7 @@ void	a_fill_2(t_info *env)
 */
 
 void	a_fill_3(t_info *env)
-{	
+{
 	env->op_tab[OR].name = "or";
 	env->op_tab[OR].nbr_args = 3;
 	env->op_tab[OR].type[0] = T_REG | T_DIR | T_IND;

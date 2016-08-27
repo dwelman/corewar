@@ -6,67 +6,61 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/18 14:50:01 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/25 11:36:44 by vivan-de         ###   ########.fr       */
+/*   Updated: 2016/08/27 11:34:41 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <assembler.h>
 
-void	handle_params(t_info *info, t_command com, int fd)
+void		rev_write(int fd, int *temp, int size)
 {
-	int		i;
-	int		k;
-	char	temp_char;
-	int		temp_int;
-	int		offset;
+	reverse_bytes(temp, size);
+	write(fd, temp, size);
+}
 
-	i = 0;
-	while (i < com.num_params)
+void		handle_dir_params(t_info *info, t_command com, int fd, t_params *p)
+{
+	if (com.params[p->i][1] != LABEL_CHAR)
 	{
-		if (com.params[i][0] == 'r')
+		p->temp_int = ft_atoi(com.params[p->i] + 1);
+		if (com.dir_as_index == TRUE)
+			rev_write(fd, &p->temp_int, IND_SIZE);
+		else
+			rev_write(fd, &p->temp_int, DIR_SIZE);
+	}
+	else
+	{
+		if ((p->k = find_label_line(info, ft_strchr(com.params[p->i],
+							LABEL_CHAR))) != -1)
 		{
-			temp_char = (char)ft_atoi(&com.params[i][1]);
-			write(fd, &temp_char, sizeof(char));
-		}
-		else if (com.params[i][0] == DIRECT_CHAR)
-		{
-			if (com.params[i][1] != LABEL_CHAR)
-			{
-				if (com.dir_as_index == TRUE)
-				{
-					temp_int = ft_atoi(com.params[i] + 1);
-					reverse_bytes(&temp_int, IND_SIZE);
-					write(fd, &temp_int, IND_SIZE);
-				}
-				else
-				{
-					temp_int = ft_atoi(com.params[i] + 1);
-					reverse_bytes(&temp_int, DIR_SIZE);
-					write(fd, &temp_int, DIR_SIZE);
-				}
-			}
-			else
-			{
-				if ((k = find_label_line(info, ft_strchr(com.params[i],
-									LABEL_CHAR))) != -1)
-				{
-					//ft_printf("label = %s, lien = %d\n", com.params[i], k);
-					offset = count_bytes_between(info, com.line_nbr, k);
-					reverse_bytes(&offset, 2);
-					write(fd, &offset, 2);
-				}
-				else
-				{
-					exit(-1);
-				}
-			}
+			p->offset = count_bytes_between(info, com.line_nbr, p->k);
+			rev_write(fd, &p->offset, 2);
 		}
 		else
+			exit(-1);
+	}
+}
+
+void		handle_params(t_info *info, t_command com, int fd)
+{
+	t_params	p;
+
+	p.i = 0;
+	while (p.i < com.num_params)
+	{
+		if (com.params[p.i][0] == 'r')
 		{
-			temp_int = ft_atoi(com.params[i]);
-			write(fd, &temp_int, IND_SIZE);
+			p.temp_char = (char)ft_atoi(&com.params[p.i][1]);
+			write(fd, &p.temp_char, sizeof(char));
 		}
-		i++;
+		else if (com.params[p.i][0] == DIRECT_CHAR)
+			handle_dir_params(info, com, fd, &p);
+		else
+		{
+			p.temp_int = ft_atoi(com.params[p.i]);
+			write(fd, &p.temp_int, IND_SIZE);
+		}
+		p.i++;
 	}
 }
 
@@ -74,7 +68,7 @@ void	handle_params(t_info *info, t_command com, int fd)
 ** Writes all the commands to the .cor file
 */
 
-void	write_commands(t_info *info, int fd)
+void		write_commands(t_info *info, int fd)
 {
 	t_list		*crawl;
 	t_list		*temp;

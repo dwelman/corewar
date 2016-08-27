@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/12 08:18:18 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/22 11:53:42 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/27 12:37:04 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,10 @@ int	is_player(int player, t_env *env)
 	int	i;
 
 	i = 0;
+	printf("pcount = %d\n", env->p_count);
 	while (i < env->p_count)
 	{
-		ft_printf("i = %d\n", i);
+		ft_printf("i = %d, player = %d\n", i, PLAYER(i).p_num);
 		if (PLAYER(i).p_num == player)
 			return (i);
 		i++;
@@ -41,9 +42,9 @@ void	live(t_op_run *run, t_env *env)
 	int	player;
 	int	index;
 
-	reverse_bytes((void*)run->arg[0], 4);
-	player = *(int*)run->arg[0];
+	player = read_int(run->arg[0]);
 	index = is_player(player, env);
+	printf("index = %d player = %d\n", index, player);
 	if (index != -1 && PLAYER(index).alive == TRUE)
 	{
 		ft_printf("A process shows that player %s is alive\n", PLAYER(index).name);//

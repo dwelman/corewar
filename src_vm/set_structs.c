@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/30 08:56:42 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/16 15:47:36 by vivan-de         ###   ########.fr       */
+/*   Updated: 2016/08/26 20:15:02 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,11 @@ void	init_cor(char *cor_file, int player_num, t_cor *cor)
 	init_cpu(&cor->cpu);
 	pnum = (int*)cor->cpu.registers[0];
 	*pnum = player_num;
+	reverse_bytes(pnum, 4);
 	init_op_run(&cor->cur_op);
 	cor->alive = TRUE;
 	cor->last_live = -1;
+	cor->sub = 0;
 }
 
 void	init_env(t_env *env)
@@ -68,13 +70,14 @@ void	init_cpu(t_cpu *cpu)
 		return ;
 	r = 0;
 	cpu->pc = NULL;
-	cpu->carry = 1;
+	cpu->carry = 0;
 	cpu->registers = (void**)malloc(sizeof(void*) * REG_NUMBER);
 	if (cpu->registers == NULL)
 		arg_err(ER_MALLOC, "init_cpu");
 	while (r < REG_NUMBER)
 	{
 		cpu->registers[r] = malloc(REG_SIZE);
+		bzero(cpu->registers[r], REG_SIZE);
 		if (cpu->registers[r] == NULL)
 			arg_err(ER_MALLOC, "init_cpu");
 		r++;

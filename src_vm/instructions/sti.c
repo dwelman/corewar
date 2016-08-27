@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/25 12:44:58 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/26 13:23:35 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/26 22:11:52 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	sti(t_op_run *run, t_env *env)
 	char	*mem;
 	int		temp_val;
 
-	player = run->player - 1;
+	player = run->p_in;
 	temp_val = 0;
 	if (run->arg_types[1] == IND_CODE)
 	{

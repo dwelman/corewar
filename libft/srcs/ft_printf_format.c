@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 14:41:25 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/16 15:24:36 by vivan-de         ###   ########.fr       */
+/*   Updated: 2016/08/27 08:16:50 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,14 @@ t_mods	init_mods(void)
 
 char	*ft_check(const char *str, t_mods md, va_list *args)
 {
-	char	*out;
+	static char	out[2];
 
-	out = ft_strnew(sizeof(char) * 2);
 	if (*str == 'c')
 	{
-		*out = (char)va_arg(*args, int);
+		out[0] = (char)va_arg(*args, int);
+		out[1] = '\0';
 		return (out);
 	}
-	ft_memdel((void**)&out);
 	if (*str == 's' || *str == 'S')
 		return (va_arg(*args, char*));
 	if ((*str == 'i' || *str == 'd') && md.has_mod == 0)

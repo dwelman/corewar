@@ -6,7 +6,7 @@
 /*   By: zaz <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2016/08/19 07:03:42 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/27 08:26:51 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define REG_CODE				1
 # define DIR_CODE				2
 # define IND_CODE				3
+
 
 # define MAX_ARGS_NUMBER			4
 # define MAX_PLAYERS				4

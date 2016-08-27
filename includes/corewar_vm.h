@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/29 09:35:30 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/26 15:37:30 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/27 12:22:53 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define BOOL char
 # define PLAYER(X) env->players[X]
 # define P_CPU(X) env->players[X].cpu
-# define P_REG(X, Y) env->players[X].cpu.registers[Y]
+# define P_REG(X, Y) env->players[X].cpu.registers[Y - 1]
 # define OP_COUNT 16
 # define OP(X) env->op_tab[X]
 # define CUR_OP(X) env->players[X].cur_op
@@ -108,6 +108,7 @@ typedef struct		s_cpu
 ** lsc - amout of 'live' executions since last check
 ** last_live indicates how many cycles passed since last live
 */
+
 typedef struct		s_cor
 {
 	char		*file;
@@ -122,6 +123,7 @@ typedef struct		s_cor
 	t_op_run	cur_op;
 	BOOL		alive;
 	int			last_live;
+	BOOL		sub;
 }					t_cor;
 
 /*
@@ -230,6 +232,8 @@ void				print_memory(const void *addr, size_t size);
 
 int					read_int(char *ptr);
 
+int					read_short(char *ptr);
+
 void				run_instr(t_op_run *run, t_env *env);
 
 void				inc_last_live(t_env *env);
@@ -249,17 +253,21 @@ int					get_num(char *arg, int size);
 void				cwrite_bytes(t_env *env, int start, char *to_write,
 		size_t write_size);
 
+void				**copy_registers(t_cpu *cpu);
+
+void				inherit_parent(t_env *env, int p);
+
 /*
 ** Instructions
 */
 
 int					is_player(int player, t_env *env);
 
-void				live(t_op_run *run, t_env *env);
+void				live(t_op_run *run, t_env *env);//
 
-void				ld(t_op_run *run, t_env *env);
+void				ld(t_op_run *run, t_env *env);//
 
-void				st(t_op_run *run, t_env *env);
+void				st(t_op_run *run, t_env *env);//
 
 void				add(t_op_run *run, t_env *env);
 
@@ -269,7 +277,7 @@ void				and(t_op_run *run, t_env *env);
 
 void				or(t_op_run *run, t_env *env);
 
-void				xor(t_op_run *run, t_env *env);
+void				xor(t_op_run *run, t_env *env);//
 
 void				zjmp(t_op_run *run, t_env *env);
 
@@ -277,13 +285,13 @@ void				ldi(t_op_run *run, t_env *env);
 
 void				sti(t_op_run *run, t_env *env);
 
-void				vm_fork(t_op_run *run, t_env *env);
+void				vm_fork(t_op_run *run, t_env *env);//
 
 void				lld(t_op_run *run, t_env *env);
 
 void				lldi(t_op_run *run, t_env *env);
 
-void				lfork(t_op_run *run, t_env *env);
+void				vm_lfork(t_op_run *run, t_env *env);
 
 void				aff(t_op_run *run, t_env *env);
 

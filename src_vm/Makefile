@@ -6,7 +6,7 @@
 #    By: daviwel <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/01 13:21:50 by daviwel           #+#    #+#              #
-#    Updated: 2016/08/26 09:00:15 by daviwel          ###   ########.fr        #
+#    Updated: 2016/08/27 12:19:24 by ddu-toit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,12 +26,12 @@ IN_FILES = live.c\
 		   xor.c \
 		   zjmp.c \
 		   ldi.c \
-		   sti.c \
-		   #fork.c \
-		   #lld.c \
-		   #lldi.c \
-		   #lfork.c \
-		   #aff.c
+		   fork.c \
+		   lld.c \
+		   lfork.c \
+		   aff.c
+#		   sti.c 
+#		   lldi.c \
 
 SRC = main.c\
 	  check_input.c\
@@ -57,7 +57,7 @@ SRC = main.c\
 	  cleanup.c\
 	  run_instr.c\
 	  live_check.c \
-	  cwrite_bytes.c
+	 # cwrite_bytes.c
 	 
 OBJ = $(SRC:.c=.o)
 

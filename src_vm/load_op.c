@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/08 12:37:45 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/23 07:46:45 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/26 21:43:05 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,17 @@ void		print_oprun(t_op_run op, t_env *env)//debug
 		i++;
 	}
 	i = 0;
-	ft_printf("\nargs : \n");
-	while (i < OP(op.op).nbr_args && op.arg[i])
+	ft_printf("\nargs : %p\n", op.arg);
+	if (op.arg)
 	{
-		print_memory(op.arg[i], op.arg_sizes[i]);
-		i++;
+		while (i < OP(op.op).nbr_args && op.arg[i])
+		{
+			print_memory(op.arg[i], op.arg_sizes[i]);
+			i++;
+		}
 	}
+	else
+		ft_printf("NULL");
 }
 
 /*
@@ -83,6 +88,7 @@ void		get_args(t_op_run *new, t_env *env, char *pc)
 		{
 			new->arg[i] = cload_bytes(env->memory, pc - env->memory,
 					MEM_SIZE, new->arg_sizes[i]);
+			print_memory(new->arg[i], new->arg_sizes[i]);
 			pc += new->arg_sizes[i];
 		}
 		else
@@ -95,7 +101,7 @@ void		get_args(t_op_run *new, t_env *env, char *pc)
 ** Sets values for struct t_op_run.
 */
 
-t_op_run	load_op(t_cor *player, t_env *env)
+t_op_run	load_op(t_cor *player, t_env *env, int p)
 {
 	t_op_run	new;
 	int			op;
@@ -109,10 +115,12 @@ t_op_run	load_op(t_cor *player, t_env *env)
 	else
 	{
 		new.arg_types = get_arg_types(player->cpu.pc);
-		move_pc(&player->cpu, 1, env);
+	//	move_pc(&player->cpu, 1, env);
 	}
 	new.reset = FALSE;
 	new.player = player->p_num;
+	new.p_in = p;
 	new.arg_sizes = get_arg_sizes(&new, env);
+	player->cpu.pc -= 1;
 	return (new);
 }

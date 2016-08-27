@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 09:02:57 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/05/27 09:57:10 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/27 08:20:10 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,18 @@ char	*convert(long int num, int base, int hex_upper)
 {
 	static char	buffer[50];
 	char		*ptr;
+	int			minus;
 
+	minus = 0;
 	ptr = &buffer[49];
 	*ptr = '\0';
 	if (num == 0)
 		*--ptr = '0';
+	if (num < 0)
+	{
+		minus = 1;
+		num *= -1;
+	}
 	while (num != 0)
 	{
 		if (hex_upper)
@@ -27,6 +34,8 @@ char	*convert(long int num, int base, int hex_upper)
 			*--ptr = "0123456789abcdef"[num % base];
 		num /= base;
 	}
+	if (minus)
+		*--ptr = '-';
 	return (ptr);
 }
 

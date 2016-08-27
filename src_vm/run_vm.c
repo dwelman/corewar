@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 10:53:20 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/22 12:30:54 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/27 12:41:58 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	fetch_ops(t_env *env)
 		{
 			if (CUR_OP(p).reset == TRUE && *P_CPU(p).pc >= 1 &&
 					*P_CPU(p).pc <= 16)
-				PLAYER(p).cur_op = load_op(&PLAYER(p), env);
+				PLAYER(p).cur_op = load_op(&PLAYER(p), env, p);
 		}
 		p++;
 	}
@@ -66,15 +66,19 @@ void	exec_ops(t_env *env)
 			if (CUR_OP(p).to_exec == 1 && CUR_OP(p).op >= 1 &&
 					CUR_OP(p).op <= 16)
 			{
-				ft_printf("\nplayer %s exec %s\n", PLAYER(p).name,
-						OP(CUR_OP(p).op).name); //
-				get_args(&CUR_OP(p), env, P_CPU(p).pc);
+//				if (p > 0)
+				ft_printf("\nplayer %d %s exec %s PC : %p\n",p,  PLAYER(p).name,
+						OP(CUR_OP(p).op).name, P_CPU(p).pc) ; //
+				get_args(&CUR_OP(p), env, &P_CPU(p).pc[1] + OP(CUR_OP(p).op).n_byte);
+				print_oprun(CUR_OP(p), env);
 				run_instr(&CUR_OP(p), env);
 				if (CUR_OP(p).op != ZJMP)
-					move_pc(&P_CPU(p), total_arg_n(CUR_OP(p).arg_sizes), env);
+					move_pc(&P_CPU(p), total_arg_n(CUR_OP(p).arg_sizes)
+							+ OP(CUR_OP(p).op).n_byte + 1, env);
 				if (P_CPU(p).pc > P_CPU(p).prog_start + PLAYER(p).size)
 					PLAYER(p).alive = FALSE;
-				print_oprun(CUR_OP(p), env);
+//				if (p > 0)
+				print_memory(P_CPU(p).pc, 20);
 				clear_op(&CUR_OP(p), env);
 			}
 			else
@@ -89,7 +93,7 @@ void	exec_ops(t_env *env)
 
 void	run_vm(t_env *env)
 {
-	long int	cycle;
+	unsigned long long int	cycle;
 	int			p_active;
 
 	p_active = env->p_count;
@@ -104,12 +108,13 @@ void	run_vm(t_env *env)
 		fetch_ops(env);
 		exec_ops(env);
 		inc_last_live(env);
-		if (cycle == (long int)env->dump_cycles)
+		if (cycle == (unsigned long long int)env->dump_cycles)
 		{
 			ft_printf("DUMP at cycle %ld\n", cycle);
 			print_memory(env->memory, MEM_SIZE);
 			break ;
 		}
+		printf("%lld ; ", cycle);
 		cycle++;
 	}
 	ft_memdel((void**)&env->alive_at_check);

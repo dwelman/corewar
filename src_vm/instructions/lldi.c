@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/25 07:30:31 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/25 13:07:40 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/26 22:11:02 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	lldi(t_op_run *run, t_env *env)
 	int		temp_val;
 	//int		temp;
 
-	player = run->player - 1;
+	player = run->p_in;
 	if (run->arg_types[0] == DIR_CODE)
 	{
 		temp_val = get_num(run->arg[0], run->arg_sizes[0]);

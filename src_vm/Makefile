@@ -6,7 +6,7 @@
 #    By: daviwel <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/01 13:21:50 by daviwel           #+#    #+#              #
-#    Updated: 2016/08/27 12:19:24 by ddu-toit         ###   ########.fr        #
+#    Updated: 2016/08/28 12:33:19 by ggroener         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,8 +57,8 @@ SRC = main.c\
 	  cleanup.c\
 	  run_instr.c\
 	  live_check.c \
-	 # cwrite_bytes.c
-	 
+	  # cwrite_bytes.c
+
 OBJ = $(SRC:.c=.o)
 
 IN_SRC = $(addprefix $(IN_PATH), $(IN_FILES))
@@ -69,7 +69,7 @@ INCLUDES = -I ../includes/ -I ../libft
 
 ATTACH = -L  ../libft -lft
 
-all: $(NAME)
+all: qme $(NAME)
 
 $(NAME):
 	gcc -Wall -Werror -Wextra -c -g3 $(SRC) $(IN_SRC) $(INCLUDES) 
@@ -82,3 +82,15 @@ fclean: clean
 	/bin/rm -f $(NAME)
 
 re: fclean all
+
+format: me
+
+qme:
+	@rm -Rf author
+	@echo daviwel > author
+	@echo ddu-toit >> author
+	@echo vivan-de >> author
+	@echo ggroener >> author
+
+me: qme
+	cat -e author

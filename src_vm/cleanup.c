@@ -6,7 +6,7 @@
 /*   By: vivan-de <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/16 15:56:03 by vivan-de          #+#    #+#             */
-/*   Updated: 2016/08/16 15:56:05 by vivan-de         ###   ########.fr       */
+/*   Updated: 2016/08/27 13:25:08 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,18 @@ void	cleanup_env(t_env *env)
 		r = 0;
 		while (r < REG_NUMBER)
 		{
-			ft_memdel(&P_REG(p, r));
+			ft_memdel(&P_REG(p, r + 1));
 			r++;
 		}
 		ft_memdel((void**)&P_CPU(p).registers);
-		ft_memdel((void**)&PLAYER(p).name);
-		ft_memdel((void**)&PLAYER(p).comment);
+		if (PLAYER(p).sub != TRUE)
+		{
+			ft_memdel((void**)&PLAYER(p).name);
+			ft_memdel((void**)&PLAYER(p).comment);
+			ft_memdel((void**)&PLAYER(p).instructions);
+		}
 		ft_memdel((void**)&PLAYER(p).cur_op.arg_sizes);
 		ft_memdel((void**)&PLAYER(p).cur_op.arg_types);
-		ft_memdel((void**)&PLAYER(p).instructions);
 		p++;
 	}
 	clean_active_ops(env);

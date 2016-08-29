@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/11 14:22:54 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/26 21:02:51 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/27 16:16:54 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,28 @@
 ** Function to move pc by offset bytes in a circular manner.
 */
 
-void	move_pc(t_cpu *p, int offset, t_env *env)
+void move_pc(t_cpu *p, int offset, t_env *env)
 {
+	int diff;
+
+	ft_printf("moving pc %d\n", offset);
 	while (offset > MEM_SIZE * 2)
 		offset -= MEM_SIZE;
 	if (p->pc + offset > env->memory + MEM_SIZE)
 	{
-		offset -= p->pc + offset - (env->memory + MEM_SIZE);
+		offset = p->pc + offset - (env->memory + MEM_SIZE);
 		p->pc = &env->memory[offset];
+	}
+	else if (offset < 0 && p->pc + offset < env->memory)
+	{
+		diff = env->memory - (p->pc + offset);
+		p->pc = &env->memory[MEM_SIZE - diff];
 	}
 	else
 		p->pc += offset;
+	if (p->pc > env->memory + MEM_SIZE || p->pc < env->memory)
+	{
+		ft_printf("oops! move_pc is broken\n");
+		exit(1);
+	}
 }

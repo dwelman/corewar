@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 10:53:20 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/27 12:41:58 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/27 16:17:43 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@ void	exec_ops(t_env *env)
 			if (CUR_OP(p).to_exec == 1 && CUR_OP(p).op >= 1 &&
 					CUR_OP(p).op <= 16)
 			{
-//				if (p > 0)
-				ft_printf("\nplayer %d %s exec %s PC : %p\n",p,  PLAYER(p).name,
-						OP(CUR_OP(p).op).name, P_CPU(p).pc) ; //
+				if (p > 0)
+					ft_printf("\nplayer %d %s exec %s PC : %ld\n",p,  PLAYER(p).name,
+						OP(CUR_OP(p).op).name, P_CPU(p).pc); //
 				get_args(&CUR_OP(p), env, &P_CPU(p).pc[1] + OP(CUR_OP(p).op).n_byte);
 				print_oprun(CUR_OP(p), env);
 				run_instr(&CUR_OP(p), env);
@@ -76,14 +76,19 @@ void	exec_ops(t_env *env)
 					move_pc(&P_CPU(p), total_arg_n(CUR_OP(p).arg_sizes)
 							+ OP(CUR_OP(p).op).n_byte + 1, env);
 				if (P_CPU(p).pc > P_CPU(p).prog_start + PLAYER(p).size)
+				{
+					ft_printf("killing %d\n", p);
 					PLAYER(p).alive = FALSE;
-//				if (p > 0)
+				}
+				if (p > 0)
 				print_memory(P_CPU(p).pc, 20);
 				clear_op(&CUR_OP(p), env);
 			}
 			else
 				CUR_OP(p).to_exec--;
 		}
+		else
+			ft_printf("%s, %d is dead\n", PLAYER(p).name, p);
 	}
 }
 
@@ -114,7 +119,7 @@ void	run_vm(t_env *env)
 			print_memory(env->memory, MEM_SIZE);
 			break ;
 		}
-		printf("%lld ; ", cycle);
+	//	printf("%lld ; ", cycle);
 		cycle++;
 	}
 	ft_memdel((void**)&env->alive_at_check);

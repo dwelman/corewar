@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/08 12:37:45 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/26 21:43:05 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/27 13:11:06 by ddu-toit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,10 +113,7 @@ t_op_run	load_op(t_cor *player, t_env *env, int p)
 	if (OP(op).n_byte == FALSE)
 		new.arg_types = no_n_byte();
 	else
-	{
 		new.arg_types = get_arg_types(player->cpu.pc);
-	//	move_pc(&player->cpu, 1, env);
-	}
 	new.reset = FALSE;
 	new.player = player->p_num;
 	new.p_in = p;

@@ -36,7 +36,7 @@ void	load_into_vm(t_env *env)
 	spacing = (MEM_SIZE - total_program_size(env)) / env->p_count;
 	ptr = (char*)env->memory;
 	p = 0;
-	ptr += spacing / 2;
+	//ptr += spacing / 2;
 	while (p < env->p_count)
 	{
 		ft_memcpy(ptr, PLAYER(p).instructions, PLAYER(p).size);

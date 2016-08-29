@@ -6,7 +6,7 @@
 #    By: daviwel <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/29 09:15:12 by daviwel           #+#    #+#              #
-#    Updated: 2016/08/22 09:37:50 by daviwel          ###   ########.fr        #
+#    Updated: 2016/08/28 12:34:03 by ggroener         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,7 @@ INCLUDES = -I ../includes -I ../libft/includes
 
 ATTACH = -L ../libft -lft
 
-all: $(NAME)
+all: qme $(NAME)
 
 $(NAME):
 	gcc $(CFLAG) $(INCLUDES) -c $(SRC)
@@ -70,3 +70,15 @@ re: fclean all
 
 norme:
 	norminette $(SRC) ../includes
+
+format: me
+
+qme:
+	@rm -Rf author
+	@echo daviwel > author
+	@echo ddu-toit >> author
+	@echo vivan-de >> author
+	@echo ggroener >> author
+
+me: qme
+	cat -e author

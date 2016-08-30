@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/29 08:13:56 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/27 11:52:42 by vivan-de         ###   ########.fr       */
+/*   Updated: 2016/08/27 11:38:18 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,22 @@ typedef struct	s_info
 	int			num_labels;
 	int			line_nbr;
 }				t_info;
+
+typedef struct	s_file
+{
+	int		fd;
+	int		i;
+	int		padding;
+}				t_file;
+
+typedef struct	s_params
+{
+	int		i;
+	int		k;
+	int		temp_int;
+	int		offset;
+	char	temp_char;
+}				t_params;
 
 void			free_commands(t_command *com);
 

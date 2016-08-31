@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/22 11:51:51 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/27 12:09:54 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/30 07:49:47 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	ld(t_op_run *run, t_env *env)
 		P_CPU(player).carry = 0;
 		return ;
 	}
-	check_reg(run);
 	if (run->arg_types[0] == DIR_CODE)
 	{
 		ft_memcpy(P_REG(player, (int)*run->arg[1]), run->arg[0], REG_SIZE);

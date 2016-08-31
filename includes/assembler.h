@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/29 08:13:56 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/26 11:26:37 by vivan-de         ###   ########.fr       */
+/*   Updated: 2016/08/27 11:38:18 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,22 @@ typedef struct	s_info
 	int			line_nbr;
 }				t_info;
 
+typedef struct	s_file
+{
+	int		fd;
+	int		i;
+	int		padding;
+}				t_file;
+
+typedef struct	s_params
+{
+	int		i;
+	int		k;
+	int		temp_int;
+	int		offset;
+	char	temp_char;
+}				t_params;
+
 void			free_commands(t_command *com);
 
 void			free_input(t_info *info);
@@ -133,7 +149,7 @@ int				read_line(t_info *info, char *line, int line_nbr);
 
 void			start_compile(t_info *info);
 
-void    		print_memory(const void *addr, size_t size);
+void			print_memory(const void *addr, size_t size);
 
 void			write_file(t_info *info);
 

@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 10:53:20 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/27 16:17:43 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/31 10:33:16 by ggroener         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int		done(t_env *env)
 	check_live_calls(env);
 	if (env->live_calls >= NBR_LIVE)
 	{
-	//	ft_printf("live_calls = %d\n", env->live_calls);
-	//	ft_printf("to die = %d\n", env->cycle_to_die);
+		//ft_printf("live_calls = %d\n", env->live_calls);
+		//ft_printf("to die = %d\n", env->cycle_to_die);
 		if (still_alive(env))
 			env->cycle_to_die -= CYCLE_DELTA;
 		else if (checkups == MAX_CHECKS)
@@ -67,9 +67,10 @@ void	exec_ops(t_env *env)
 					CUR_OP(p).op <= 16)
 			{
 				if (p > 0)
-					ft_printf("\nplayer %d %s exec %s PC : %ld\n",p,  PLAYER(p).name,
-						OP(CUR_OP(p).op).name, P_CPU(p).pc); //
-				get_args(&CUR_OP(p), env, &P_CPU(p).pc[1] + OP(CUR_OP(p).op).n_byte);
+					ft_printf("\nplayer %d %s exec %s PC : %ld\n", p,
+							PLAYER(p).name, OP(CUR_OP(p).op).name, P_CPU(p).pc);
+				get_args(&CUR_OP(p), env, &P_CPU(p).pc[1] +
+						OP(CUR_OP(p).op).n_byte);
 				print_oprun(CUR_OP(p), env);
 				run_instr(&CUR_OP(p), env);
 				if (CUR_OP(p).op != ZJMP)
@@ -81,7 +82,7 @@ void	exec_ops(t_env *env)
 					PLAYER(p).alive = FALSE;
 				}
 				if (p > 0)
-				print_memory(P_CPU(p).pc, 20);
+					print_memory(P_CPU(p).pc, 20);
 				clear_op(&CUR_OP(p), env);
 			}
 			else
@@ -93,13 +94,13 @@ void	exec_ops(t_env *env)
 }
 
 /*
-** Runs loop to fetch and exectute instructions.
+**Runs loop to fetch and exectute instructions.
 */
 
 void	run_vm(t_env *env)
 {
 	unsigned long long int	cycle;
-	int			p_active;
+	int						p_active;
 
 	p_active = env->p_count;
 	cycle = 1;
@@ -119,7 +120,7 @@ void	run_vm(t_env *env)
 			print_memory(env->memory, MEM_SIZE);
 			break ;
 		}
-	//	printf("%lld ; ", cycle);
+		//	printf("%lld ; ", cycle);
 		cycle++;
 	}
 	ft_memdel((void**)&env->alive_at_check);

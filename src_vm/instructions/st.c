@@ -36,8 +36,7 @@ static int	check_reg(t_op_run *run)
 void	st(t_op_run *run, t_env *env)
 {
 	int		player;
-	int		temp_val;
-	char	*mem;
+	short	temp_val;
 
 	player = run->p_in;
 	if (check_reg(run) == 0)
@@ -48,18 +47,15 @@ void	st(t_op_run *run, t_env *env)
 	temp_val = 0;
 	if (run->arg_types[1] == IND_CODE)
 	{
-		temp_val = (int)read_short(run->arg[1]);
-		mem = cload_bytes(env->memory, (P_CPU(player).pc - env->memory) +
-				(temp_val % IDX_MOD), MEM_SIZE, IND_SIZE);
-		temp_val = (int)read_short(mem);
+		temp_val = read_short(run->arg[1]);
 		cwrite_bytes(env, (P_CPU(player).pc - env->memory) +
 				(temp_val % IDX_MOD), P_REG(player, (int)*run->arg[0]),
 				REG_SIZE);
 	}
 	else
 	{
-		ft_memcpy(P_CPU(player).registers[(int)*(run->arg[0]) - 1], 
-				P_CPU(player).registers[(int)*(run->arg[1]) - 1], REG_SIZE);
+		ft_memcpy(P_CPU(player).registers[(int)*(run->arg[1]) - 1], 
+				P_CPU(player).registers[(int)*(run->arg[0]) - 1], REG_SIZE);
 	}
 	P_CPU(player).carry = 1;
 }

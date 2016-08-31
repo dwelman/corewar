@@ -22,10 +22,12 @@ int		done(t_env *env)
 		//ft_printf("live_calls = %d\n", env->live_calls);
 		//ft_printf("to die = %d\n", env->cycle_to_die);
 		if (still_alive(env))
-			env->cycle_to_die -= CYCLE_DELTA;
+		{
+			//env->cycle_to_die -= CYCLE_DELTA;
+		}
 		else if (checkups == MAX_CHECKS)
 		{
-			env->cycle_to_die -= CYCLE_DELTA;
+			//env->cycle_to_die -= CYCLE_DELTA;
 			checkups = -1;
 		}
 		env->live_calls = 0;
@@ -66,9 +68,9 @@ void	exec_ops(t_env *env)
 			if (CUR_OP(p).to_exec == 1 && CUR_OP(p).op >= 1 &&
 					CUR_OP(p).op <= 16)
 			{
-				if (p > 0)
+				/*if (p > 0)
 					ft_printf("\nplayer %d %s exec %s PC : %ld\n", p,
-							PLAYER(p).name, OP(CUR_OP(p).op).name, P_CPU(p).pc);
+							PLAYER(p).name, OP(CUR_OP(p).op).name, P_CPU(p).pc);*/
 				get_args(&CUR_OP(p), env, &P_CPU(p).pc[1] +
 						OP(CUR_OP(p).op).n_byte);
 				print_oprun(CUR_OP(p), env);
@@ -78,7 +80,7 @@ void	exec_ops(t_env *env)
 							+ OP(CUR_OP(p).op).n_byte + 1, env);
 				if (P_CPU(p).pc > P_CPU(p).prog_start + PLAYER(p).size)
 				{
-					ft_printf("killing %d\n", p);
+					//ft_printf("killing %d\n", p);
 					PLAYER(p).alive = FALSE;
 				}
 				if (p > 0)
@@ -88,8 +90,8 @@ void	exec_ops(t_env *env)
 			else
 				CUR_OP(p).to_exec--;
 		}
-		else
-			ft_printf("%s, %d is dead\n", PLAYER(p).name, p);
+		//else
+			//ft_printf("%s, %d is dead\n", PLAYER(p).name, p);
 	}
 }
 
@@ -100,14 +102,16 @@ void	exec_ops(t_env *env)
 void	run_vm(t_env *env)
 {
 	unsigned long long int	cycle;
+	int						count;
 	int						p_active;
 
 	p_active = env->p_count;
 	cycle = 1;
-	ft_printf("=================START==================");//
+	count = 1;
+	//ft_printf("=================START==================");//
 	env->alive_at_check = (int*)malloc(sizeof(int) * env->p_count);
 	set_alive_at_check(env);
-	ft_printf("AAC : \n");//
+	//ft_printf("AAC : \n");//
 	print_memory(env->alive_at_check, sizeof(int) * env->p_count);//
 	while (!(done(env)))
 	{
@@ -120,8 +124,14 @@ void	run_vm(t_env *env)
 			print_memory(env->memory, MEM_SIZE);
 			break ;
 		}
-		//	printf("%lld ; ", cycle);
+		if (count >= env->cycle_to_die)
+		{
+			env->cycle_to_die -= CYCLE_DELTA;
+			count = 0;
+		}
 		cycle++;
+		count++;
 	}
+	printf("%lld ; ", cycle);
 	ft_memdel((void**)&env->alive_at_check);
 }

@@ -20,7 +20,7 @@ int			handle_args(t_op_run *run, t_env *env, int player, int param)
 		ret = (int)read_short(run->arg[param]);
 	else
 		ret = read_int(P_REG(player, (int)*run->arg[param]));
-	printf("ret = %d\n", ret);	
+	//printf("ret = %d\n", ret);	
 	return (ret);
 }
 
@@ -73,7 +73,6 @@ void		ldi(t_op_run *run, t_env *env)
 
 	player = run->p_in;
 	temp_val = 0;
-	exit(0);
 	if (check_reg(run) == 0)
 	{
 		P_CPU(player).carry = 0;
@@ -91,5 +90,4 @@ void		ldi(t_op_run *run, t_env *env)
 			(temp_val % IDX_MOD), MEM_SIZE, REG_SIZE);
 	ft_memcpy(P_REG(player, (int)*run->arg[2]), mem, REG_SIZE);
 	P_CPU(player).carry = 1;
-	exit(0);
 }

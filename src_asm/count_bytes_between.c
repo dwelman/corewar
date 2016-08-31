@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/19 07:32:29 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/26 11:29:01 by vivan-de         ###   ########.fr       */
+/*   Updated: 2016/08/31 08:27:14 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ int	count_up(t_info *info, int com_line, int label_line)
 	ret = 0;
 	crawl = info->commands;
 	com = (t_command *)crawl->data;
-	while (com->line_nbr < label_line && crawl != NULL)
+	while (com->line_nbr < label_line && crawl != NULL && crawl->next != NULL)
 	{
 		crawl = crawl->next;
 		com = (t_command *)crawl->data;
 	}
-	while (com->line_nbr < com_line && crawl != NULL)
+	while (com->line_nbr < com_line && crawl != NULL && crawl->next != NULL)
 	{
 		ret -= com->command_bytes;
 		crawl = crawl->next;

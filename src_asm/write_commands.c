@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/18 14:50:01 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/27 11:34:41 by vivan-de         ###   ########.fr       */
+/*   Updated: 2016/08/31 08:31:13 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void		handle_dir_params(t_info *info, t_command com, int fd, t_params *p)
 void		handle_params(t_info *info, t_command com, int fd)
 {
 	t_params	p;
+	short		temp_short;
 
 	p.i = 0;
 	while (p.i < com.num_params)
@@ -58,7 +59,9 @@ void		handle_params(t_info *info, t_command com, int fd)
 		else
 		{
 			p.temp_int = ft_atoi(com.params[p.i]);
-			write(fd, &p.temp_int, IND_SIZE);
+			temp_short = (short)p.temp_int;
+			reverse_bytes(&temp_short, IND_SIZE);
+			write(fd, &temp_short, IND_SIZE);
 		}
 		p.i++;
 	}
@@ -82,9 +85,9 @@ void		write_commands(t_info *info, int fd)
 		if (com.encoding_byte != '\0')
 			write(fd, &com.encoding_byte, sizeof(com.encoding_byte));
 		handle_params(info, com, fd);
-		free_commands((t_command *)crawl->data);
+		//free_commands((t_command *)crawl->data);
 		temp = crawl;
 		crawl = crawl->next;
-		free(temp);
+		//free(temp);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/23 08:48:47 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/27 11:19:03 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/31 10:19:32 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,17 +63,14 @@ void	st(t_op_run *run, t_env *env)
 	{
 		ft_memcpy(&temp_val, run->arg[1], IND_SIZE);
 		reverse_bytes(&temp_val, IND_SIZE);
-		print_memory(P_REG(player, (int)*run->arg[0]), 4);
-		ft_memcpy(&P_CPU(player).pc[temp_val % IDX_MOD], 
-				P_REG(player, (int)*run->arg[0]), REG_SIZE);
-		//ADD CIRCULAR WRITE
-		////
+		cwrite_bytes(env, (P_CPU(player).pc - env->memory) +
+				(temp_val % IDX_MOD), P_REG(player, (int)*run->arg[0]),
+				REG_SIZE);
 	}
 	else
 	{
 		ft_memcpy(P_CPU(player).registers[(int)*(run->arg[0]) - 1], 
 				P_CPU(player).registers[(int)*(run->arg[1]) - 1], REG_SIZE);
-		print_memory(P_CPU(player).registers[(int)*(run->arg[0]) - 1], REG_SIZE);
 	}
 	P_CPU(player).carry = 1;
 }

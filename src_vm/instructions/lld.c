@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/27 12:15:21 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/30 07:18:36 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/31 09:52:47 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static int		check_reg(t_op_run *run)
 
 /*
 ** Loads REG_SIZE bytes from the first parameter into the second parameter
+** without IDX_MOD
 */
 
 void	lld(t_op_run *run, t_env *env)

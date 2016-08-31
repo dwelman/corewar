@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ldi.c                                              :+:      :+:    :+:   */
+/*   lldi.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/25 07:30:31 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/31 09:44:18 by daviwel          ###   ########.fr       */
+/*   Created: 2016/08/31 10:02:48 by daviwel           #+#    #+#             */
+/*   Updated: 2016/08/31 10:02:49 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int	return_temp(t_op_run *run, t_env *env, int player)
 	{
 		temp_val = read_int(run->arg[1]);
 		mem = cload_bytes(env->memory, (P_CPU(player).pc - env->memory) +
-				(temp_val % IDX_MOD), MEM_SIZE, IND_SIZE);
+				(temp_val), MEM_SIZE, IND_SIZE);
 		temp_val = (int)read_short(mem);
 		temp_val += handle_arg(run, env, player);
 		free(mem);
@@ -61,10 +61,10 @@ static int	return_temp(t_op_run *run, t_env *env, int player)
 
 /*
 ** Loads REG_SIZE bytes from the address given by the first two parameters into
-** the last parameter
+** the last parameter without using % IDX_MOD
 */
 
-void		ldi(t_op_run *run, t_env *env)
+void		lldi(t_op_run *run, t_env *env)
 {
 	int		player;
 	char	*mem;
@@ -86,7 +86,7 @@ void		ldi(t_op_run *run, t_env *env)
 		return ;
 	}
 	mem = cload_bytes(env->memory, (P_CPU(player).pc - env->memory) +
-			(temp_val % IDX_MOD), MEM_SIZE, REG_SIZE);
+			(temp_val), MEM_SIZE, REG_SIZE);
 	ft_memcpy(P_REG(player, (int)*run->arg[2]), mem, REG_SIZE);
 	P_CPU(player).carry = 1;
 }

@@ -6,7 +6,7 @@
 #    By: daviwel <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/01 13:21:50 by daviwel           #+#    #+#              #
-#    Updated: 2016/08/28 12:33:19 by ggroener         ###   ########.fr        #
+#    Updated: 2016/08/31 10:21:16 by daviwel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,9 +29,9 @@ IN_FILES = live.c\
 		   fork.c \
 		   lld.c \
 		   lfork.c \
-		   aff.c
-#		   sti.c 
-#		   lldi.c \
+		   aff.c \
+		   lldi.c
+		   #sti.c \
 
 SRC = main.c\
 	  check_input.c\
@@ -57,7 +57,7 @@ SRC = main.c\
 	  cleanup.c\
 	  run_instr.c\
 	  live_check.c \
-	  # cwrite_bytes.c
+	  cwrite_bytes.c
 
 OBJ = $(SRC:.c=.o)
 

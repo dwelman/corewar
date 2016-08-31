@@ -27,7 +27,7 @@ void	inherit_parent(t_env *env, int p)
 		CUR_OP(env->p_count).reset = FALSE;
 	}
 	else
-		exit(1);
+		return ;
 }
 
 void	**copy_registers(t_cpu *cpu)

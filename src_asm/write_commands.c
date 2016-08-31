@@ -6,7 +6,7 @@
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/18 14:50:01 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/31 08:31:13 by daviwel          ###   ########.fr       */
+/*   Updated: 2016/08/31 10:06:34 by ggroener         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,12 @@ void		write_commands(t_info *info, int fd)
 		if (com.encoding_byte != '\0')
 			write(fd, &com.encoding_byte, sizeof(com.encoding_byte));
 		handle_params(info, com, fd);
-		//free_commands((t_command *)crawl->data);
 		temp = crawl;
 		crawl = crawl->next;
-		//free(temp);
+	}
+	while (crawl != NULL)
+	{
+		free_commands((t_command *)crawl->data);
+		free(temp);
 	}
 }

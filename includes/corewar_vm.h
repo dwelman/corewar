@@ -6,7 +6,7 @@
 /*   By: ddu-toit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/29 09:35:30 by ddu-toit          #+#    #+#             */
-/*   Updated: 2016/08/27 12:22:53 by ddu-toit         ###   ########.fr       */
+/*   Updated: 2016/08/31 10:55:59 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -256,6 +256,9 @@ void				cwrite_bytes(t_env *env, int start, char *to_write,
 void				**copy_registers(t_cpu *cpu);
 
 void				inherit_parent(t_env *env, int p);
+
+int					handle_args(t_op_run *run, t_env *env, int player,
+		int param);
 
 /*
 ** Instructions

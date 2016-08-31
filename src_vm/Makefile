@@ -6,7 +6,7 @@
 #    By: daviwel <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/01 13:21:50 by daviwel           #+#    #+#              #
-#    Updated: 2016/08/31 10:21:16 by daviwel          ###   ########.fr        #
+#    Updated: 2016/08/31 11:07:31 by daviwel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,8 +30,8 @@ IN_FILES = live.c\
 		   lld.c \
 		   lfork.c \
 		   aff.c \
-		   lldi.c
-		   #sti.c \
+		   lldi.c \
+		   sti.c
 
 SRC = main.c\
 	  check_input.c\

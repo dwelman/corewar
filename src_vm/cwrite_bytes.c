@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   aff.c                                              :+:      :+:    :+:   */
+/*   cwrite_bytes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daviwel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/30 07:14:15 by daviwel           #+#    #+#             */
-/*   Updated: 2016/08/30 07:14:17 by daviwel          ###   ########.fr       */
+/*   Created: 2016/08/26 07:49:41 by daviwel           #+#    #+#             */
+/*   Updated: 2016/08/26 12:02:39 by daviwel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <corewar_vm.h>
 
-void	aff(t_op_run *run, t_env *env)
+void	cwrite_bytes(t_env *env, int start, char *to_write, size_t write_size)
 {
-	int		player;
-	char	c;
+	size_t	i;
+	size_t	b;
 
-	player = run->p_in;
-	if ((int)*run->arg[0] - 1 < REG_NUMBER)
+	i = start;
+	b = 0;
+	while (b < write_size)
 	{
-		c = (char)(*(int *)P_CPU(player).registers[(int)*run->arg[0] - 1] % 256);
-		ft_putchar(c);
+		if (i >= MEM_SIZE)
+			i = 0;
+		env->memory[i] = to_write[b];
+		i++;
+		b++;
 	}
 }

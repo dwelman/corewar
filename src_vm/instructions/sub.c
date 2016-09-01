@@ -16,21 +16,24 @@ static int	check_reg(t_op_run *run)
 {
 	if (run->arg_types[0] == REG_CODE)
 	{
-		if ((int)*run->arg[0] > REG_NUMBER)
+		if ((int)*run->arg[0] > REG_NUMBER
+			|| (int)*run->arg[0] <= 0)
 			return (0);
 	}
 	else
 		return (0);
 	if (run->arg_types[1] == REG_CODE)
 	{
-		if ((int)*run->arg[1] > REG_NUMBER)
+		if ((int)*run->arg[1] > REG_NUMBER
+			|| (int)*run->arg[1] <= 0)
 			return (0);
 	}
 	else
 		return (0);
 	if (run->arg_types[2] == REG_CODE)
 	{
-		if ((int)*run->arg[2] > REG_NUMBER)
+		if ((int)*run->arg[2] > REG_NUMBER
+			|| (int)*run->arg[2] <= 0)
 			return (0);
 	}
 	else
@@ -42,7 +45,7 @@ static int	check_reg(t_op_run *run)
 ** Subtracts the values of the first 2 registers and stores it in the 3rd
 */
 
-void	sub(t_op_run *run, t_env *env)
+void		sub(t_op_run *run, t_env *env)
 {
 	int	player;
 	int	temp;

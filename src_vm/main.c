@@ -77,7 +77,6 @@ int		main(int argc, char **argv)
 	run_vm(&env);
 	if (env.dump == FALSE)
 		winner_output(&env);
-	ft_printf("HELLO\n");
 	cleanup_env(&env);
 	return (0);
 }

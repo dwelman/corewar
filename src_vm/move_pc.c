@@ -20,7 +20,6 @@ void	move_pc(t_cpu *p, int offset, t_env *env)
 {
 	int	diff;
 
-	ft_printf("moving pc %d\n", offset);
 	while (offset > MEM_SIZE * 2)
 		offset -= MEM_SIZE;
 	if (p->pc + offset > env->memory + MEM_SIZE)
@@ -35,9 +34,4 @@ void	move_pc(t_cpu *p, int offset, t_env *env)
 	}
 	else
 		p->pc += offset;
-	if (p->pc > env->memory + MEM_SIZE || p->pc < env->memory)
-	{
-		ft_printf("oops! move_pc is broken\n");
-		exit(1);
-	}
 }

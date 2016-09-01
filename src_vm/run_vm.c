@@ -12,26 +12,26 @@
 
 #include <corewar_vm.h>
 
-int		done(t_env *env)
+int		done(t_env *env, int *cycles)
 {
 	static int	checkups = 0;
 
 	check_live_calls(env);
-	if (env->live_calls >= NBR_LIVE)
+	if (*cycles >= env->cycle_to_die)
 	{
-		//ft_printf("live_calls = %d\n", env->live_calls);
-		//ft_printf("to die = %d\n", env->cycle_to_die);
-		if (still_alive(env))
+		if (env->live_calls >= NBR_LIVE)
 		{
-			//env->cycle_to_die -= CYCLE_DELTA;
+			env->cycle_to_die -= CYCLE_DELTA;
+			checkups = 0;
 		}
-		else if (checkups == MAX_CHECKS)
+		if (checkups >= MAX_CHECKS)
 		{
-			//env->cycle_to_die -= CYCLE_DELTA;
-			checkups = -1;
+			env->cycle_to_die -= CYCLE_DELTA;
+			checkups = 0;
 		}
-		env->live_calls = 0;
 		checkups++;
+		env->live_calls = 0;
+		*cycles = 0;
 	}
 	if (count_alive(env) == 0)
 		return (1);
@@ -68,30 +68,19 @@ void	exec_ops(t_env *env)
 			if (CUR_OP(p).to_exec == 1 && CUR_OP(p).op >= 1 &&
 					CUR_OP(p).op <= 16)
 			{
-				/*if (p > 0)
-					ft_printf("\nplayer %d %s exec %s PC : %ld\n", p,
-							PLAYER(p).name, OP(CUR_OP(p).op).name, P_CPU(p).pc);*/
 				get_args(&CUR_OP(p), env, &P_CPU(p).pc[1] +
 						OP(CUR_OP(p).op).n_byte);
-				print_oprun(CUR_OP(p), env);
 				run_instr(&CUR_OP(p), env);
 				if (CUR_OP(p).op != ZJMP)
 					move_pc(&P_CPU(p), total_arg_n(CUR_OP(p).arg_sizes)
 							+ OP(CUR_OP(p).op).n_byte + 1, env);
 				if (P_CPU(p).pc > P_CPU(p).prog_start + PLAYER(p).size)
-				{
-					//ft_printf("killing %d\n", p);
 					PLAYER(p).alive = FALSE;
-				}
-				if (p > 0)
-					print_memory(P_CPU(p).pc, 20);
 				clear_op(&CUR_OP(p), env);
 			}
 			else
 				CUR_OP(p).to_exec--;
 		}
-		//else
-			//ft_printf("%s, %d is dead\n", PLAYER(p).name, p);
 	}
 }
 
@@ -108,12 +97,9 @@ void	run_vm(t_env *env)
 	p_active = env->p_count;
 	cycle = 1;
 	count = 1;
-	//ft_printf("=================START==================");//
 	env->alive_at_check = (int*)malloc(sizeof(int) * env->p_count);
 	set_alive_at_check(env);
-	//ft_printf("AAC : \n");//
-	print_memory(env->alive_at_check, sizeof(int) * env->p_count);//
-	while (!(done(env)))
+	while (!(done(env, &count)))
 	{
 		fetch_ops(env);
 		exec_ops(env);
@@ -124,14 +110,8 @@ void	run_vm(t_env *env)
 			print_memory(env->memory, MEM_SIZE);
 			break ;
 		}
-		if (count >= env->cycle_to_die)
-		{
-			env->cycle_to_die -= CYCLE_DELTA;
-			count = 0;
-		}
 		cycle++;
 		count++;
 	}
-	printf("%lld ; ", cycle);
 	ft_memdel((void**)&env->alive_at_check);
 }

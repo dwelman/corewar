@@ -30,13 +30,15 @@ int		count_param_bytes(char **params, int num, BOOL dir_as_index)
 		if (param_type == REG_CODE)
 			count += 1;
 		else if (param_type == IND_CODE)
+		{
 			count += IND_SIZE;
+		}
 		else
 		{
 			if (dir_as_index == TRUE)
 				count += IND_SIZE;
 			else
-				count += REG_SIZE;
+				count += DIR_SIZE;
 		}
 		i++;
 	}

@@ -136,5 +136,4 @@ void	fill_op_tab(t_env *env)
 	fill_4(env);
 	fill_5(env);
 	set_dai(env);
-	print_all_ops(env->op_tab);
 }

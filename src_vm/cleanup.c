@@ -30,17 +30,13 @@ void	cleanup_env(t_env *env)
 	int	r;
 	int	p;
 
-	r = 0;
 	p = 0;
 	ft_memdel((void**)&env->memory);
 	while (p < env->p_count)
 	{
-		r = 0;
-		while (r < REG_NUMBER)
-		{
+		r = -1;
+		while (++r < REG_NUMBER)
 			ft_memdel(&P_REG(p, r + 1));
-			r++;
-		}
 		ft_memdel((void**)&P_CPU(p).registers);
 		if (PLAYER(p).sub != TRUE)
 		{

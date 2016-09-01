@@ -14,7 +14,6 @@
 
 void	inherit_parent(t_env *env, int p)
 {
-
 	env->players = realloc(env->players, sizeof(t_cor) * (env->p_count + 1));
 	if (p != -1)
 	{
@@ -38,7 +37,7 @@ void	**copy_registers(t_cpu *cpu)
 	r = 0;
 	ret = (void**)malloc(sizeof(void*) * REG_NUMBER);
 	while (r < REG_NUMBER)
-	{	
+	{
 		ret[r] = malloc(REG_SIZE);
 		ft_memcpy(ret[r], cpu->registers[r], REG_SIZE);
 		r++;
@@ -58,10 +57,9 @@ void	vm_fork(t_op_run *run, t_env *env)
 		reverse_bytes(&temp, IND_SIZE);
 		inherit_parent(env, p);
 		move_pc(&P_CPU(env->p_count), temp % IDX_MOD, env);
-		print_memory(P_CPU(env->p_count).pc , 1);
 		P_CPU(env->p_count).registers = copy_registers(&P_CPU(p));
-		puts("FORKING");
-		PLAYER(env->p_count).cur_op = load_op(&PLAYER(env->p_count), env, env->p_count);
+		PLAYER(env->p_count).cur_op = load_op(&PLAYER(env->p_count),
+			env, env->p_count);
 		CUR_OP(env->p_count).to_exec++;
 		PLAYER(env->p_count).sub = TRUE;
 		env->p_count++;

@@ -16,7 +16,7 @@
 ** Checks if player number exists and returns index of player.
 */
 
-int	is_player(int player, t_env *env)
+int		is_player(int player, t_env *env)
 {
 	int	i;
 
@@ -31,7 +31,7 @@ int	is_player(int player, t_env *env)
 }
 
 /*
-** Executes live instruction - sets env->last_live to the argument of 
+** Executes live instruction - sets env->last_live to the argument of
 ** the instruction if player exists and is alive.
 */
 
@@ -54,12 +54,12 @@ void	live(t_op_run *run, t_env *env)
 		}
 		p++;
 	}
-/*//	printf("index = %d player = %d\n", index, player);
 	if (index != -1 && PLAYER(index).alive == TRUE)
 	{
-		ft_printf("A process shows that player %s is alive\n", PLAYER(index).name);//
+		ft_printf("A process shows that player %s is alive\n",
+			PLAYER(index).name);
 		env->last_live = player;
 		PLAYER(index).last_live = -1;
 		env->live_calls++;
-	}*/
+	}
 }

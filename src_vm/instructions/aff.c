@@ -15,12 +15,14 @@
 void	aff(t_op_run *run, t_env *env)
 {
 	int		player;
+	int		temp;
 	char	c;
 
 	player = run->p_in;
 	if ((int)*run->arg[0] - 1 < REG_NUMBER)
 	{
-		c = (char)(*(int *)P_CPU(player).registers[(int)*run->arg[0] - 1] % 256);
+		temp = read_int(P_REG(player, *(int *)run->arg[0]));
+		c = (temp % 256);
 		ft_putchar(c);
 	}
 }

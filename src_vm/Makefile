@@ -53,7 +53,6 @@ SRC = main.c\
 	  load_bytes.c\
 	  sort_players.c\
 	  print_memory.c\
-	  print_ops.c\
 	  cleanup.c\
 	  run_instr.c\
 	  live_check.c \

@@ -24,20 +24,16 @@ static int	ret_val(t_op_run *run, t_env *env, int player, int param)
 	}
 	else if (run->arg_types[param] == DIR_CODE)
 	{
-	//	temp_val = read_int(run->arg[param]);
-		return(read_int(run->arg[param]));
+		return (read_int(run->arg[param]));
 	}
 	else if (run->arg_types[param] == IND_CODE)
 	{
 		temp_val = (int)read_short(run->arg[param]);
 		mem = cload_bytes(env->memory, (P_CPU(player).pc - env->memory)
 					+ (temp_val % IDX_MOD), MEM_SIZE, REG_SIZE);
-//		reverse_bytes(mem, REG_SIZE);
 		temp_val = read_int(mem);
 		free(mem);
 		return (temp_val);
-//		return (read_int(cload_bytes(env->memory, (P_CPU(player).pc - env->memory)
-//					+ (temp_val % IDX_MOD), MEM_SIZE, REG_SIZE)));
 	}
 	return (0);
 }
@@ -46,17 +42,20 @@ static int	check_arg(t_op_run *run)
 {
 	if (run->arg_types[0] == REG_CODE)
 	{
-		if ((int)*run->arg[0] > REG_NUMBER)
+		if ((int)*run->arg[0] > REG_NUMBER
+			|| (int)*run->arg[0] <= 0)
 			return (0);
 	}
 	if (run->arg_types[1] == REG_CODE)
 	{
-		if ((int)*run->arg[1] > REG_NUMBER)
+		if ((int)*run->arg[1] > REG_NUMBER
+			|| (int)*run->arg[1] <= 0)
 			return (0);
 	}
 	if (run->arg_types[2] == REG_CODE)
 	{
-		if ((int)*run->arg[2] > REG_NUMBER)
+		if ((int)*run->arg[2] > REG_NUMBER
+			|| (int)*run->arg[2] <= 0)
 			return (0);
 	}
 	return (1);
@@ -77,7 +76,7 @@ void		and(t_op_run *run, t_env *env)
 	player = run->p_in;
 	if (check_arg(run) == 0)
 	{
-		return;
+		return ;
 		P_CPU(player).carry = 0;
 	}
 	temp1 = ret_val(run, env, player, 0);

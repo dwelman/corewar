@@ -10,10 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include <corewar_vm.h>
 
-void	lld_ind(t_op_run *run, t_env *env, int player)
+void		lld_ind(t_op_run *run, t_env *env, int player)
 {
 	char	*mem;
 	int		temp_val;
@@ -27,9 +26,10 @@ void	lld_ind(t_op_run *run, t_env *env, int player)
 	free(mem);
 }
 
-static int		check_reg(t_op_run *run)
+static int	check_reg(t_op_run *run)
 {
-	if ((int)*run->arg[1] > REG_NUMBER || run->arg_types[1] != REG_CODE)
+	if ((int)*run->arg[1] > REG_NUMBER || run->arg_types[1] != REG_CODE
+		|| (int)*run->arg[1] <= 0)
 		return (0);
 	else
 		return (1);
@@ -40,7 +40,7 @@ static int		check_reg(t_op_run *run)
 ** without IDX_MOD
 */
 
-void	lld(t_op_run *run, t_env *env)
+void		lld(t_op_run *run, t_env *env)
 {
 	int		player;
 

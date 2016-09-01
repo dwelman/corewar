@@ -25,7 +25,8 @@ static int	handle_arg(t_op_run *run, t_env *env, int player)
 
 static int	check_reg(t_op_run *run)
 {
-	if ((int)*run->arg[2] > REG_NUMBER || run->arg_types[2] != REG_CODE)
+	if ((int)*run->arg[2] > REG_NUMBER || run->arg_types[2] != REG_CODE
+		|| (int)*run->arg[2] <= 0)
 		return (0);
 	else
 		return (1);

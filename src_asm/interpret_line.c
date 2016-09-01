@@ -47,6 +47,12 @@ int	interpret_line(char *str, t_info *info, int i)
 	start_reading = check_for_label(str);
 	found_command = 0;
 	j = start_reading;
+	if (str[0] == '\0')
+		return (0);
+	if (ft_strncmp(NAME_CMD_STRING, str, ft_strlen(NAME_CMD_STRING)) == 0)
+		return (0);
+	if (ft_strncmp(COMMENT_CMD_STRING, str, ft_strlen(COMMENT_CMD_STRING)) == 0)
+		return (0);
 	while (str[j] != '\0' && str[j] != COMMENT_CHAR)
 	{
 		if (found_command == 0 && str[j] != ' ' && str[j] != '\t')
@@ -54,6 +60,8 @@ int	interpret_line(char *str, t_info *info, int i)
 			info->line_nbr = i + 1;
 			if (get_command(info, str, &j, &found_command) == -1)
 				return (-1);
+			else
+				return (0);
 		}
 		j++;
 	}

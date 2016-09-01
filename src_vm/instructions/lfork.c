@@ -23,10 +23,10 @@ void	vm_lfork(t_op_run *run, t_env *env)
 		ft_memcpy(&temp, run->arg[0], IND_SIZE);
 		reverse_bytes(&temp, IND_SIZE);
 		inherit_parent(env, p);
-		move_pc(&P_CPU(env->p_count), temp , env);
-		print_memory(P_CPU(env->p_count).pc , 1);
+		move_pc(&P_CPU(env->p_count), temp, env);
 		P_CPU(env->p_count).registers = copy_registers(&P_CPU(p));
-		PLAYER(env->p_count).cur_op = load_op(&PLAYER(env->p_count), env, env->p_count);
+		PLAYER(env->p_count).cur_op = load_op(&PLAYER(env->p_count),
+			env, env->p_count);
 		CUR_OP(env->p_count).to_exec++;
 		PLAYER(env->p_count).sub = TRUE;
 		env->p_count++;

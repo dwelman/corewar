@@ -25,7 +25,6 @@ void	init_header(t_header *header, t_info *info)
 		i++;
 	}
 	header->magic = COREWAR_EXEC_MAGIC;
-	header->prog_size = 256;
 	ft_strcpy(info->header.prog_name, info->name);
 	ft_strcpy(info->header.comment, info->comment);
 }

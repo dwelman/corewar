@@ -24,7 +24,7 @@ int	read_line(t_info *info, char *line, int line_nbr)
 
 	i = 0;
 	valid_label = 0;
-	while (line[i])
+	while (line[i] != '\0' && line[i] != COMMENT_CHAR)
 	{
 		if (line[i] == LABEL_CHAR)
 		{

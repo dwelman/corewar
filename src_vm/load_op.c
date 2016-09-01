@@ -38,40 +38,6 @@ void		clear_op(t_op_run *op, t_env *env)
 	op->to_exec = env->cycle_to_die + 1;
 }
 
-void		print_oprun(t_op_run op, t_env *env)//debug
-{
-	int		i;
-
-	ft_printf("op : %s\n to_exec %d\n player = %d\n", OP(op.op).name,
-			op.to_exec, op.player);
-	ft_printf("types : \n");
-	i = 0;
-	while (i < OP(op.op).nbr_args)
-	{
-		ft_printf("%d ", op.arg_types[i]);
-		i++;
-	}
-	i = 0;
-	ft_printf("\nsizes : \n");
-	while (i < OP(op.op).nbr_args)
-	{
-		ft_printf("%d ", op.arg_sizes[i]);
-		i++;
-	}
-	i = 0;
-	ft_printf("\nargs : %p\n", op.arg);
-	if (op.arg)
-	{
-		while (i < OP(op.op).nbr_args && op.arg[i])
-		{
-			print_memory(op.arg[i], op.arg_sizes[i]);
-			i++;
-		}
-	}
-	else
-		ft_printf("NULL");
-}
-
 /*
 ** Gets arguments  assumes encoding byte has been skipped
 */
@@ -88,7 +54,6 @@ void		get_args(t_op_run *new, t_env *env, char *pc)
 		{
 			new->arg[i] = cload_bytes(env->memory, pc - env->memory,
 					MEM_SIZE, new->arg_sizes[i]);
-			print_memory(new->arg[i], new->arg_sizes[i]);
 			pc += new->arg_sizes[i];
 		}
 		else

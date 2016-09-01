@@ -20,13 +20,13 @@ int			handle_args(t_op_run *run, t_env *env, int player, int param)
 		ret = (int)read_short(run->arg[param]);
 	else
 		ret = read_int(P_REG(player, (int)*run->arg[param]));
-	//printf("ret = %d\n", ret);	
 	return (ret);
 }
 
 static int	check_reg(t_op_run *run)
 {
-	if ((int)*run->arg[2] > REG_NUMBER || run->arg_types[2] != REG_CODE)
+	if ((int)*run->arg[2] > REG_NUMBER || run->arg_types[2] != REG_CODE
+		|| (int)*run->arg[2] <= 0)
 		return (1);
 	else
 		return (0);

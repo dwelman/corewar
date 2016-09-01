@@ -103,12 +103,5 @@ void	load_programs(t_env *env)
 		size_err(PLAYER(i));
 		PLAYER(i).name[PROG_NAME_LENGTH] = '\0';
 		PLAYER(i).comment[COMMENT_LENGTH] = '\0';
-		//debug
-		ft_printf("name  :\n %s\n", PLAYER(i).name);
-		ft_printf("size  :\n %d\n", PLAYER(i).size);
-		ft_printf("comment : \n %s\n", PLAYER(i).comment);
-		ft_printf("instructions :\n");
-		print_memory(PLAYER(i).instructions, PLAYER(i).size);
-		ft_putchar('\n');
 	}
 }

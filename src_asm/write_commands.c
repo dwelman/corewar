@@ -37,7 +37,10 @@ void		handle_dir_params(t_info *info, t_command com, int fd, t_params *p)
 			rev_write(fd, &p->offset, 2);
 		}
 		else
+		{
+			ft_putstr_fd("Error : Label not found\n", 2);
 			exit(-1);
+		}
 	}
 }
 

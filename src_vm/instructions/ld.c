@@ -12,7 +12,7 @@
 
 #include <corewar_vm.h>
 
-void	ld_ind(t_op_run *run, t_env *env, int player)
+void			ld_ind(t_op_run *run, t_env *env, int player)
 {
 	char	*mem;
 	int		temp_val;
@@ -28,7 +28,8 @@ void	ld_ind(t_op_run *run, t_env *env, int player)
 
 static int		check_reg(t_op_run *run)
 {
-	if ((int)*run->arg[1] > REG_NUMBER || run->arg_types[1] != REG_CODE)
+	if ((int)*run->arg[1] > REG_NUMBER || run->arg_types[1] != REG_CODE
+		|| (int)*run->arg[1] <= 0)
 		return (0);
 	else
 		return (1);
@@ -38,7 +39,7 @@ static int		check_reg(t_op_run *run)
 ** Loads REG_SIZE bytes from the first parameter into the second parameter
 */
 
-void	ld(t_op_run *run, t_env *env)
+void			ld(t_op_run *run, t_env *env)
 {
 	int		player;
 

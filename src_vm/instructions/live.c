@@ -39,9 +39,9 @@ void	live(t_op_run *run, t_env *env)
 {
 	int	player;
 	int	p;
+	int	in;
 
 	player = read_int(run->arg[0]);
-	ft_printf("player %d\n", player);
 	p = 0;
 	while (p < env->p_count)
 	{
@@ -49,20 +49,14 @@ void	live(t_op_run *run, t_env *env)
 		{
 			env->last_live = player;
 			PLAYER(p).last_live = -1;
-	//		ft_printf("A process shows that player %s is alive\n",
-	//			PLAYER(p).name);
 		}
 		p++;
 	}
-	if (is_player(player, env) != -1)
-		env->live_calls++;
-/*
-	if (index != -1 && PLAYER(index).alive == TRUE)
+	in = is_player(player, env);
+	if (in != -1)
 	{
-		ft_printf("A process shows that player %s is alive\n",
-			PLAYER(index).name);
-		env->last_live = PLAYER(index).p_num;
-		PLAYER(index).last_live = -1;
 		env->live_calls++;
-	}*/
+		ft_printf("A process shows that player %s is alive\n",
+			PLAYER(in).name);
+	}
 }

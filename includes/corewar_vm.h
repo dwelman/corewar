@@ -25,7 +25,8 @@
 # define OP(X) env->op_tab[X]
 # define CUR_OP(X) env->players[X].cur_op
 # define COUNT_BUF 64
-# define INST_SIZE(X) PLAYER(X).file_size - ( 4 + PROG_NAME_LENGTH + COMMENT_LENGTH)
+# define HEAD_LEN PROG_NAME_LENGTH + COMMENT_LENGTH
+# define INST_SIZE(X) PLAYER(X).file_size - (4 + HEAD_LEN)
 # define NO_TYPE 0;
 # define ALIVE(X) PLAYER(X).alive == 1
 # define SHORT_MAX 32767
@@ -269,11 +270,11 @@ int					handle_args(t_op_run *run, t_env *env, int player,
 
 int					is_player(int player, t_env *env);
 
-void				live(t_op_run *run, t_env *env);//
+void				live(t_op_run *run, t_env *env);
 
-void				ld(t_op_run *run, t_env *env);//
+void				ld(t_op_run *run, t_env *env);
 
-void				st(t_op_run *run, t_env *env);//
+void				st(t_op_run *run, t_env *env);
 
 void				add(t_op_run *run, t_env *env);
 
@@ -283,7 +284,7 @@ void				and(t_op_run *run, t_env *env);
 
 void				or(t_op_run *run, t_env *env);
 
-void				xor(t_op_run *run, t_env *env);//
+void				xor(t_op_run *run, t_env *env);
 
 void				zjmp(t_op_run *run, t_env *env);
 
@@ -291,7 +292,7 @@ void				ldi(t_op_run *run, t_env *env);
 
 void				sti(t_op_run *run, t_env *env);
 
-void				vm_fork(t_op_run *run, t_env *env);//
+void				vm_fork(t_op_run *run, t_env *env);
 
 void				lld(t_op_run *run, t_env *env);
 

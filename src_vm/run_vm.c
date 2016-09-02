@@ -111,6 +111,5 @@ void	run_vm(t_env *env)
 		cycle++;
 		count++;
 	}
-	ft_printf("cycles %lld players %d\n", cycle, env->p_count);
 	ft_memdel((void**)&env->alive_at_check);
 }

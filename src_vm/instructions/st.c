@@ -41,7 +41,6 @@ void		st(t_op_run *run, t_env *env)
 	short	temp_val;
 
 	player = run->p_in;
-	print_memory(run->arg[0], run->arg_sizes[0]);
 	if (check_reg(run) == 0)
 		return ;
 	temp_val = 0;

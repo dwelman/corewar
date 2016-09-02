@@ -59,5 +59,4 @@ void		sub(t_op_run *run, t_env *env)
 	P_CPU(player).carry = !temp;
 	reverse_bytes(&temp, REG_SIZE);
 	ft_memcpy(P_CPU(player).registers[(int)*run->arg[2] - 1], &temp, REG_SIZE);
-	
 }

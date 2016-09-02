@@ -46,22 +46,19 @@ static int	check_reg(t_op_run *run)
 	if (run->arg_types[0] == REG_CODE)
 	{
 		temp = (int)*run->arg[0];
-		if (temp - 1 > REG_NUMBER
-			|| (int)*run->arg[0] <= 0)
+		if (temp - 1 > REG_NUMBER || (int)*run->arg[0] <= 0)
 			return (0);
 	}
 	if (run->arg_types[1] == REG_CODE)
 	{
 		temp = (int)*run->arg[1];
-		if (temp - 1 > REG_NUMBER
-			|| (int)*run->arg[1] <= 0)
+		if (temp - 1 > REG_NUMBER || (int)*run->arg[1] <= 0)
 			return (0);
 	}
 	if (run->arg_types[2] == REG_CODE)
 	{
 		temp = (int)*run->arg[2];
-		if (temp - 1 > REG_NUMBER
-			|| (int)*run->arg[2] <= 0)
+		if (temp - 1 > REG_NUMBER || (int)*run->arg[2] <= 0)
 			return (0);
 	}
 	else

@@ -74,7 +74,6 @@ void		and(t_op_run *run, t_env *env)
 	int	temp;
 
 	player = run->p_in;
-	print_memory(P_CPU(player).pc, 10);
 	if (check_arg(run) == 0)
 		return ;
 	temp1 = ret_val(run, env, player, 0);

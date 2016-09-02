@@ -70,14 +70,11 @@ void		sti(t_op_run *run, t_env *env)
 	int		player;
 	int		temp_val;
 
-	print_memory(P_CPU(run->p_in).pc, 10);
 	player = run->p_in;
 	if (check_reg(run) == 0)
 		return ;
 	temp_val = ret_val(run, env, player, 1);
 	temp_val += ret_val(run, env, player, 2);
-	print_memory(P_CPU(player).pc + (temp_val % IDX_MOD), 20);
 	cwrite_bytes(env, (P_CPU(player).pc - env->memory) + (temp_val % IDX_MOD),
 			P_REG(player, (int)*run->arg[0]), REG_SIZE);
-	print_memory(P_CPU(player).pc + (temp_val % IDX_MOD), 20);
 }

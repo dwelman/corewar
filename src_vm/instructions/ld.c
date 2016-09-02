@@ -17,7 +17,6 @@ void			ld_ind(t_op_run *run, t_env *env, int player)
 	char	*mem;
 	int		temp_val;
 
-	
 	temp_val = (int)read_short(run->arg[0]);
 	mem = cload_bytes(env->memory, (P_CPU(player).pc - env->memory)
 			+ (temp_val % IDX_MOD), MEM_SIZE, REG_SIZE);

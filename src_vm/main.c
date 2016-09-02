@@ -70,6 +70,11 @@ int		main(int argc, char **argv)
 	check_oph();
 	init_env(&env);
 	check_args(argc, argv, &env);
+	if (env.p_count > MAX_PLAYERS)
+	{
+		ft_putstr_fd("This vm only supports 4 players\n", 2);
+		exit(-1);
+	}
 	get_input(argc, argv, &env);
 	sort_players(&env);
 	load_programs(&env);

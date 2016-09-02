@@ -43,7 +43,6 @@ void	run_instr(t_op_run *run, t_env *env)
 	code = run->op;
 	if (run->valid == 1)
 	{
-		ft_printf("code %d\n", code);
 		if (code == LIVE)
 			live(run, env);
 		else if (code == LD)

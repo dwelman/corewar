@@ -6,34 +6,34 @@
 #    By: daviwel <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/01 13:21:50 by daviwel           #+#    #+#              #
-#    Updated: 2016/08/28 12:34:45 by ggroener         ###   ########.fr        #
+#    Updated: 2016/09/02 13:57:15 by ddu-toit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = corewar
-
-PATH = src/
-
-SRC = $(PATH)main.c\
-
-OBJ = $(SRC:.c=.o)
-
-ATTACH = -L libft/ -lft -lmlx -framework OpenGL -framework AppKit
-
-all: qme $(NAME)
+all: $(NAME)
 
 $(NAME):
-	clang -Wall -Werror -Wextra -c $(SRC)
-	/bin/mv *.o src
-	clang -Wall -Werror -Wextra -o $(NAME) $(OBJ) $(ATTACH)
+	make -C src_asm/
+	make -C src_vm/
+	echo "derp"
+	cp src_vm/corewar .
+	cp src_asm/asm .
 
 clean:
-	/bin/rm -f $(OBJ)
+	make clean -C src_asm/
+	make clean -C src_vm/
 
-fclean: clean
-	/bin/rm -f $(NAME)
+fclean:
+	make fclean -C src_asm/
+	make fclean -C src_vm/
+	/bin/rm -f asm
+	/bin/rm -f corewar
 
-re: fclean all
+re: 
+	make re -C src_asm/
+	make re -C src_vm/
+	cp src_vm/corewar .
+	cp src_asm/asm .
 
 format: me
 

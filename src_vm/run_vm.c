@@ -71,11 +71,9 @@ void	exec_ops(t_env *env)
 				get_args(&CUR_OP(p), env, &P_CPU(p).pc[1] +
 						OP(CUR_OP(p).op).n_byte);
 				run_instr(&CUR_OP(p), env);
-				if (CUR_OP(p).op != ZJMP)
+				if (CUR_OP(p).op != ZJMP || P_CPU(p).carry == 0)
 					move_pc(&P_CPU(p), total_arg_n(CUR_OP(p).arg_sizes)
 							+ OP(CUR_OP(p).op).n_byte + 1, env);
-				if (P_CPU(p).pc > P_CPU(p).prog_start + PLAYER(p).size)
-					PLAYER(p).alive = FALSE;
 				clear_op(&CUR_OP(p), env);
 			}
 			else
@@ -113,5 +111,6 @@ void	run_vm(t_env *env)
 		cycle++;
 		count++;
 	}
+	ft_printf("cycles %lld players %d\n", cycle, env->p_count);
 	ft_memdel((void**)&env->alive_at_check);
 }

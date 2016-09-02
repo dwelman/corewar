@@ -82,6 +82,7 @@ typedef struct		s_op_run
 	int		*arg_types;
 	int		*arg_sizes;
 	char	**arg;
+	int		valid;
 }					t_op_run;
 
 typedef struct		s_op
@@ -178,6 +179,8 @@ void				fill_5(t_env *env);
 void				load_programs(t_env *env);
 
 void				reverse_bytes(void *mem, size_t size);
+
+int					valid_type(int type);
 
 /*
 ** Output functions

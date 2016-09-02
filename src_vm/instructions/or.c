@@ -76,14 +76,12 @@ void		or(t_op_run *run, t_env *env)
 
 	player = run->p_in;
 	if (check_reg(run) == 0)
-	{
-		P_CPU(player).carry = 0;
 		return ;
-	}
 	temp1 = ret_val(run, env, player, 0);
 	temp2 = ret_val(run, env, player, 1);
 	temp = temp1 | temp2;
+	P_CPU(player).carry = !temp;
 	reverse_bytes(&temp, REG_SIZE);
 	ft_memcpy(P_CPU(player).registers[(int)*run->arg[2] - 1], &temp, REG_SIZE);
-	P_CPU(player).carry = 1;
+	
 }

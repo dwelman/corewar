@@ -17,12 +17,12 @@ void			ld_ind(t_op_run *run, t_env *env, int player)
 	char	*mem;
 	int		temp_val;
 
+	
 	temp_val = (int)read_short(run->arg[0]);
 	mem = cload_bytes(env->memory, (P_CPU(player).pc - env->memory)
 			+ (temp_val % IDX_MOD), MEM_SIZE, REG_SIZE);
 	ft_memcpy(P_CPU(player).registers[(int)*run->arg[1] - 1],
 			(void *)mem, REG_SIZE);
-	P_CPU(player).carry = 1;
 	free(mem);
 }
 
@@ -45,17 +45,10 @@ void			ld(t_op_run *run, t_env *env)
 
 	player = run->p_in;
 	if (check_reg(run) == 0)
-	{
-		P_CPU(player).carry = 0;
 		return ;
-	}
 	if (run->arg_types[0] == DIR_CODE)
-	{
 		ft_memcpy(P_REG(player, (int)*run->arg[1]), run->arg[0], REG_SIZE);
-		P_CPU(player).carry = 1;
-	}
 	else if (run->arg_types[0] == IND_CODE)
 		ld_ind(run, env, player);
-	else
-		P_CPU(player).carry = 0;
+	P_CPU(player).carry = !read_int(P_REG(player, (int)*run->arg[1]));
 }

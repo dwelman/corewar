@@ -12,6 +12,14 @@
 
 #include <corewar_vm.h>
 
+int			valid_type(int type)
+{
+	if (type != REG_CODE && type != DIR_CODE && type != IND_CODE)
+		return (0);
+	else
+		return (1);
+}
+
 /*
 ** Uses encoding byte to generate a int* containing the arg types,
 ** index corresponds to index of arg

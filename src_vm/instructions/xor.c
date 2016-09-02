@@ -87,8 +87,8 @@ void		xor(t_op_run *run, t_env *env)
 	temp1 = ret_val(run, env, player, 0);
 	temp2 = ret_val(run, env, player, 1);
 	temp = temp1 ^ temp2;
+	P_CPU(player).carry = !temp;
 	reverse_bytes(&temp, REG_SIZE);
 	ft_memcpy(P_CPU(player).registers[(int)*(run->arg[2]) - 1], &temp,
 		REG_SIZE);
-	P_CPU(player).carry = 1;
 }

@@ -62,6 +62,20 @@ void		get_args(t_op_run *new, t_env *env, char *pc)
 	}
 }
 
+int			check_valid(t_op_run *op, t_env *env)
+{
+	int	i;
+
+	i = 0;
+	while (i < OP(op->op).nbr_args)
+	{
+		if (!valid_type(op->arg_types[i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 /*
 ** Sets values for struct t_op_run.
 */
@@ -84,5 +98,6 @@ t_op_run	load_op(t_cor *player, t_env *env, int p)
 	new.p_in = p;
 	new.arg_sizes = get_arg_sizes(&new, env);
 	player->cpu.pc -= 1;
+	new.valid = check_valid(&new, env);
 	return (new);
 }

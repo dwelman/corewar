@@ -20,33 +20,42 @@ static int	check_reg(t_op_run *run)
 			|| (int)*run->arg[0] <= 0)
 			return (0);
 	}
+	if (run->arg_types[1] == REG_CODE)
+	{
+		if ((int)*run->arg[1] > REG_NUMBER
+			|| (int)*run->arg[1] <= 0)
+			return (0);
+	}
+	if (run->arg_types[1] == REG_CODE)
+	{
+		if ((int)*run->arg[1] > REG_NUMBER
+			|| (int)*run->arg[1] <= 0)
+			return (0);
+	}
 	return (-1);
 }
 
-static int	ret_val(t_op_run *run, t_env *env, int player)
+static int	ret_val(t_op_run *run, t_env *env, int player, int ind)
 {
 	int		temp_val;
 	char	*mem;
 
 	temp_val = 0;
-	if (run->arg_types[1] == IND_CODE)
+	if (run->arg_types[ind] == IND_CODE)
 	{
-		temp_val = (int)read_short(run->arg[1]);
+		temp_val = (int)read_short(run->arg[ind]);
 		mem = cload_bytes(env->memory, (P_CPU(player).pc - env->memory) +
 				(temp_val % IDX_MOD), MEM_SIZE, IND_SIZE);
 		temp_val = (int)read_short(mem);
-		temp_val += handle_args(run, env, player, 2);
 		free(mem);
 	}
-	else if (run->arg_types[1] == DIR_CODE)
+	else if (run->arg_types[ind] == DIR_CODE)
 	{
-		temp_val = (int)read_short(run->arg[1]);
-		temp_val += handle_args(run, env, player, 2);
+		temp_val = (int)read_short(run->arg[ind]);
 	}
 	else
 	{
-		temp_val = read_int(P_REG(player, (int)*run->arg[1]));
-		temp_val += handle_args(run, env, player, 2);
+		temp_val = read_int(P_REG(player, (int)*run->arg[ind]));
 	}
 	return (temp_val);
 }
@@ -61,14 +70,14 @@ void		sti(t_op_run *run, t_env *env)
 	int		player;
 	int		temp_val;
 
+	print_memory(P_CPU(run->p_in).pc, 10);
 	player = run->p_in;
 	if (check_reg(run) == 0)
-	{
-		P_CPU(player).carry = 0;
 		return ;
-	}
-	temp_val = ret_val(run, env, player);
+	temp_val = ret_val(run, env, player, 1);
+	temp_val += ret_val(run, env, player, 2);
+	print_memory(P_CPU(player).pc + (temp_val % IDX_MOD), 20);
 	cwrite_bytes(env, (P_CPU(player).pc - env->memory) + (temp_val % IDX_MOD),
 			P_REG(player, (int)*run->arg[0]), REG_SIZE);
-	P_CPU(player).carry = 1;
+	print_memory(P_CPU(player).pc + (temp_val % IDX_MOD), 20);
 }

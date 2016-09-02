@@ -41,22 +41,26 @@ void	run_instr(t_op_run *run, t_env *env)
 	int	code;
 
 	code = run->op;
-	if (code == LIVE)
-		live(run, env);
-	else if (code == LD)
-		ld(run, env);
-	else if (code == ST)
-		st(run, env);
-	else if (code == ADD)
-		add(run, env);
-	else if (code == SUB)
-		sub(run, env);
-	else if (code == AND)
-		and(run, env);
-	else if (code == OR)
-		or(run, env);
-	else if (code == XOR)
-		xor(run, env);
-	else
-		cont_run(run, env, code);
+	if (run->valid == 1)
+	{
+		ft_printf("code %d\n", code);
+		if (code == LIVE)
+			live(run, env);
+		else if (code == LD)
+			ld(run, env);
+		else if (code == ST)
+			st(run, env);
+		else if (code == ADD)
+			add(run, env);
+		else if (code == SUB)
+			sub(run, env);
+		else if (code == AND)
+			and(run, env);
+		else if (code == OR)
+			or(run, env);
+		else if (code == XOR)
+			xor(run, env);
+		else
+			cont_run(run, env, code);
+	}
 }

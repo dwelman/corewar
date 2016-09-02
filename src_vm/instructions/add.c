@@ -25,7 +25,7 @@ static int	check_reg(t_op_run *run)
 	if (run->arg_types[1] == REG_CODE)
 	{
 		if ((int)*run->arg[1] > REG_NUMBER
-			|| (int)*run->arg[0] <= 0)
+			|| (int)*run->arg[1] <= 0)
 			return (0);
 	}
 	else
@@ -33,7 +33,7 @@ static int	check_reg(t_op_run *run)
 	if (run->arg_types[2] == REG_CODE)
 	{
 		if ((int)*run->arg[2] > REG_NUMBER
-			|| (int)*run->arg[0] <= 0)
+			|| (int)*run->arg[2] <= 0)
 			return (0);
 	}
 	else
@@ -56,11 +56,9 @@ void		add(t_op_run *run, t_env *env)
 		temp = 0;
 		temp += read_int(P_REG(player, (int)*run->arg[0]));
 		temp += read_int(P_REG(player, (int)*run->arg[1]));
+		P_CPU(player).carry = !temp;
 		reverse_bytes(&temp, REG_SIZE);
 		ft_memcpy(P_CPU(player).registers[(int)*run->arg[2] - 1],
 			&temp, REG_SIZE);
-		P_CPU(player).carry = 1;
 	}
-	else
-		P_CPU(player).carry = 0;
 }

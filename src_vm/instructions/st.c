@@ -26,8 +26,7 @@ static int	check_reg(t_op_run *run)
 			|| (int)*run->arg[1] <= 0)
 			return (0);
 	}
-	else if (run->arg_types[1] != IND_CODE
-		|| (int)*run->arg[1] <= 0)
+	else if (run->arg_types[1] != IND_CODE)
 		return (0);
 	return (1);
 }
@@ -42,11 +41,9 @@ void		st(t_op_run *run, t_env *env)
 	short	temp_val;
 
 	player = run->p_in;
+	print_memory(run->arg[0], run->arg_sizes[0]);
 	if (check_reg(run) == 0)
-	{
-		P_CPU(player).carry = 0;
 		return ;
-	}
 	temp_val = 0;
 	if (run->arg_types[1] == IND_CODE)
 	{
@@ -60,5 +57,4 @@ void		st(t_op_run *run, t_env *env)
 		ft_memcpy(P_CPU(player).registers[(int)*(run->arg[1]) - 1],
 				P_CPU(player).registers[(int)*(run->arg[0]) - 1], REG_SIZE);
 	}
-	P_CPU(player).carry = 1;
 }

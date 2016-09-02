@@ -52,14 +52,12 @@ void		sub(t_op_run *run, t_env *env)
 
 	player = run->p_in;
 	if (check_reg(run) == 0)
-	{
-		P_CPU(player).carry = 0;
 		return ;
-	}
 	temp = 0;
 	temp += read_int(P_CPU(player).registers[(int)*run->arg[0] - 1]);
 	temp -= read_int(P_CPU(player).registers[(int)*run->arg[1] - 1]);
+	P_CPU(player).carry = !temp;
 	reverse_bytes(&temp, REG_SIZE);
 	ft_memcpy(P_CPU(player).registers[(int)*run->arg[2] - 1], &temp, REG_SIZE);
-	P_CPU(player).carry = 1;
+	
 }

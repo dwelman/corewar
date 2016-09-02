@@ -89,5 +89,5 @@ void		lldi(t_op_run *run, t_env *env)
 	mem = cload_bytes(env->memory, (P_CPU(player).pc - env->memory) +
 			(temp_val), MEM_SIZE, REG_SIZE);
 	ft_memcpy(P_REG(player, (int)*run->arg[2]), mem, REG_SIZE);
-	P_CPU(player).carry = 1;
+	P_CPU(player).carry = !read_int(P_REG(player, (int)*run->arg[2]));
 }
